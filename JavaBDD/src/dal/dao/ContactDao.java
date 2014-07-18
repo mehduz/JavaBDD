@@ -7,7 +7,7 @@ public interface ContactDao {
 	
 	void creer( Contact classe ) throws DAOException;
 
-	Contact trouver( String email ) throws DAOException;
+	Contact trouver( String id_contact ) throws DAOException;
 	
 
 }

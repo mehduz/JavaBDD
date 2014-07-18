@@ -13,11 +13,9 @@ public class ClasseDaoImpl implements ClasseDao {
 	}
 
 	@Override
-	public Classe trouver(String email) throws DAOException {
+	public Classe trouver(String nom_classe) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 
 }

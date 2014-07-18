@@ -13,7 +13,7 @@ public class ProfesseurDaoImpl implements ProfesseurDao {
 	}
 
 	@Override
-	public Professeur trouver(String email) throws DAOException {
+	public Professeur trouver(String id_prof) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

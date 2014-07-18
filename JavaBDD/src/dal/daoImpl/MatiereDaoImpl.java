@@ -13,8 +13,11 @@ public class MatiereDaoImpl implements MatiereDao {
 	}
 
 	@Override
-	public Matiere trouver(String email) throws DAOException {
+	public Matiere trouver(String nom_matiere) throws DAOException {
 		// TODO Auto-generated method stub
+		
+		
+		
 		return null;
 	}
 

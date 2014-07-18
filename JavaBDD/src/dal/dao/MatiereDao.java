@@ -7,7 +7,7 @@ public interface MatiereDao {
 	
 	void creer( Matiere classe ) throws DAOException;
 
-	Matiere trouver( String email ) throws DAOException;
+	Matiere trouver( String nom_matiere ) throws DAOException;
 	
 
 }

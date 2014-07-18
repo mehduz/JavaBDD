@@ -25,4 +25,10 @@ public class EleveDaoImpl implements EleveDao {
 		return null;
 	}
 
+	@Override
+	public Eleve trouver(String login, String mdp) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }	
