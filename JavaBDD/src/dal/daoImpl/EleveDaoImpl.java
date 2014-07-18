@@ -7,7 +7,7 @@ import beans.Eleve;
 
 public class EleveDaoImpl implements EleveDao {
 
-	 private DAOFactory          daoFactory;
+	 private DAOFactory   daoFactory;
 	 
 	    EleveDaoImpl( DAOFactory daoFactory ) {
 	        this.daoFactory = daoFactory;
