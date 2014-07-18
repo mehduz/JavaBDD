@@ -2,7 +2,7 @@ package beans;
 
 import java.util.Date;
 
-class Professeur extends Personne{
+public class Professeur extends Personne{
 	
 	private long ID_prof;
 	

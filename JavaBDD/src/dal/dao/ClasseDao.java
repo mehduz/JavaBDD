@@ -1,6 +1,6 @@
 package dal.dao;
 
-import beans.Eleve;
+import beans.Classe;
 import dal.DAOException;
 
 public interface ClasseDao {
