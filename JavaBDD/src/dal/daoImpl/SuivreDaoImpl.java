@@ -1,5 +1,8 @@
 package dal.daoImpl;
 
-public class SuivreDaoImpl {
+import dal.dao.SuivreDao;
+
+public class SuivreDaoImpl implements SuivreDao {
 
 }
+ 

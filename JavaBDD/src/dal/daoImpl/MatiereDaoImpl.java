@@ -1,5 +1,7 @@
 package dal.daoImpl;
 
-public class MatiereDaoImpl {
+import dal.dao.MatiereDao;
+ 
+public class MatiereDaoImpl implements MatiereDao {
 
 }

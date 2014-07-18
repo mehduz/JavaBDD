@@ -1,6 +1,8 @@
 package dal.daoImpl;
 
-public class ClasseDaoImpl {
+import dal.dao.ClasseDao;
+
+public class ClasseDaoImpl implements ClasseDao {
 	
 	
 

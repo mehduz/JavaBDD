@@ -1,5 +1,7 @@
 package dal.daoImpl;
 
-public class ContactDaoImpl {
+import dal.dao.ContactDao;
+
+public class ContactDaoImpl implements ContactDao {
 
 }

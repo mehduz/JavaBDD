@@ -1,5 +1,7 @@
 package dal.daoImpl;
 
-public class ProfesseurDaoImpl {
+import dal.dao.ProfesseurDao;
+
+public class ProfesseurDaoImpl implements ProfesseurDao {
 
 }
