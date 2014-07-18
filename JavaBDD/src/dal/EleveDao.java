@@ -2,7 +2,8 @@ package dal;
 
 public interface EleveDao {
 	
-	dddad
-	
+    void creer( Eleve eleve ) throws DAOException;
+
+    Eleve trouver( String email ) throws DAOException;
 
 }
