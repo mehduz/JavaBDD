@@ -2,7 +2,7 @@ package beans;
 
 import java.util.Date;
 
-class Eleve extends Personne{
+public class Eleve extends Personne {
 	
 	private long Matricule;
 	private Date Date_naissance;
