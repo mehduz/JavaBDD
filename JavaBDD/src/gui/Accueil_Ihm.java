@@ -1,26 +1,21 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Dimension;
 import javax.swing.JSeparator;
-import java.awt.Label;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Accueil_Ihm extends JFrame {
 
@@ -28,7 +23,6 @@ public class Accueil_Ihm extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -684831082624221575L;
-	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 
