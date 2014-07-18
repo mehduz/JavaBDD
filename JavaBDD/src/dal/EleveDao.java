@@ -1,4 +1,6 @@
 package dal;
+import beans.*;
+
 
 public interface EleveDao {
 	

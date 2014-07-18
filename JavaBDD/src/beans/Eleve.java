@@ -2,7 +2,7 @@ package beans;
 
 import java.util.Date;
 
-class Eleve {
+public class Eleve {
 	
 	private long Matricule;
 	private String Nom;
