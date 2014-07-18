@@ -1,5 +1,8 @@
-package dal;
+package dal.daoImpl;
 
+import dal.DAOException;
+import dal.DAOFactory;
+import dal.dao.EleveDao;
 import beans.Eleve;
 
 public class EleveDaoImpl implements EleveDao {

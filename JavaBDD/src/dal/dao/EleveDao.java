@@ -1,4 +1,5 @@
-package dal;
+package dal.dao;
+import dal.DAOException;
 import beans.*;
 
 
