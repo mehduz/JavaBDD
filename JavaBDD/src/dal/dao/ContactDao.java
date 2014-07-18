@@ -1,6 +1,5 @@
 package dal.dao;
 
-import beans.Classe;
 import beans.Contact;
 import dal.DAOException;
 
