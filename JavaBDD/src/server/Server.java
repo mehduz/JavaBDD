@@ -14,7 +14,7 @@ public class Server implements Runnable{
 
   
     public Server(){
-    	this.serverPort = 65330;
+    	this(65330);
     }
     
     public Server(int port){
