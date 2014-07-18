@@ -1,5 +1,7 @@
 package dal.daoImpl;
 
+import java.beans.Statement;
+
 import dal.DAOException;
 import dal.DAOFactory;
 import dal.dao.EleveDao;
@@ -23,6 +25,11 @@ public class EleveDaoImpl implements EleveDao {
 	public Eleve trouver(String email) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Eleve trouver(String login, String mdp) throws DAOException {
+
 	}
 
 }	

@@ -2,12 +2,10 @@ package beans;
 
 import java.util.Date;
 
-class Contact extends Personne{
+public class Contact extends Personne{
 
 	private long ID_contact;
 	private String Adresse;
-	
-	
 
 	public Contact(String iD_personne, String nom, String prenom, String email,
 			long tel_domicile, long tel_mobile, long iD_contact, String adresse) {
