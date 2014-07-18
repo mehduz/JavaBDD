@@ -1,5 +1,7 @@
 package dal.daoImpl;
 
-public interface ClasseDaoImpl {
+public class ClasseDaoImpl {
+	
+	
 
 }
