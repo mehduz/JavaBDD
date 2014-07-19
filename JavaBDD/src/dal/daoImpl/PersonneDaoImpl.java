@@ -26,10 +26,11 @@ public class PersonneDaoImpl extends SuperDaoImpl implements PersonneDao {
 	}
 
 	@Override
-	public Personne trouver(String nom_matiere) throws DAOException {
+	public Personne trouver(int idPersonne) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	
 
 

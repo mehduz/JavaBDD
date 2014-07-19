@@ -4,7 +4,7 @@ import dal.DAOFactory;
 
 public class SuperDaoImpl  {
 
-	 private DAOFactory   daoFactory;
+	 protected DAOFactory   daoFactory;
 	 
 	  public SuperDaoImpl( DAOFactory daoFactory ) {
 	        this.daoFactory = daoFactory;
