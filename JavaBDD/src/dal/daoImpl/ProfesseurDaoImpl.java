@@ -3,6 +3,7 @@ package dal.daoImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -19,7 +20,9 @@ public class ProfesseurDaoImpl extends SuperDaoImpl implements ProfesseurDao {
 	 private static final String SQL_SELECT_PAR_LOGIN_MDP = "SELECT ID_personne FROM Authentication WHERE Login = ? and MDP = ?";
 	 private static final String SQL_SELECT_PROFESSEUR_PAR_ID_PERSONNE = "SELECT * FROM Professeur, Personne WHERE Professeur.ID_personne = ? AND Professeur.ID_personne = Personne.ID_personne ";
 	 private static final String SQL_INSERT_PROFESSEUR = "INSERT INTO personne (Nom, Prenom, Email, Tel_domicile, Tel_mobile) VALUES (?, ?, ?, ?, ?)";		
-	
+	 private static final String SQL_SELECT_PROFESSEUR_ALL = "SELECT * FROM Professeur, Personne WHERE  Professeur.ID_personne = Personne.ID_personne ";
+	 
+	 
 	public ProfesseurDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
 		// TODO Auto-generated constructor stub
@@ -122,6 +125,38 @@ public class ProfesseurDaoImpl extends SuperDaoImpl implements ProfesseurDao {
 		professeur.setID_prof(resultSet.getInt("ID_prof"));
 		
 	    return professeur;
+	}
+	
+	public ArrayList<Professeur> getAll() {
+
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Professeur professeur = null;
+		    ArrayList<Professeur> listeProfesseurs = new ArrayList<Professeur>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_PROFESSEUR_ALL, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  professeur = map( resultSet );
+		        		  listeProfesseurs.add(professeur);
+		        		   
+		        	  }
+		        	
+		        	return listeProfesseurs;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
 	}
 	
 	
