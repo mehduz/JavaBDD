@@ -3,6 +3,7 @@ package dal.daoImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -17,8 +18,8 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	
 	
 	private static final String SQL_INSERT_SUIVI = "INSERT INTO suivi (Note_CC, Note_examen, Matricule, ID_personne, Nom_matiere) VALUES (?, ?, ?, ?, ?)";
-	private static final String SQL_SELECT_PAR_ID_PERSONNE = "SELECT * FROM Authentication WHERE ID_personne = ?";
-		
+	private static final String SQL_SELECT_PAR_ID_PERSONNE = "SELECT * FROM Suivi WHERE ID_personne = ?";
+	private	static final String SQL_SELECT_ALL = "SELECT * FROM Suivi";
 	
 	
 	public SuiviDaoImpl(DAOFactory daoFactory) {
@@ -94,6 +95,39 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 		    }
 
 		    return suivi;
+		
+	}
+	
+	public ArrayList<Suivi> getAll() {
+		
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Suivi suivi = null;
+		    ArrayList<Suivi> listeSuivis = new ArrayList<Suivi>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  suivi = map( resultSet );
+		        		  listeSuivis.add(suivi);
+		        		   
+		        	  }
+		        	
+		        	return listeSuivis;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
 		
 	}
 	
