@@ -1,13 +1,15 @@
-package gui;
+package communication;
 
-import java.io.Serializable;
+import java.util.EventObject;
+
 
 public class MessageIdentification extends Message {
 
 	private String login, password;
-	
-	public MessageIdentification(String login, String password) {
-		this.login = login;
+
+	public MessageIdentification(String type, String login, String password) {
+		super(type);
+		this.login = login; 
 		this.password = password;
 	}
 
@@ -26,5 +28,4 @@ public class MessageIdentification extends Message {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 }

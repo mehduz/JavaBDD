@@ -1,5 +1,8 @@
 package gui;
 
+import communication.*;
+import server.*;
+
 import java.awt.EventQueue;
 
 import javax.swing.Icon;
@@ -22,6 +25,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.security.NoSuchAlgorithmException;
 
 public class Accueil_Ihm extends JFrame {
 
@@ -36,6 +43,11 @@ public class Accueil_Ihm extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		new Thread(
+                new Server()
+            ).start();
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -46,6 +58,7 @@ public class Accueil_Ihm extends JFrame {
 				}
 			}
 		});
+		
 	}
 
 	/**
@@ -127,7 +140,18 @@ public class Accueil_Ihm extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
-				} 
+				} else {
+					try {
+						Client client = Client.getInstance();
+						String passwordMD5 = MD5.encryptMD5(textField_1.getText());
+						client.connect(InetAddress.getLocalHost(), 65330);
+						MessageIdentification msgIdentification = new MessageIdentification(MessageIdentification.class.getName(), textField.getText(), passwordMD5);
+						client.sendMessage(msgIdentification);
+					} catch (UnknownHostException e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, "Erreur de connexion : " + e, "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
+					}
+				}
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
