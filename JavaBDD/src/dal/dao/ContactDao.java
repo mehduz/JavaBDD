@@ -5,7 +5,7 @@ import dal.DAOException;
 
 public interface ContactDao {
 	
-	void creer( Contact classe ) throws DAOException;
+	int creer( Contact contact ) throws DAOException;
 
 	Contact trouver( String id_contact ) throws DAOException;
 	

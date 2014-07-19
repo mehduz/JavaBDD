@@ -16,10 +16,9 @@ public class Eleve extends Personne {
 	private long Code_postal;
 	private String Ville;
 	private String Email;
-	private String Contact;
-	private String Vaccination;
-	private String Allergie;
 	private String Remarques_medicale;
+	private String Nom_matiere;
+
 
 	public Eleve() {
 		
@@ -47,9 +46,6 @@ public class Eleve extends Personne {
 		Code_postal = code_postal;
 		Ville = ville;
 		Email = email2;
-		Contact = contact;
-		Vaccination = vaccination;
-		Allergie = allergie;
 		Remarques_medicale = remarques_medicale;
 	}
 	
@@ -64,13 +60,19 @@ public class Eleve extends Personne {
 				+ ", Date_inscription=" + Date_inscription
 				+ ", Etablissement_prec=" + Etablissement_prec + ", Photo="
 				+ Photo + ", Rue=" + Rue + ", Code_postal=" + Code_postal
-				+ ", Ville=" + Ville + ", Email=" + Email + ", Contact="
-				+ Contact + ", Vaccination=" + Vaccination + ", Allergie="
-				+ Allergie + ", Remarques_medicale=" + Remarques_medicale;
+				+ ", Ville=" + Ville + ", Email=" + Email + ", Remarques_medicale=" + Remarques_medicale;
 	}
 	
 	
 	
+
+	public String getNom_matiere() {
+		return Nom_matiere;
+	}
+
+	public void setNom_matiere(String nom_matiere) {
+		Nom_matiere = nom_matiere;
+	}
 
 	public long getMatricule() {
 		return Matricule;
@@ -144,24 +146,7 @@ public class Eleve extends Personne {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	public String getContact() {
-		return Contact;
-	}
-	public void setContact(String contact) {
-		Contact = contact;
-	}
-	public String getVaccination() {
-		return Vaccination;
-	}
-	public void setVaccination(String vaccination) {
-		Vaccination = vaccination;
-	}
-	public String getAllergie() {
-		return Allergie;
-	}
-	public void setAllergie(String allergie) {
-		Allergie = allergie;
-	}
+
 	public String getRemarques_medicale() {
 		return Remarques_medicale;
 	}
