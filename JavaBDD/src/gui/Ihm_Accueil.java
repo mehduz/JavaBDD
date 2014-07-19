@@ -49,15 +49,15 @@ public class Ihm_Accueil extends JFrame {
 	 */
 	public static void main(String[] args) {
 		
-		Thread t = new Thread(new Server());
-		t.start();
+		/*Thread t = new Thread(new Server());
+		t.start();*/
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					frameAccueil = new Ihm_Accueil();
 					frameAccueil.setVisible(true);
-					byte[] address = {(byte) 192,(byte)168,1,101};
+					byte[] address = {(byte)192, (byte)168, 1, 101};
 					((Ihm_Accueil)frameAccueil).getClient().connect(InetAddress.getByAddress(address), 65330);
 					} catch (Exception e) {
 					e.printStackTrace();
@@ -163,7 +163,7 @@ public class Ihm_Accueil extends JFrame {
 					frameAdministrateur.setPanelIdentification(textField.getText(), "Administrateur");
 				}				
 				
-				if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
+				/*if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
@@ -173,7 +173,7 @@ public class Ihm_Accueil extends JFrame {
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Erreur de connexion : " + e1, "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 					}
-				}
+				}*/
 				
 			}
 		});

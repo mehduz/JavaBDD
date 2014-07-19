@@ -24,7 +24,19 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 
-public class Ihm_Professeur extends JFrame {
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.UIManager;
+import javax.swing.ListSelectionModel;
+
+import java.awt.ComponentOrientation;
+
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
+public class Ihm_Professeur_ConsulterNotesTutores extends JFrame {
 
 	/**
 	 * 
@@ -36,13 +48,30 @@ public class Ihm_Professeur extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ihm_Professeur() {
+	public Ihm_Professeur_ConsulterNotesTutores() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("University Manager");
 		setSize(new Dimension(1280, 720));
 		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
+		
+		JLabel lblVosMatires = new JLabel("Vos tutor\u00E9s");
+		lblVosMatires.setForeground(Color.WHITE);
+		lblVosMatires.setFont(new Font("Arial", Font.BOLD, 15));
+		lblVosMatires.setBounds(8, 222, 142, 20);
+		getContentPane().add(lblVosMatires);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setMaximumRowCount(10);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Romain", "Yann", "Simon", "Medhi"}));
+		comboBox.setBounds(8, 243, 280, 25);
+		getContentPane().add(comboBox);
+		
+		JButton btnConfirm = new JButton("Confirmer");
+		btnConfirm.setFont(new Font("Arial", Font.BOLD, 12));
+		btnConfirm.setBounds(77, 279, 130, 23);
+		getContentPane().add(btnConfirm);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(322, 20, 932, 651);
@@ -144,17 +173,13 @@ public class Ihm_Professeur extends JFrame {
 		JButton btnNewButton = new JButton("MAJ notes de vos mati\u00E8res");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void mousePressed(MouseEvent e) {
 				setVisible(false);
 				Ihm_Professeur_MajNotes frameProfesseur_MajNotes = new Ihm_Professeur_MajNotes();
 				frameProfesseur_MajNotes.setVisible(true);
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnNewButton.setBounds(10, 143, 282, 23);
 		getContentPane().add(btnNewButton);
 		
@@ -163,16 +188,12 @@ public class Ihm_Professeur extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				setVisible(false);
-				Ihm_Professeur_ConsulterNotesTutores frameProfesseur_ConsulterNotesTutores = new Ihm_Professeur_ConsulterNotesTutores();
-				frameProfesseur_ConsulterNotesTutores.setVisible(true);
+				Ihm_Professeur frameProfesseur = new Ihm_Professeur();
+				frameProfesseur.setVisible(true);
 			}
-		});
+		});		
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_1.setBounds(10, 190, 282, 23);
+		btnNewButton_1.setBounds(8, 190, 282, 23);
 		getContentPane().add(btnNewButton_1);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -200,5 +221,4 @@ public class Ihm_Professeur extends JFrame {
 		textField.setText(login);
 		textField_1.setText(profil);
 	}
-	
 }
