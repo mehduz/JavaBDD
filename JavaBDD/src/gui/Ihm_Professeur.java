@@ -142,6 +142,14 @@ public class Ihm_Professeur extends JFrame {
 		getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("MAJ notes de vos mati\u00E8res");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				setVisible(false);
+				Ihm_Professeur_MajNotes frameProfesseur_MajNotes = new Ihm_Professeur_MajNotes();
+				frameProfesseur_MajNotes.setVisible(true);
+			}
+		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -151,6 +159,14 @@ public class Ihm_Professeur extends JFrame {
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Consulter notes de vos tutot\u00E9s");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Professeur_ConsulterNotesTutores frameProfesseur_ConsulterNotesTutores = new Ihm_Professeur_ConsulterNotesTutores();
+				frameProfesseur_ConsulterNotesTutores.setVisible(true);
+			}
+		});
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
