@@ -1,18 +1,16 @@
 package gui;
 
-import communication.*;
 import server.*;
 
 import java.awt.EventQueue;
 
-import javax.swing.Icon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.Dimension;
+import java.awt.Window;
 
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
@@ -25,10 +23,6 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.UnsupportedEncodingException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.security.NoSuchAlgorithmException;
 
 public class Ihm_Accueil extends JFrame {
 
@@ -38,6 +32,7 @@ public class Ihm_Accueil extends JFrame {
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
 	private JTextField textField_1;
+	private static Window frameAccueil;
 
 	/**
 	 * Launch the application.
@@ -51,8 +46,8 @@ public class Ihm_Accueil extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ihm_Accueil frame = new Ihm_Accueil();
-					frame.setVisible(true);
+					frameAccueil = new Ihm_Accueil();
+					frameAccueil.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -138,7 +133,26 @@ public class Ihm_Accueil extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
+
+				frameAccueil.setVisible(false);
+				
+				if("Simon".equals(textField.getText())) {
+					Ihm_Eleve frameEleve = new Ihm_Eleve();
+					frameEleve.setVisible(true);
+					frameEleve.setPanelIdentification(textField.getText(), "Élève");
+					
+				} else if ("Yann".equals(textField.getText())) {
+					Ihm_Professeur frameProfesseur = new Ihm_Professeur();
+					frameProfesseur.setVisible(true);
+					frameProfesseur.setPanelIdentification(textField.getText(), "Professeur");
+					
+				} else if ("Medhi".equals(textField.getText())) {
+					Ihm_Administrateur frameAdministrateur = new Ihm_Administrateur();
+					frameAdministrateur.setVisible(true);
+					frameAdministrateur.setPanelIdentification(textField.getText(), "Administrateur");
+				}				
+				
+				/*if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
@@ -151,7 +165,8 @@ public class Ihm_Accueil extends JFrame {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(null, "Erreur de connexion : " + e, "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 					}
-				}
+				}*/
+				
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
