@@ -71,7 +71,7 @@ public class EleveDaoImpl implements EleveDao {
 		        	  if ( resultSet.next() ) {
 		        		  
 		        		  eleve = map( resultSet );
-		        		  
+		        		   
 		        	  }
 		        	
 		        	
@@ -94,7 +94,7 @@ public class EleveDaoImpl implements EleveDao {
 		Eleve eleve = new Eleve();
 
 		eleve.setCode_postal(resultSet.getInt("Code_postal"));
-		eleve.setDate_inscription(resultSet.getDate("Date_inscription"));
+		eleve.setDate_inscription(resultSet.getDate("Date_inscription")); 
 		eleve.setDate_naissance(resultSet.getDate("Date_naissance"));
 		eleve.setEmail(resultSet.getString("Email"));
 		eleve.setEtablissement_prec(resultSet.getString("Etablissement_prec"));
