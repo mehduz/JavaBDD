@@ -17,6 +17,7 @@ public class Eleve extends Personne {
 	private String Ville;
 	private String Email;
 	private String Remarques_medicale;
+	private String Nom_matiere;
 
 
 	public Eleve() {
@@ -64,6 +65,14 @@ public class Eleve extends Personne {
 	
 	
 	
+
+	public String getNom_matiere() {
+		return Nom_matiere;
+	}
+
+	public void setNom_matiere(String nom_matiere) {
+		Nom_matiere = nom_matiere;
+	}
 
 	public long getMatricule() {
 		return Matricule;
