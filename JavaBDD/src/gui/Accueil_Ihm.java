@@ -1,14 +1,20 @@
 package gui;
 
 import java.awt.EventQueue;
+
+import javax.swing.Icon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Dimension;
+
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -115,7 +121,15 @@ public class Accueil_Ihm extends JFrame {
 		lblNewLabel.setBounds(10, 11, 280, 104);
 		getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Login");
+		JButton btnNewButton = new JButton("Login1");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
+					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Ereur de connexion", JOptionPane.ERROR_MESSAGE);
+				} 
+			}
+		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
