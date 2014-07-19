@@ -51,10 +51,7 @@ public class Eleve extends Personne {
 		Email = email2;
 		Remarques_medicale = remarques_medicale;
 	}
-	
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return "Matricule=" + Matricule + ", Date_naissance="
