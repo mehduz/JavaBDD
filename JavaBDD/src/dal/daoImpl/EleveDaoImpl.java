@@ -17,9 +17,9 @@ public class EleveDaoImpl implements EleveDao {
 
 	 private DAOFactory   daoFactory;
 	 private static final String SQL_SELECT_PAR_EMAIL = "SELECT id, email, nom, mot_de_passe, date_inscription FROM Utilisateur WHERE email = ?";
-	 private static final String SQL_SELECT_PAR_LOGIN_MDP = "SELECT ID_personne FROM Authentication WHERE Login = ? and Mdp = ?";
+	 private static final String SQL_SELECT_PAR_LOGIN_MDP = "SELECT ID_personne FROM Authentication WHERE Login = ? and MDP = ?";
 		
-	    EleveDaoImpl( DAOFactory daoFactory ) {
+	   public EleveDaoImpl( DAOFactory daoFactory ) {
 	        this.daoFactory = daoFactory;
 	    }
 	
@@ -46,7 +46,7 @@ public class EleveDaoImpl implements EleveDao {
 		    try {
 		        /* Récupération d'une connexion depuis la Factory */
 		        connexion = daoFactory.getConnection();
-		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_PAR_LOGIN_MDP, false, "Romain", "5026bc63b5418ffdb54f238db245ec01" );
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_PAR_LOGIN_MDP, false, login, mdp);
 		        resultSet = preparedStatement.executeQuery();
 		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
 		        if ( resultSet.next() ) {
@@ -69,7 +69,7 @@ public class EleveDaoImpl implements EleveDao {
 	private static Eleve map( ResultSet resultSet ) throws SQLException {
 		Eleve eleve = new Eleve();
 
-		
+		eleve.setCode_postal(resultSet.getInt("ID_personne"));
 		
 	    return eleve;
 	}
