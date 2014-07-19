@@ -6,7 +6,7 @@ public class Professeur extends Personne{
 	
 	private long ID_prof;
 	
-	public Professeur(String iD_personne, String nom, String prenom,
+	public Professeur(long iD_personne, String nom, String prenom,
 			String email, long tel_domicile, long tel_mobile, long iD_prof) {
 		super(iD_personne, nom, prenom, email, tel_domicile, tel_mobile);
 		ID_prof = iD_prof;

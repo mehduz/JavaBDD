@@ -7,7 +7,7 @@ public class Contact extends Personne{
 	private long ID_contact;
 	private String Adresse;
 
-	public Contact(String iD_personne, String nom, String prenom, String email,
+	public Contact(long iD_personne, String nom, String prenom, String email,
 			long tel_domicile, long tel_mobile, long iD_contact, String adresse) {
 		super(iD_personne, nom, prenom, email, tel_domicile, tel_mobile);
 		ID_contact = iD_contact;

@@ -2,7 +2,7 @@ package beans;
 
 public class Personne {
 	
-	private String ID_personne;
+	private long ID_personne;
 	private String Nom;
 	private String Prenom;
 	private String Email;
@@ -13,7 +13,7 @@ public class Personne {
 
 	}
 
-	public Personne(String iD_personne, String nom, String prenom,
+	public Personne(long iD_personne, String nom, String prenom,
 			String email, long tel_domicile, long tel_mobile) {
 		super();
 		ID_personne = iD_personne;
@@ -24,10 +24,10 @@ public class Personne {
 		Tel_mobile = tel_mobile;
 	}
 	
-	public String getID_personne() {
+	public long getID_personne() {
 		return ID_personne;
 	}
-	public void setID_personne(String iD_personne) {
+	public void setID_personne(long iD_personne) {
 		ID_personne = iD_personne;
 	}
 	public String getNom() {

@@ -17,8 +17,11 @@ public class Eleve extends Personne {
 	private String Ville;
 	private String Email;
 	private String Remarques_medicale;
-	private String Nom_matiere;
-
+	private long ID_personne;
+	private String Nom_classe;
+	private long ID_contact;
+	private long ID_prof;
+	
 
 	public Eleve() {
 		
@@ -26,7 +29,7 @@ public class Eleve extends Personne {
 		
 	}
 	
-	public Eleve(String iD_personne, String nom, String prenom, String email,
+	public Eleve(long iD_personne, String nom, String prenom, String email,
 			long tel_domicile, long tel_mobile, long matricule,
 			Date date_naissance, String ville_naissance, String pays_naissance,
 			String sexe, Date date_inscription, String etablissement_prec,
@@ -62,16 +65,39 @@ public class Eleve extends Personne {
 				+ Photo + ", Rue=" + Rue + ", Code_postal=" + Code_postal
 				+ ", Ville=" + Ville + ", Email=" + Email + ", Remarques_medicale=" + Remarques_medicale;
 	}
-	
-	
-	
 
-	public String getNom_matiere() {
-		return Nom_matiere;
+
+	
+	public long getID_personne() {
+		return ID_personne;
 	}
 
-	public void setNom_matiere(String nom_matiere) {
-		Nom_matiere = nom_matiere;
+	public void setID_personne(long iD_personne) {
+		ID_personne = iD_personne;
+	}
+
+	public String getNom_classe() {
+		return Nom_classe;
+	}
+
+	public void setNom_classe(String nom_classe) {
+		Nom_classe = nom_classe;
+	}
+
+	public long getID_contact() {
+		return ID_contact;
+	}
+
+	public void setID_contact(long iD_contact) {
+		ID_contact = iD_contact;
+	}
+
+	public long getID_prof() {
+		return ID_prof;
+	}
+
+	public void setID_prof(long iD_prof) {
+		ID_prof = iD_prof;
 	}
 
 	public long getMatricule() {
