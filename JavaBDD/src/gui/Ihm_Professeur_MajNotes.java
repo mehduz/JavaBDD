@@ -50,6 +50,23 @@ public class Ihm_Professeur_MajNotes extends JFrame {
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
+		JButton button = new JButton("Convoquer ");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Professeur_Convoquer frameProfesseurConvoquer = new Ihm_Professeur_Convoquer();
+				frameProfesseurConvoquer.setVisible(true);
+			}
+		});
+		button.setFont(new Font("Arial", Font.BOLD, 12));
+		button.setBounds(14, 484, 282, 23);
+		getContentPane().add(button);
+		
+		JSeparator separator_5 = new JSeparator();
+		separator_5.setBounds(12, 471, 284, 2);
+		getContentPane().add(separator_5);
+		
 		JLabel lblVosMatires = new JLabel("Vos mati\u00E8res");
 		lblVosMatires.setForeground(Color.WHITE);
 		lblVosMatires.setFont(new Font("Arial", Font.BOLD, 15));

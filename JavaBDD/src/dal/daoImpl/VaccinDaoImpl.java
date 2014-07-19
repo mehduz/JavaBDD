@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import com.mysql.jdbc.PreparedStatement;
 
-import beans.Eleve;
 import beans.Vaccin;
 import dal.DAODataBaseManager;
 import dal.DAOException;

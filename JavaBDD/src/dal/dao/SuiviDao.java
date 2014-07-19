@@ -5,9 +5,9 @@ import dal.DAOException;
 
 public interface SuiviDao {
 	
-	void creer( Suivi classe ) throws DAOException;
+	int creer( Suivi suivi ) throws DAOException;
 
-	Suivi trouver( String email ) throws DAOException;
+	Suivi trouver( int idPersonne ) throws DAOException;
 	
 
 }

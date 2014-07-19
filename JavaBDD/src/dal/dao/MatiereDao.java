@@ -5,7 +5,7 @@ import dal.DAOException;
 
 public interface MatiereDao {
 	
-	void creer( Matiere classe ) throws DAOException;
+	int creer( Matiere classe ) throws DAOException;
 
 	Matiere trouver( String nom_matiere ) throws DAOException;
 	
