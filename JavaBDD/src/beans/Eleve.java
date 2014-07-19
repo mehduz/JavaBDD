@@ -15,7 +15,6 @@ public class Eleve extends Personne {
 	private String Rue;
 	private long Code_postal;
 	private String Ville;
-	private String Email;
 	private String Remarques_medicale;
 	private long ID_personne;
 	private String Nom_classe;
@@ -49,7 +48,6 @@ public class Eleve extends Personne {
 		Rue = rue;
 		Code_postal = code_postal;
 		Ville = ville;
-		Email = email2;
 		Remarques_medicale = remarques_medicale;
 	}
 
@@ -61,7 +59,7 @@ public class Eleve extends Personne {
 				+ ", Date_inscription=" + Date_inscription
 				+ ", Etablissement_prec=" + Etablissement_prec + ", Photo="
 				+ Photo + ", Rue=" + Rue + ", Code_postal=" + Code_postal
-				+ ", Ville=" + Ville + ", Email=" + Email + ", Remarques_medicale=" + Remarques_medicale;
+				+ ", Ville=" + Ville + ", Remarques_medicale=" + Remarques_medicale;
 	}
 
 
@@ -172,13 +170,6 @@ public class Eleve extends Personne {
 	public void setVille(String ville) {
 		Ville = ville;
 	}
-	public String getEmail() {
-		return Email;
-	}
-	public void setEmail(String email) {
-		Email = email;
-	}
-
 	public String getRemarques_medicale() {
 		return Remarques_medicale;
 	}
