@@ -67,7 +67,7 @@ public class Ihm_Accueil extends JFrame {
 	public Ihm_Accueil() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("University Manager");
-		setSize(new Dimension(310, 800));
+		setSize(new Dimension(310, 720));
 		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
@@ -183,17 +183,17 @@ public class Ihm_Accueil extends JFrame {
 		getContentPane().add(lblNewLabel_1);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 743, 284, 2);
+		separator_1.setBounds(10, 663, 284, 2);
 		getContentPane().add(separator_1);
 		
 		JLabel lblUniversityManager = new JLabel("University Manager V.1.0");
 		lblUniversityManager.setForeground(new Color(255, 255, 255));
-		lblUniversityManager.setBounds(77, 746, 150, 14);
+		lblUniversityManager.setBounds(77, 666, 150, 14);
 		getContentPane().add(lblUniversityManager);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon(Ihm_Accueil.class.getResource("/gui/ressources/fond.jpg")));
-		lblNewLabel_2.setBounds(0, 0, 304, 771);
+		lblNewLabel_2.setBounds(0, 0, 304, 691);
 		getContentPane().add(lblNewLabel_2);
 
 	}
