@@ -20,20 +20,11 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 	 private static final String SQL_SELECT_PAR_EMAIL = "SELECT id, email, nom, mot_de_passe, date_inscription FROM Utilisateur WHERE email = ?";
 	 private static final String SQL_SELECT_PAR_LOGIN_MDP = "SELECT ID_personne FROM Authentication WHERE Login = ? and MDP = ?";
 	 private static final String SQL_SELECT_ELEVE_PAR_ID_PERSONNE = "SELECT * FROM Eleve, Personne WHERE Eleve.ID_personne = ? AND Eleve.ID_personne = Personne.ID_personne ";
-	 
-	 
-//	 /*Infos de l'élève */ 
-//	 /*Infos globales */ 
-//	 SELECT * FROM Personne WHERE ID_personne=3;
-//	 /*Notes de l'élève */ 
-//	 SELECT (Note_CC, Note_examen) FROM Suivi WHERE ID_personne=3;
-//	 /*Infos médecin */ 
-//	 SELECT * FROM Personne WHERE ID_personne = (SELECT ID_personne FROM Medecin WHERE ID_medecin =(SELECT ID_medecin FROM Eleve WHERE ID_personne=3));
-//	 /*Infos contact */
-//	 SELECT * FROM Personne WHERE ID_personne = (SELECT ID_personne FROM Contact WHERE ID_contact =(SELECT ID_contact FROM Eleve WHERE ID_personne=3));--Infos tuteur
-//	 /*Infos tuteur*/ 
-//	 SELECT * FROM Personne WHERE ID_personne = (SELECT ID_prof FROM Eleve WHERE ID_personne = 3);
-// 
+	 private static final String SQL_INSERT_ELEVE = "INSERT INTO eleve (Date_naissance, Ville_naissance, Pays_naissance,Sexe,"+
+			 "Date_inscription, Etablissement_prec, Photo, Rue,"+
+			 "Code_postal, Ville, Email,Remarques_medicale, ID_personne, Nom_classe,"+
+			 " ID_contact, ID_prof) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
 	 public EleveDaoImpl(DAOFactory daoFactory) {
 			super(daoFactory);
 			// TODO Auto-generated constructor stub
@@ -51,7 +42,8 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 	    try {
 	        /* Récupération d'une connexion depuis la Factory */
 	        connexion = daoFactory.getConnection();
-	  	  preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, "INSERT INTO personne (Nom, Prenom, Email, Tel_domicile, Tel_mobile) VALUES (?, ?, ?, ?, ?)", true, "hello" , "world" , "how are you" , 12345 , 6789);
+	    
+	  	  preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_INSERT_ELEVE, true, "hello" , "world" , "how are you" , 12345 , 6789);
 	          int statut = preparedStatement.executeUpdate();
 	        /* Analyse du statut retourné par la requête d'insertion */
 	        if ( statut == 0 ) {
