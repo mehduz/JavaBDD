@@ -6,7 +6,6 @@ public class Allergies {
 	private String Libelle;
 	
 	public Allergies(long iD_allergie, String libelle) {
-		super();
 		ID_allergie = iD_allergie;
 		Libelle = libelle;
 	}
