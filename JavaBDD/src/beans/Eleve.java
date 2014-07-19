@@ -53,6 +53,25 @@ public class Eleve extends Personne {
 		Remarques_medicale = remarques_medicale;
 	}
 	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Matricule=" + Matricule + ", Date_naissance="
+				+ Date_naissance + ", Ville_naissance=" + Ville_naissance
+				+ ", Pays_naissance=" + Pays_naissance + ", Sexe=" + Sexe
+				+ ", Date_inscription=" + Date_inscription
+				+ ", Etablissement_prec=" + Etablissement_prec + ", Photo="
+				+ Photo + ", Rue=" + Rue + ", Code_postal=" + Code_postal
+				+ ", Ville=" + Ville + ", Email=" + Email + ", Contact="
+				+ Contact + ", Vaccination=" + Vaccination + ", Allergie="
+				+ Allergie + ", Remarques_medicale=" + Remarques_medicale;
+	}
+	
+	
+	
+
 	public long getMatricule() {
 		return Matricule;
 	}
@@ -150,5 +169,6 @@ public class Eleve extends Personne {
 		Remarques_medicale = remarques_medicale;
 	}
 	
+
 	
 }
