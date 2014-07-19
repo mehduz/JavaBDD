@@ -1,10 +1,19 @@
 package beans;
 
-public class Suivre {
+public class Suivi {
 	
 	private long Note_CC;
 	private long Note_examen;
+	
+	public Suivi(long note_CC, long note_examen) {
+		Note_CC = note_CC;
+		Note_examen = note_examen;
+	}
+	
+	public Suivi() {
 		
+	}
+	
 	public long getNote_CC() {
 		return Note_CC;
 	}

@@ -11,6 +11,10 @@ public class Professeur extends Personne{
 		super(iD_personne, nom, prenom, email, tel_domicile, tel_mobile);
 		ID_prof = iD_prof;
 	}
+	
+	public Professeur() {
+		super();
+	}
 
 	public long getID_prof() {
 		return ID_prof;

@@ -10,6 +10,10 @@ public class Classe {
 		super();
 		Nom_classe = nom_classe;
 	}
+	
+	public Classe(){
+		
+	}
 
 	public String getNom_classe() {
 		return Nom_classe;
