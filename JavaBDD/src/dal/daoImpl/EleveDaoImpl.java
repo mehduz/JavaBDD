@@ -92,25 +92,25 @@ public class EleveDaoImpl implements EleveDao {
 	 */
 	private static Eleve map( ResultSet resultSet ) throws SQLException {
 		Eleve eleve = new Eleve();
-//
-//		eleve.setCode_postal(resultSet.getInt(""));
-//		eleve.setContact(contact);
-//		eleve.setDate_inscription(resultSet.getDate(columnLabel));
-//		eleve.setDate_naissance(resultSet.getDate(columnLabel));
-//		eleve.setEmail(resultSet.getString(""));
-//		eleve.setEtablissement_prec(resultSet.getString(""));
-//		eleve.setID_personne(resultSet.getInt(""));
-//		eleve.setNom(nom);
-//		eleve.setPays_naissance(resultSet.getString(""));
-//		eleve.setPhoto(photo);
-//		eleve.setPrenom(resultSet.getString(""))
-//		eleve.setRemarques_medicale(resultSet.getString(""));
-//		eleve.setRue(resultSet.getString(""));
-//		eleve.setSexe(resultSet.getString(""));
-//		eleve.setTel_domicile(resultSet.getInt(""));
-//		eleve.setTel_mobile(resultSet.getInt(""));
-//		eleve.setVille(resultSet.getString(""));
-//		eleve.setVille_naissance(resultSet.getString(""));
+
+		eleve.setCode_postal(resultSet.getInt(""));
+		eleve.setContact("");
+		eleve.setDate_inscription(resultSet.getDate(""));
+		eleve.setDate_naissance(resultSet.getDate(""));
+		eleve.setEmail(resultSet.getString(""));
+		eleve.setEtablissement_prec(resultSet.getString(""));
+		eleve.setID_personne(resultSet.getString(""));
+		eleve.setNom(resultSet.getString(""));
+		eleve.setPays_naissance(resultSet.getString(""));
+		//eleve.setPhoto(photo);
+		eleve.setPrenom(resultSet.getString(""))
+		eleve.setRemarques_medicale(resultSet.getString(""));
+		eleve.setRue(resultSet.getString(""));
+		eleve.setSexe(resultSet.getString(""));
+		eleve.setTel_domicile(resultSet.getInt(""));
+		eleve.setTel_mobile(resultSet.getInt(""));
+		eleve.setVille(resultSet.getString(""));
+		eleve.setVille_naissance(resultSet.getString(""));
 //		
 	    return eleve;
 	}
