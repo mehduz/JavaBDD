@@ -1,6 +1,8 @@
 package dal.daoImpl;
 
 import java.beans.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import dal.DAOException;
 import dal.DAOFactory;
@@ -31,5 +33,22 @@ public class EleveDaoImpl implements EleveDao {
 	public Eleve trouver(String login, String mdp) throws DAOException {
 		return null;
 	}
+	
+	/*
+	 * Simple méthode utilitaire permettant de faire la correspondance (le
+	 * mapping) entre une ligne issue de la table des utilisateurs (un
+	 * ResultSet) et un bean Utilisateur.
+	 */
+	private static Eleve map( ResultSet resultSet ) throws SQLException {
+		Eleve eleve = new Eleve();
+		eleve.setId( resultSet.getLong( "id" ) );
+		eleve.setEmail( resultSet.getString( "email" ) );
+		eleve.setMotDePasse( resultSet.getString( "mot_de_passe" ) );
+		eleve.setNom( resultSet.getString( "nom" ) );
+		eleve.setDateInscription( resultSet.getTimestamp( "date_inscription" ) );
+	    return eleve;
+	}
+	
+	
 
 }	

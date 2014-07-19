@@ -20,7 +20,8 @@ public class Eleve extends Personne {
 	private String Vaccination;
 	private String Allergie;
 	private String Remarques_medicale;
-		
+	
+	
 	public Eleve(String iD_personne, String nom, String prenom, String email,
 			long tel_domicile, long tel_mobile, long matricule,
 			Date date_naissance, String ville_naissance, String pays_naissance,
