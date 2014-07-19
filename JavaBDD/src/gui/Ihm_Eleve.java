@@ -30,6 +30,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
 import javax.swing.SwingConstants;
+import javax.swing.JPanel;
 
 public class Ihm_Eleve extends JFrame {
 
@@ -39,28 +40,6 @@ public class Ihm_Eleve extends JFrame {
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
 	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		
-		new Thread(
-                new Server()
-            ).start();
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Ihm_Accueil frame = new Ihm_Accueil();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-	}
 
 	/**
 	 * Create the frame.
@@ -73,58 +52,59 @@ public class Ihm_Eleve extends JFrame {
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
+		JPanel panel = new JPanel();
+		panel.setBounds(322, 20, 932, 651);
+		getContentPane().add(panel);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setBounds(8, 577, 284, 2);
+		getContentPane().add(separator_4);
+		
+		JButton button_2 = new JButton("Informations");
+		button_2.setFont(new Font("Arial", Font.BOLD, 12));
+		button_2.setBounds(174, 634, 120, 23);
+		getContentPane().add(button_2);
+		
+		JButton button_1 = new JButton("Help");
+		button_1.setFont(new Font("Arial", Font.BOLD, 12));
+		button_1.setBounds(94, 634, 70, 23);
+		getContentPane().add(button_1);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setFont(new Font("Arial", Font.BOLD, 12));
+		btnLogout.setBounds(8, 634, 76, 23);
+		getContentPane().add(btnLogout);
+		
+		JLabel lblProfil = new JLabel("Profil");
+		lblProfil.setFont(new Font("Arial", Font.BOLD, 12));
+		lblProfil.setForeground(Color.WHITE);
+		lblProfil.setBounds(8, 611, 46, 14);
+		getContentPane().add(lblProfil);
+		
+		JLabel lblLogin = new JLabel("Login");
+		lblLogin.setFont(new Font("Arial", Font.BOLD, 12));
+		lblLogin.setForeground(Color.WHITE);
+		lblLogin.setBounds(8, 590, 46, 14);
+		getContentPane().add(lblLogin);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(48, 590, 246, 15);
+		getContentPane().add(textField_1);
+		
 		textField = new JTextField();
-		textField.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				if("...".equals(textField.getText())) {
-					textField.setText("");
-				}
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if("".equals(textField.getText())) {
-					textField.setText("...");
-				}
-			}
-		});
-		textField.setName("");
-		textField.setText("...");
-		textField.setBounds(10, 163, 280, 25);
+		textField.setBounds(48, 611, 246, 15);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				if("...".equals(textField_1.getText())) {
-					textField_1.setText("");
-				}
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if("".equals(textField_1.getText())) {
-					textField_1.setText("...");
-				}
-			}
-		});
-		textField_1.setText("...");
-		textField_1.setColumns(10);
-		textField_1.setBounds(10, 219, 280, 25);
-		getContentPane().add(textField_1);
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(8, 177, 284, 2);
+		getContentPane().add(separator_3);
 		
-		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setForeground(new Color(255, 255, 255));
-		lblLogin.setFont(new Font("Arial", Font.BOLD, 15));
-		lblLogin.setBounds(10, 143, 100, 20);
-		getContentPane().add(lblLogin);
-		
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setForeground(new Color(255, 255, 255));
-		lblPassword.setFont(new Font("Arial", Font.BOLD, 15));
-		lblPassword.setBounds(10, 199, 100, 20);
-		getContentPane().add(lblPassword);
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setOrientation(SwingConstants.VERTICAL);
+		separator_2.setBounds(302, 0, 2, 690);
+		getContentPane().add(separator_2);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 130, 284, 2);
@@ -135,53 +115,23 @@ public class Ihm_Eleve extends JFrame {
 		lblNewLabel.setBounds(10, 11, 280, 104);
 		getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
-					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
-				} else {
-					try {
-						Client client = Client.getInstance();
-						String passwordMD5 = MD5.encryptMD5(textField_1.getText());
-						client.connect(InetAddress.getLocalHost(), 65330);
-						MessageIdentification msgIdentification = new MessageIdentification(MessageIdentification.class.getName(), textField.getText(), passwordMD5);
-						client.sendMessage(msgIdentification);
-					} catch (UnknownHostException e1) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "Erreur de connexion : " + e, "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
-					}
-				}
-			}
-		});
+		JButton btnNewButton = new JButton("Consulter vos notes");
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(10, 275, 70, 23);
+		btnNewButton.setBounds(10, 143, 282, 23);
 		getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Help");
+		JButton btnNewButton_1 = new JButton("Imprimer votre bulletin de notes");
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(90, 275, 70, 23);
+		btnNewButton_1.setBounds(10, 190, 282, 23);
 		getContentPane().add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("Informations");
-		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_2.setBounds(170, 275, 120, 23);
-		getContentPane().add(btnNewButton_2);
-		
-		JLabel lblNewLabel_1 = new JLabel("Forgot password ? ");
-		lblNewLabel_1.setForeground(new Color(0, 0, 255));
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(92, 250, 120, 14);
-		getContentPane().add(lblNewLabel_1);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 663, 284, 2);
@@ -197,17 +147,10 @@ public class Ihm_Eleve extends JFrame {
 		lblNewLabel_2.setBounds(0, 0, 304, 691);
 		getContentPane().add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("aaaa");
+		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(Ihm_Eleve.class.getResource("/gui/ressources/fond_principal.jpg")));
-		lblNewLabel_3.setBounds(306, 0, 960, 691);
+		lblNewLabel_3.setBounds(300, 0, 974, 691);
 		getContentPane().add(lblNewLabel_3);
-		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setForeground(Color.WHITE);
-		separator_2.setBackground(Color.WHITE);
-		separator_2.setOrientation(SwingConstants.VERTICAL);
-		separator_2.setBounds(304, 0, 2, 691);
-		getContentPane().add(separator_2);
 
 	}
 }
