@@ -22,8 +22,9 @@ import java.net.URI;
 
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
+import javax.swing.JComboBox;
 
-public class Ihm_Administrateur extends JFrame {
+public class Ihm_Administrateur_Matierre extends JFrame {
 
 	/**
 	 * 
@@ -31,11 +32,13 @@ public class Ihm_Administrateur extends JFrame {
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
 
 	/**
 	 * Create the frame.
 	 */
-	public Ihm_Administrateur() {
+	public Ihm_Administrateur_Matierre() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("University Manager");
 		setSize(new Dimension(1280, 720));
@@ -43,15 +46,81 @@ public class Ihm_Administrateur extends JFrame {
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
-		JButton button = new JButton("Mode SQL");
-		button.setEnabled(false);
-		button.setFont(new Font("Arial", Font.BOLD, 12));
-		button.setBounds(8, 190, 282, 23);
-		getContentPane().add(button);
+		textField_3 = new JTextField();
+		textField_3.setName("");
+		textField_3.setEnabled(false);
+		textField_3.setColumns(10);
+		textField_3.setBounds(10, 285, 280, 25);
+		getContentPane().add(textField_3);
 		
-		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(6, 177, 284, 2);
-		getContentPane().add(separator_3);
+		JLabel lblProfesseurAssoci = new JLabel("Professeur associ\u00E9");
+		lblProfesseurAssoci.setForeground(Color.WHITE);
+		lblProfesseurAssoci.setFont(new Font("Arial", Font.BOLD, 15));
+		lblProfesseurAssoci.setBounds(10, 264, 185, 20);
+		getContentPane().add(lblProfesseurAssoci);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setMaximumRowCount(10);
+		comboBox.setBounds(10, 193, 280, 25);
+		getContentPane().add(comboBox);
+		
+		JLabel lblAjouterModifier = new JLabel("Matierres");
+		lblAjouterModifier.setForeground(Color.WHITE);
+		lblAjouterModifier.setFont(new Font("Arial", Font.BOLD, 15));
+		lblAjouterModifier.setBounds(10, 218, 185, 20);
+		getContentPane().add(lblAjouterModifier);
+		
+		textField_2 = new JTextField();
+		textField_2.setName("");
+		textField_2.setEnabled(false);
+		textField_2.setColumns(10);
+		textField_2.setBounds(10, 239, 280, 25);
+		getContentPane().add(textField_2);
+		
+		JLabel lblLesAlergies = new JLabel("Les matierres");
+		lblLesAlergies.setForeground(Color.WHITE);
+		lblLesAlergies.setFont(new Font("Arial", Font.BOLD, 15));
+		lblLesAlergies.setBounds(10, 172, 142, 20);
+		getContentPane().add(lblLesAlergies);
+		
+		JButton btnMatire = new JButton("Retour");
+		btnMatire.setFont(new Font("Arial", Font.BOLD, 12));
+		btnMatire.setBounds(164, 350, 130, 23);
+		getContentPane().add(btnMatire);
+		
+		JButton btnlve = new JButton("Supprimer");
+		btnlve.setFont(new Font("Arial", Font.BOLD, 12));
+		btnlve.setBounds(164, 321, 130, 23);
+		getContentPane().add(btnlve);
+		
+		JButton btnContact = new JButton("Modifier");
+		btnContact.setFont(new Font("Arial", Font.BOLD, 12));
+		btnContact.setBounds(10, 350, 130, 23);
+		getContentPane().add(btnContact);
+		
+		JSeparator separator_5 = new JSeparator();
+		separator_5.setBounds(10, 384, 284, 2);
+		getContentPane().add(separator_5);
+		
+		JButton btnModeSql = new JButton("Mode SQL");
+		btnModeSql.setEnabled(false);
+		btnModeSql.setFont(new Font("Arial", Font.BOLD, 12));
+		btnModeSql.setBounds(12, 397, 282, 23);
+		getContentPane().add(btnModeSql);
+		
+		JButton btnAlergie = new JButton("Ajouter");
+		btnAlergie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAlergie.setFont(new Font("Arial", Font.BOLD, 12));
+		btnAlergie.setBounds(10, 321, 130, 23);
+		getContentPane().add(btnAlergie);
+		
+		JButton btnAjouter = new JButton("Ajouter / Modifier / Supprimer");
+		btnAjouter.setFont(new Font("Arial", Font.BOLD, 12));
+		btnAjouter.setBounds(10, 143, 282, 23);
+		getContentPane().add(btnAjouter);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(322, 20, 932, 651);
@@ -145,15 +214,6 @@ public class Ihm_Administrateur extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(Ihm_Accueil.class.getResource("/gui/ressources/logo-EFREI.png")));
 		lblNewLabel.setBounds(10, 11, 280, 104);
 		getContentPane().add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("Ajouter / Modifier / Supprimer");
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton.setBounds(10, 143, 282, 23);
-		getContentPane().add(btnNewButton);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 663, 284, 2);
