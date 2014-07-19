@@ -13,6 +13,7 @@ import dal.DAOException;
 import dal.DAOFactory;
 import dal.dao.EleveDao;
 import beans.Eleve;
+import beans.Matiere;
 
 public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 
@@ -25,7 +26,8 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 			 "Date_inscription, Etablissement_prec, Photo, Rue,"+
 			 "Code_postal, Ville, Email,Remarques_medicale, ID_personne, Nom_classe,"+
 			 " ID_contact, ID_prof) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+	 private static final String SQL_SELECT_ELEVE_MATIERE = "SELECT * FROM eleve, matieres";
+	 
 
 	 public EleveDaoImpl(DAOFactory daoFactory) {
 			super(daoFactory);
@@ -180,10 +182,10 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 		eleve.setTel_mobile(resultSet.getInt("Tel_mobile"));
     	eleve.setVille(resultSet.getString("Ville"));
 		eleve.setVille_naissance(resultSet.getString("Ville_naissance"));
+		eleve.setMatricule(resultSet.getLong("Matricule"));
 		
 	    return eleve;
 	}
-	
-	
+
 
 }	

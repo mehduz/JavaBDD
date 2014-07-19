@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import com.mysql.jdbc.PreparedStatement;
 
+import beans.Eleve;
 import beans.Matiere;
 import dal.DAODataBaseManager;
 import dal.DAOException;
@@ -54,6 +55,15 @@ public class MatiereDaoImpl  extends SuperDaoImpl implements MatiereDao {
 		
 	}
 
+	
+	public static Matiere map( ResultSet resultSet ) throws SQLException {
+		
+		Matiere m = new Matiere();
+		m.setNom_matiere(resultSet.getString("Nom_matiere"));
+		
+		return m;
+	}
+	
 	@Override
 	public Matiere trouver(String nom_matiere) throws DAOException {
 		// TODO Auto-generated method stub
