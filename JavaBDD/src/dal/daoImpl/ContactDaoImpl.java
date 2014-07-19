@@ -2,9 +2,15 @@ package dal.daoImpl;
 
 import beans.Contact;
 import dal.DAOException;
+import dal.DAOFactory;
 import dal.dao.ContactDao;
 
-public class ContactDaoImpl implements ContactDao {
+public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
+
+	public ContactDaoImpl(DAOFactory daoFactory) {
+		super(daoFactory);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void creer(Contact classe) throws DAOException {

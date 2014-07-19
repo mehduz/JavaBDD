@@ -4,7 +4,7 @@ import beans.Matiere;
 import dal.DAOException;
 import dal.dao.MatiereDao;
  
-public class MatiereDaoImpl implements MatiereDao {
+public class MatiereDaoImpl  implements MatiereDao {
 
 	@Override
 	public void creer(Matiere classe) throws DAOException {
