@@ -8,7 +8,7 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class JTable extends JFrame {
+public class JTableExample extends JFrame {
 
 	/**
 	 * 
@@ -18,7 +18,7 @@ public class JTable extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JTable() {
+	public JTableExample() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("University Manager");
 		setSize(new Dimension(1280, 720));

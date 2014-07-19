@@ -13,7 +13,7 @@ public class MatiereDaoImpl  extends SuperDaoImpl implements MatiereDao {
 	}
 
 	@Override
-	public void creer(Matiere classe) throws DAOException {
+	public void creer(Matiere matiere) throws DAOException {
 		// TODO Auto-generated method stub
 		
 	}
