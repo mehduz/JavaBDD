@@ -29,7 +29,7 @@ public class EleveDaoImpl implements EleveDao {
 
 	@Override
 	public Eleve trouver(String login, String mdp) throws DAOException {
-
+		return null;
 	}
 
 }	
