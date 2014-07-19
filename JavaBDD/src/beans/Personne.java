@@ -9,6 +9,10 @@ public class Personne {
 	private long Tel_domicile;
 	private long Tel_mobile;
 	
+	public Personne() {
+		
+	}
+	
 	public Personne(String iD_personne, String nom, String prenom,
 			String email, long tel_domicile, long tel_mobile) {
 		super();

@@ -41,11 +41,7 @@ public class EleveDaoImpl implements EleveDao {
 	 */
 	private static Eleve map( ResultSet resultSet ) throws SQLException {
 		Eleve eleve = new Eleve();
-		eleve.setId( resultSet.getLong( "id" ) );
-		eleve.setEmail( resultSet.getString( "email" ) );
-		eleve.setMotDePasse( resultSet.getString( "mot_de_passe" ) );
-		eleve.setNom( resultSet.getString( "nom" ) );
-		eleve.setDateInscription( resultSet.getTimestamp( "date_inscription" ) );
+
 	    return eleve;
 	}
 	
