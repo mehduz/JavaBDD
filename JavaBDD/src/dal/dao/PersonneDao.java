@@ -5,7 +5,7 @@ import dal.DAOException;
 
 public interface PersonneDao {
 
-	void creer( Personne classe ) throws DAOException;
+	int creer( Personne classe ) throws DAOException;
 
 	Personne trouver( int idPersonne ) throws DAOException;
 	

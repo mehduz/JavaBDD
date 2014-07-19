@@ -40,7 +40,7 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 		}
 	 
 	@Override
-	public void creer(Eleve eleve) throws DAOException {
+	public int creer(Eleve eleve) throws DAOException {
 		// TODO Auto-generated method stub
 		
 		Connection connexion = null;
@@ -63,7 +63,7 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 	        valeursAutoGenerees = preparedStatement.getGeneratedKeys();
 	        if ( valeursAutoGenerees.next() ) {
 	            /* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
-	            System.out.println("Success !! :"+ valeursAutoGenerees.getLong( 1 ) );
+	            return valeursAutoGenerees.getInt( "ID_eleve" );
 	        } else {
 	            throw new DAOException( "Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné." );
 	        }
@@ -72,6 +72,7 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 	    } finally {
 	        DAODataBaseManager.fermeturesSilencieuses( valeursAutoGenerees, preparedStatement, connexion );
 	    }
+		
 	    
 	
 
