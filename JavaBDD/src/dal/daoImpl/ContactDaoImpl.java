@@ -15,6 +15,9 @@ public class ContactDaoImpl implements ContactDao {
 	@Override
 	public Contact trouver(String id_contact) throws DAOException {
 		// TODO Auto-generated method stub
+		
+		
+		
 		return null;
 	}
 

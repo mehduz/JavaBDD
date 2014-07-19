@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
+
 public class DAODataBaseAccessor {
 
 	private String dbName;
@@ -39,5 +42,18 @@ public class DAODataBaseAccessor {
 		return conn;
 		
 	}
+	
+	/*
+	 * Initialise la requête préparée basée sur la connexion passée en argument,
+	 * avec la requête SQL et les objets donnés.
+	 */
+	public static PreparedStatement initialisationRequetePreparee( Connection connexion, String sql, boolean returnGeneratedKeys, Object... objets ) throws SQLException {
+	    PreparedStatement preparedStatement = (PreparedStatement) connexion.prepareStatement( sql, returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS );
+	    for ( int i = 0; i < objets.length; i++ ) {
+	        preparedStatement.setObject( i + 1, objets[i] );
+	    }
+	    return preparedStatement;
+	}
+	
 	
 }
