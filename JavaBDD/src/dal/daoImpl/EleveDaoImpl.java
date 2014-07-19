@@ -18,7 +18,7 @@ public class EleveDaoImpl implements EleveDao {
 	 private DAOFactory   daoFactory;
 	 private static final String SQL_SELECT_PAR_EMAIL = "SELECT id, email, nom, mot_de_passe, date_inscription FROM Utilisateur WHERE email = ?";
 	 private static final String SQL_SELECT_PAR_LOGIN_MDP = "SELECT ID_personne FROM Authentication WHERE Login = ? and MDP = ?";
-	 private static final String SQL_SELECT_ELEVE_PAR_ID_PERSONNE = "SELECT * FROM Eleve, Personne WHERE Eleve.ID_personne=? AND Eleve.ID_personne=Personne.ID_personne ";
+	 private static final String SQL_SELECT_ELEVE_PAR_ID_PERSONNE = "SELECT * FROM Eleve, Personne WHERE Eleve.ID_personne = ? AND Eleve.ID_personne = Personne.ID_personne ";
 	 
 	 
 //	 /*Infos de l'élève */ 
@@ -93,25 +93,24 @@ public class EleveDaoImpl implements EleveDao {
 	private static Eleve map( ResultSet resultSet ) throws SQLException {
 		Eleve eleve = new Eleve();
 
-		eleve.setCode_postal(resultSet.getInt(""));
-		eleve.setContact("");
-		eleve.setDate_inscription(resultSet.getDate(""));
-		eleve.setDate_naissance(resultSet.getDate(""));
-		eleve.setEmail(resultSet.getString(""));
-		eleve.setEtablissement_prec(resultSet.getString(""));
-		eleve.setID_personne(resultSet.getString(""));
-		eleve.setNom(resultSet.getString(""));
-		eleve.setPays_naissance(resultSet.getString(""));
-		//eleve.setPhoto(photo);
-		eleve.setPrenom(resultSet.getString(""));
-		eleve.setRemarques_medicale(resultSet.getString(""));
-		eleve.setRue(resultSet.getString(""));
-		eleve.setSexe(resultSet.getString(""));
-		eleve.setTel_domicile(resultSet.getInt(""));
-		eleve.setTel_mobile(resultSet.getInt(""));
-		eleve.setVille(resultSet.getString(""));
-		eleve.setVille_naissance(resultSet.getString(""));
-//		
+		eleve.setCode_postal(resultSet.getInt("Code_postal"));
+		eleve.setDate_inscription(resultSet.getDate("Date_inscription"));
+		eleve.setDate_naissance(resultSet.getDate("Date_naissance"));
+		eleve.setEmail(resultSet.getString("Email"));
+		eleve.setEtablissement_prec(resultSet.getString("Etablissement_prec"));
+		eleve.setID_personne(resultSet.getString("ID_personne"));
+		eleve.setNom(resultSet.getString("Nom"));
+		eleve.setPays_naissance(resultSet.getString("Pays_naissance"));
+		eleve.setPhoto(resultSet.getString("Photo"));
+		eleve.setPrenom(resultSet.getString("Prenom"));
+		eleve.setRemarques_medicale(resultSet.getString("Remarques_medicale"));
+		eleve.setRue(resultSet.getString("Rue"));
+		eleve.setSexe(resultSet.getString("Sexe"));
+		eleve.setTel_domicile(resultSet.getInt("Tel_domicile"));
+		eleve.setTel_mobile(resultSet.getInt("Tel_mobile"));
+    	eleve.setVille(resultSet.getString("Ville"));
+		eleve.setVille_naissance(resultSet.getString("Ville_naissance"));
+		
 	    return eleve;
 	}
 	
