@@ -65,7 +65,7 @@ public class EleveDaoImpl implements EleveDao {
 		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
 		        if ( resultSet.next() ) {
 
-		        	  preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_PERSONNE_PAR_ID_PERSONNE, false, resultSet.getInt("ID_personne"));
+		        	  preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ELEVE_PAR_ID_PERSONNE, false, resultSet.getInt("ID_personne"));
 		        	  resultSet = preparedStatement.executeQuery();
 				     
 		        	  if ( resultSet.next() ) {
@@ -103,7 +103,7 @@ public class EleveDaoImpl implements EleveDao {
 		eleve.setNom(resultSet.getString(""));
 		eleve.setPays_naissance(resultSet.getString(""));
 		//eleve.setPhoto(photo);
-		eleve.setPrenom(resultSet.getString(""))
+		eleve.setPrenom(resultSet.getString(""));
 		eleve.setRemarques_medicale(resultSet.getString(""));
 		eleve.setRue(resultSet.getString(""));
 		eleve.setSexe(resultSet.getString(""));
