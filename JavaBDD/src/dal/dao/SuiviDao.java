@@ -7,7 +7,7 @@ public interface SuiviDao {
 	
 	int creer( Suivi suivi ) throws DAOException;
 
-	Suivi trouver( String email ) throws DAOException;
+	Suivi trouver( int idPersonne ) throws DAOException;
 	
 
 }

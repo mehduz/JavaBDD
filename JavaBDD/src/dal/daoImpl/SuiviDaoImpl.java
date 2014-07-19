@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import com.mysql.jdbc.PreparedStatement;
 
+import beans.Eleve;
 import beans.Suivi;
 import dal.DAODataBaseManager;
 import dal.DAOException;
@@ -15,7 +16,10 @@ import dal.dao.SuiviDao;
 public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	
 	
-	final static String SQL_INSERT_SUIVI = "INSERT INTO suivi (Note_CC, Note_examen, Matricule, ID_personne, Nom_matiere) VALUES (?, ?, ?, ?, ?)";
+	private static final String SQL_INSERT_SUIVI = "INSERT INTO suivi (Note_CC, Note_examen, Matricule, ID_personne, Nom_matiere) VALUES (?, ?, ?, ?, ?)";
+	private static final String SQL_SELECT_PAR_ID_PERSONNE = "SELECT * FROM Authentication WHERE ID_personne = ?";
+		
+	
 	
 	public SuiviDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -51,7 +55,7 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	        if ( valeursAutoGenerees.next() ) {
 	            /* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
 	        	
-	           return valeursAutoGenerees.getInt( "ID_contact" );
+	           return valeursAutoGenerees.getInt( "ID_suivi" );
 	        } else {
 	            throw new DAOException( "Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné." );
 	        }
@@ -61,14 +65,48 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	        DAODataBaseManager.fermeturesSilencieuses( valeursAutoGenerees, preparedStatement, connexion );
 	    }
 
-		
-		
 	}
 
+	
 	@Override
-	public Suivi trouver(String email) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+	public Suivi trouver(int idPersonne) throws DAOException {
+
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Suivi suivi = null;
+
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_PAR_ID_PERSONNE, false, idPersonne);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		        if ( resultSet.next() ) {
+
+		        		  suivi = map( resultSet );
+
+		        }
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
+		    return suivi;
+		
+	}
+	
+	private static Suivi map( ResultSet resultSet ) throws SQLException {
+		Suivi suivi = new Suivi();
+
+		suivi.setID_personne(resultSet.getInt("ID_personne"));
+		suivi.setMatricule(resultSet.getInt("Matricule"));
+		suivi.setNom_matiere(resultSet.getString("Nom_matiere"));
+		suivi.setNote_CC(resultSet.getInt("Note_CC"));
+		suivi.setNote_examen(resultSet.getInt("Note_examen"));
+		
+	    return suivi;
 	}
 
 }
