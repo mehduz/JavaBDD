@@ -5,9 +5,9 @@ import dal.DAOException;
 
 public interface VaccinDao {
 
-	int creer( Vaccin classe ) throws DAOException;
+	int creer( Vaccin vaccin ) throws DAOException;
 
-	Vaccin trouver( int idPersonne ) throws DAOException;
+	Vaccin trouver( String nomVaccin ) throws DAOException;
 
 	
 }
