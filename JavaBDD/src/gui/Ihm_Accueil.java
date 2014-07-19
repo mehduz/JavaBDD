@@ -5,6 +5,7 @@ import server.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -16,6 +17,8 @@ import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import communication.MessageIdentification;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -23,6 +26,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class Ihm_Accueil extends JFrame {
 
@@ -33,22 +38,28 @@ public class Ihm_Accueil extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private static Window frameAccueil;
+	private Client client = Client.getInstance();
+
+	public Client getClient() {
+		return client;
+	}
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		
-		new Thread(
-                new Server()
-            ).start();
+		Thread t = new Thread(new Server());
+		t.start();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					frameAccueil = new Ihm_Accueil();
 					frameAccueil.setVisible(true);
-				} catch (Exception e) {
+					byte[] address = {(byte) 192,(byte)168,1,101};
+					((Ihm_Accueil)frameAccueil).getClient().connect(InetAddress.getByAddress(address), 65330);
+					} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -152,20 +163,17 @@ public class Ihm_Accueil extends JFrame {
 					frameAdministrateur.setPanelIdentification(textField.getText(), "Administrateur");
 				}				
 				
-				/*if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
+				if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						Client client = Client.getInstance();
 						String passwordMD5 = MD5.encryptMD5(textField_1.getText());
-						client.connect(InetAddress.getLocalHost(), 65330);
 						MessageIdentification msgIdentification = new MessageIdentification(MessageIdentification.class.getName(), textField.getText(), passwordMD5);
 						client.sendMessage(msgIdentification);
-					} catch (UnknownHostException e1) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "Erreur de connexion : " + e, "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Erreur de connexion : " + e1, "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 					}
-				}*/
+				}
 				
 			}
 		});
