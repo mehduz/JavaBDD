@@ -84,7 +84,7 @@ public class Ihm_Administrateur_AjoutModificationSupressionBDD extends JFrame {
 		btnModeSql.setBounds(12, 398, 282, 23);
 		getContentPane().add(btnModeSql);
 		
-		JButton btnAlergie = new JButton("Alergie");
+		JButton btnAlergie = new JButton("Allergie");
 		btnAlergie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

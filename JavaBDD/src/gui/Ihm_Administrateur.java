@@ -22,6 +22,7 @@ import java.net.URI;
 
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
+import javax.swing.JComboBox;
 
 public class Ihm_Administrateur extends JFrame {
 
@@ -43,11 +44,39 @@ public class Ihm_Administrateur extends JFrame {
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
-		JButton button = new JButton("Mode SQL");
-		button.setEnabled(false);
-		button.setFont(new Font("Arial", Font.BOLD, 12));
-		button.setBounds(8, 190, 282, 23);
-		getContentPane().add(button);
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setMaximumRowCount(10);
+		comboBox_1.setBounds(10, 272, 280, 25);
+		getContentPane().add(comboBox_1);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setMaximumRowCount(10);
+		comboBox.setBounds(8, 190, 280, 25);
+		getContentPane().add(comboBox);
+		
+		JSeparator separator_6 = new JSeparator();
+		separator_6.setBounds(6, 342, 284, 2);
+		getContentPane().add(separator_6);
+		
+		JButton button_4 = new JButton("Mode SQL");
+		button_4.setFont(new Font("Arial", Font.BOLD, 12));
+		button_4.setEnabled(false);
+		button_4.setBounds(8, 355, 282, 23);
+		getContentPane().add(button_4);
+		
+		JSeparator separator_5 = new JSeparator();
+		separator_5.setBounds(8, 260, 284, 2);
+		getContentPane().add(separator_5);
+		
+		JButton btnListelvesPar = new JButton("Liste \u00E9l\u00E8ves par mati\u00E8res");
+		btnListelvesPar.setFont(new Font("Arial", Font.BOLD, 12));
+		btnListelvesPar.setBounds(8, 308, 282, 23);
+		getContentPane().add(btnListelvesPar);
+		
+		JButton btnListelvesPas = new JButton("Liste \u00E9l\u00E8ves pas classe");
+		btnListelvesPas.setFont(new Font("Arial", Font.BOLD, 12));
+		btnListelvesPas.setBounds(8, 226, 282, 23);
+		getContentPane().add(btnListelvesPas);
 		
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setBounds(6, 177, 284, 2);
