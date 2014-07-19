@@ -1,9 +1,13 @@
 package dal.daoImpl;
 
 import java.beans.Statement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.PreparedStatement;
+
+import dal.DAODataBaseManager;
 import dal.DAOException;
 import dal.DAOFactory;
 import dal.dao.EleveDao;
@@ -12,7 +16,9 @@ import beans.Eleve;
 public class EleveDaoImpl implements EleveDao {
 
 	 private DAOFactory   daoFactory;
-	 
+	 private static final String SQL_SELECT_PAR_EMAIL = "SELECT id, email, nom, mot_de_passe, date_inscription FROM Utilisateur WHERE email = ?";
+	 private static final String SQL_SELECT_PAR_LOGIN_MDP = "SELECT ID_personne FROM Authentication WHERE Login = ? and Mdp = ?";
+		
 	    EleveDaoImpl( DAOFactory daoFactory ) {
 	        this.daoFactory = daoFactory;
 	    }
@@ -31,7 +37,28 @@ public class EleveDaoImpl implements EleveDao {
 
 	@Override
 	public Eleve trouver(String login, String mdp) throws DAOException {
-		return null;
+		
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Eleve eleve = null;
+
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_PAR_LOGIN_MDP, false, "Romain", "5026bc63b5418ffdb54f238db245ec01" );
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		        if ( resultSet.next() ) {
+		        	eleve = map( resultSet );
+		        }
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
+		    return eleve;
 	}
 	
 	/*
@@ -42,6 +69,8 @@ public class EleveDaoImpl implements EleveDao {
 	private static Eleve map( ResultSet resultSet ) throws SQLException {
 		Eleve eleve = new Eleve();
 
+		
+		
 	    return eleve;
 	}
 	
