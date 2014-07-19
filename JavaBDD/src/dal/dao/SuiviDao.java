@@ -3,7 +3,7 @@ package dal.dao;
 import beans.Suivi;
 import dal.DAOException;
 
-public interface SuivreDao {
+public interface SuiviDao {
 	
 	void creer( Suivi classe ) throws DAOException;
 
