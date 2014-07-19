@@ -13,9 +13,11 @@ import dal.DAOFactory;
 import dal.dao.EleveDao;
 import beans.Eleve;
 
-public class EleveDaoImpl implements EleveDao {
+public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 
-	 private DAOFactory   daoFactory;
+	
+
+	private DAOFactory   daoFactory;
 	 private static final String SQL_SELECT_PAR_EMAIL = "SELECT id, email, nom, mot_de_passe, date_inscription FROM Utilisateur WHERE email = ?";
 	 private static final String SQL_SELECT_PAR_LOGIN_MDP = "SELECT ID_personne FROM Authentication WHERE Login = ? and MDP = ?";
 	 private static final String SQL_SELECT_ELEVE_PAR_ID_PERSONNE = "SELECT * FROM Eleve, Personne WHERE Eleve.ID_personne = ? AND Eleve.ID_personne = Personne.ID_personne ";
@@ -33,10 +35,11 @@ public class EleveDaoImpl implements EleveDao {
 //	 /*Infos tuteur*/ 
 //	 SELECT * FROM Personne WHERE ID_personne = (SELECT ID_prof FROM Eleve WHERE ID_personne = 3);
 // 
-	   public EleveDaoImpl( DAOFactory daoFactory ) {
-	        this.daoFactory = daoFactory;
-	    }
-	
+	 public EleveDaoImpl(DAOFactory daoFactory) {
+			super(daoFactory);
+			// TODO Auto-generated constructor stub
+		}
+	 
 	@Override
 	public void creer(Eleve eleve) throws DAOException {
 		// TODO Auto-generated method stub
