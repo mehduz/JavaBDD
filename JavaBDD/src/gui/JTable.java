@@ -1,31 +1,12 @@
 package gui;
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-import java.awt.Desktop;
-import java.awt.Font;
 import java.awt.Dimension;
 
-import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-
-import javax.swing.SwingConstants;
 import javax.swing.JPanel;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.net.URI;
-
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class JTable extends JFrame {
 
@@ -55,9 +36,5 @@ public class JTable extends JFrame {
 		getContentPane().add(lblNewLabel_3);
 
 	}
-	
-	public void setPanelIdentification(String login, String profil) {
-		textField.setText(login);
-		textField_1.setText(profil);
-	}
+
 }
