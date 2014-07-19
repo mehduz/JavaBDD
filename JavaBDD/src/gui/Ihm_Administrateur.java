@@ -46,36 +46,36 @@ public class Ihm_Administrateur extends JFrame {
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setMaximumRowCount(10);
-		comboBox_1.setBounds(10, 272, 280, 25);
+		comboBox_1.setBounds(6, 273, 280, 25);
 		getContentPane().add(comboBox_1);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setMaximumRowCount(10);
-		comboBox.setBounds(8, 190, 280, 25);
+		comboBox.setBounds(6, 190, 280, 25);
 		getContentPane().add(comboBox);
 		
 		JSeparator separator_6 = new JSeparator();
-		separator_6.setBounds(6, 342, 284, 2);
+		separator_6.setBounds(6, 343, 284, 2);
 		getContentPane().add(separator_6);
 		
 		JButton button_4 = new JButton("Mode SQL");
 		button_4.setFont(new Font("Arial", Font.BOLD, 12));
 		button_4.setEnabled(false);
-		button_4.setBounds(8, 355, 282, 23);
+		button_4.setBounds(8, 356, 282, 23);
 		getContentPane().add(button_4);
 		
 		JSeparator separator_5 = new JSeparator();
-		separator_5.setBounds(8, 260, 284, 2);
+		separator_5.setBounds(6, 260, 284, 2);
 		getContentPane().add(separator_5);
 		
 		JButton btnListelvesPar = new JButton("Liste \u00E9l\u00E8ves par mati\u00E8res");
 		btnListelvesPar.setFont(new Font("Arial", Font.BOLD, 12));
-		btnListelvesPar.setBounds(8, 308, 282, 23);
+		btnListelvesPar.setBounds(8, 309, 282, 23);
 		getContentPane().add(btnListelvesPar);
 		
 		JButton btnListelvesPas = new JButton("Liste \u00E9l\u00E8ves pas classe");
 		btnListelvesPas.setFont(new Font("Arial", Font.BOLD, 12));
-		btnListelvesPas.setBounds(8, 226, 282, 23);
+		btnListelvesPas.setBounds(6, 226, 282, 23);
 		getContentPane().add(btnListelvesPas);
 		
 		JSeparator separator_3 = new JSeparator();
@@ -176,6 +176,14 @@ public class Ihm_Administrateur extends JFrame {
 		getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Ajouter / Modifier / Supprimer");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Administrateur_AjoutModificationSupressionBDD frameAdministrateur_Ajout_Modification_SupressionBDD = new Ihm_Administrateur_AjoutModificationSupressionBDD();
+				frameAdministrateur_Ajout_Modification_SupressionBDD.setVisible(true);
+			}
+		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

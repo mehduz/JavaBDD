@@ -56,6 +56,23 @@ public class Ihm_Professeur_ConsulterNotesTutores extends JFrame {
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
+		JSeparator separator_5 = new JSeparator();
+		separator_5.setBounds(8, 313, 284, 2);
+		getContentPane().add(separator_5);
+		
+		JButton button = new JButton("Convoquer ");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Professeur_Convoquer frameProfesseurConvoquer = new Ihm_Professeur_Convoquer();
+				frameProfesseurConvoquer.setVisible(true);
+			}
+		});
+		button.setFont(new Font("Arial", Font.BOLD, 12));
+		button.setBounds(10, 326, 282, 23);
+		getContentPane().add(button);
+		
 		JLabel lblVosMatires = new JLabel("Vos tutor\u00E9s");
 		lblVosMatires.setForeground(Color.WHITE);
 		lblVosMatires.setFont(new Font("Arial", Font.BOLD, 15));

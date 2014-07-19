@@ -84,6 +84,14 @@ public class Ihm_Administrateur_Matierre extends JFrame {
 		getContentPane().add(lblLesAlergies);
 		
 		JButton btnMatire = new JButton("Retour");
+		btnMatire.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Administrateur_AjoutModificationSupressionBDD frameAdministrateur_AjoutModificationSupressionBDD = new Ihm_Administrateur_AjoutModificationSupressionBDD();
+				frameAdministrateur_AjoutModificationSupressionBDD.setVisible(true);
+			}
+		});
 		btnMatire.setFont(new Font("Arial", Font.BOLD, 12));
 		btnMatire.setBounds(164, 350, 130, 23);
 		getContentPane().add(btnMatire);

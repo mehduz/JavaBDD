@@ -45,55 +45,150 @@ public class Ihm_Administrateur_AjoutModificationSupressionBDD extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JButton btnVaccin = new JButton("Vaccin");
+		btnVaccin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Administrateur_Vaccin frameAdministrateur_Vacin = new Ihm_Administrateur_Vaccin();
+				frameAdministrateur_Vacin.setVisible(true);
+			}
+		});
+		
+		JButton button_3 = new JButton("Liste \u00E9l\u00E8ves par mati\u00E8res");
+		button_3.setFont(new Font("Arial", Font.BOLD, 12));
+		button_3.setBounds(12, 496, 282, 23);
+		getContentPane().add(button_3);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(10, 454, 284, 2);
+		getContentPane().add(separator_3);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setMaximumRowCount(10);
+		comboBox_1.setBounds(10, 467, 280, 25);
+		getContentPane().add(comboBox_1);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setMaximumRowCount(10);
+		comboBox.setBounds(10, 390, 280, 25);
+		getContentPane().add(comboBox);
+		
+		JSeparator separator_6 = new JSeparator();
+		separator_6.setBounds(10, 377, 284, 2);
+		getContentPane().add(separator_6);
+		
+		JButton button = new JButton("Liste \u00E9l\u00E8ves pas classe");
+		button.setFont(new Font("Arial", Font.BOLD, 12));
+		button.setBounds(10, 420, 282, 23);
+		getContentPane().add(button);
 		btnVaccin.setFont(new Font("Arial", Font.BOLD, 12));
-		btnVaccin.setBounds(85, 351, 130, 23);
+		btnVaccin.setBounds(84, 346, 130, 23);
 		getContentPane().add(btnVaccin);
 		
 		JButton btnProfesseur = new JButton("Professeur");
+		btnProfesseur.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Administrateur_Professeur frameAdministrateur_Professeur = new Ihm_Administrateur_Professeur();
+				frameAdministrateur_Professeur.setVisible(true);
+			}
+		});
 		btnProfesseur.setFont(new Font("Arial", Font.BOLD, 12));
-		btnProfesseur.setBounds(85, 322, 130, 23);
+		btnProfesseur.setBounds(84, 317, 130, 23);
 		getContentPane().add(btnProfesseur);
 		
 		JButton btnMdecin = new JButton("M\u00E9decin");
+		btnMdecin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Administrateur_Medecin frameAdministrateur_Medecin = new Ihm_Administrateur_Medecin();
+				frameAdministrateur_Medecin.setVisible(true);
+			}
+		});
 		btnMdecin.setFont(new Font("Arial", Font.BOLD, 12));
-		btnMdecin.setBounds(85, 293, 130, 23);
+		btnMdecin.setBounds(84, 288, 130, 23);
 		getContentPane().add(btnMdecin);
 		
 		JButton btnMatire = new JButton("Mati\u00E8re");
+		btnMatire.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Administrateur_Matierre frameAdministrateur_Matierre = new Ihm_Administrateur_Matierre();
+				frameAdministrateur_Matierre.setVisible(true);
+			}
+		});
 		btnMatire.setFont(new Font("Arial", Font.BOLD, 12));
-		btnMatire.setBounds(85, 264, 130, 23);
+		btnMatire.setBounds(84, 259, 130, 23);
 		getContentPane().add(btnMatire);
 		
 		JButton btnlve = new JButton("\u00C9l\u00E8ve");
+		btnlve.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Administrateur_Eleve frameAdministrateur_Eleve = new Ihm_Administrateur_Eleve();
+				frameAdministrateur_Eleve.setVisible(true);
+			}
+		});
 		btnlve.setFont(new Font("Arial", Font.BOLD, 12));
-		btnlve.setBounds(85, 235, 130, 23);
+		btnlve.setBounds(84, 230, 130, 23);
 		getContentPane().add(btnlve);
 		
 		JButton btnContact = new JButton("Contact");
+		btnContact.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Administrateur_Contact frameAdministrateur_Contact = new Ihm_Administrateur_Contact();
+				frameAdministrateur_Contact.setVisible(true);
+			}
+		});
 		btnContact.setFont(new Font("Arial", Font.BOLD, 12));
-		btnContact.setBounds(85, 206, 130, 23);
+		btnContact.setBounds(84, 201, 130, 23);
 		getContentPane().add(btnContact);
 		
 		JSeparator separator_5 = new JSeparator();
-		separator_5.setBounds(10, 385, 284, 2);
+		separator_5.setBounds(10, 530, 284, 2);
 		getContentPane().add(separator_5);
 		
 		JButton btnModeSql = new JButton("Mode SQL");
 		btnModeSql.setEnabled(false);
 		btnModeSql.setFont(new Font("Arial", Font.BOLD, 12));
-		btnModeSql.setBounds(12, 398, 282, 23);
+		btnModeSql.setBounds(12, 543, 282, 23);
 		getContentPane().add(btnModeSql);
 		
 		JButton btnAlergie = new JButton("Allergie");
+		btnAlergie.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Administrateur_Allergie frameAdministrateur_Allergie = new Ihm_Administrateur_Allergie();
+				frameAdministrateur_Allergie.setVisible(true);
+			}
+		});
 		btnAlergie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				Ihm_Administrateur frameAdministrateur = new Ihm_Administrateur();
+				frameAdministrateur.setVisible(true);
 			}
 		});
 		btnAlergie.setFont(new Font("Arial", Font.BOLD, 12));
-		btnAlergie.setBounds(85, 177, 130, 23);
+		btnAlergie.setBounds(84, 172, 130, 23);
 		getContentPane().add(btnAlergie);
 		
 		JButton btnAjouter = new JButton("Ajouter / Modifier / Supprimer");
+		btnAjouter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Administrateur frameAdministrateur = new Ihm_Administrateur();
+				frameAdministrateur.setVisible(true);
+			}
+		});
 		btnAjouter.setFont(new Font("Arial", Font.BOLD, 12));
 		btnAjouter.setBounds(10, 143, 282, 23);
 		getContentPane().add(btnAjouter);
