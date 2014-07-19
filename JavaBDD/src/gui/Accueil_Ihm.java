@@ -52,10 +52,10 @@ public class Accueil_Ihm extends JFrame {
 	 * Create the frame.
 	 */
 	public Accueil_Ihm() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("University Manager");
 		setSize(new Dimension(310, 800));
 		setResizable(false);
-		setAlwaysOnTop(true);
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
@@ -126,7 +126,7 @@ public class Accueil_Ihm extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
-					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Ereur de connexion", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 				} 
 			}
 		});
