@@ -1,13 +1,13 @@
 package dal.dao;
 
-import beans.Suivre;
+import beans.Suivi;
 import dal.DAOException;
 
 public interface SuivreDao {
 	
-	void creer( Suivre classe ) throws DAOException;
+	void creer( Suivi classe ) throws DAOException;
 
-	Suivre trouver( String email ) throws DAOException;
+	Suivi trouver( String email ) throws DAOException;
 	
 
 }

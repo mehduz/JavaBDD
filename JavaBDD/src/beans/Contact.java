@@ -13,6 +13,10 @@ public class Contact extends Personne{
 		ID_contact = iD_contact;
 		Adresse = adresse;
 	}
+	
+	public Contact() {
+		super();
+	}
 
 	public long getID_contact() {
 		return ID_contact;
