@@ -30,7 +30,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
 
-public class Accueil_Ihm extends JFrame {
+public class Ihm_Accueil extends JFrame {
 
 	/**
 	 * 
@@ -51,7 +51,7 @@ public class Accueil_Ihm extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Accueil_Ihm frame = new Accueil_Ihm();
+					Ihm_Accueil frame = new Ihm_Accueil();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +64,7 @@ public class Accueil_Ihm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Accueil_Ihm() {
+	public Ihm_Accueil() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("University Manager");
 		setSize(new Dimension(310, 800));
@@ -130,7 +130,7 @@ public class Accueil_Ihm extends JFrame {
 		getContentPane().add(separator);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Accueil_Ihm.class.getResource("/gui/ressources/logo-EFREI.png")));
+		lblNewLabel.setIcon(new ImageIcon(Ihm_Accueil.class.getResource("/gui/ressources/logo-EFREI.png")));
 		lblNewLabel.setBounds(10, 11, 280, 104);
 		getContentPane().add(lblNewLabel);
 		
@@ -192,7 +192,7 @@ public class Accueil_Ihm extends JFrame {
 		getContentPane().add(lblUniversityManager);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(Accueil_Ihm.class.getResource("/gui/ressources/fond.jpg")));
+		lblNewLabel_2.setIcon(new ImageIcon(Ihm_Accueil.class.getResource("/gui/ressources/fond.jpg")));
 		lblNewLabel_2.setBounds(0, 0, 304, 771);
 		getContentPane().add(lblNewLabel_2);
 
