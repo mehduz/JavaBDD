@@ -45,6 +45,14 @@ public class Ihm_Professeur extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JButton btnConvoquer = new JButton("Convoquer ");
+		btnConvoquer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Professeur_Convoquer frameProfesseur_Convoquer = new Ihm_Professeur_Convoquer();
+				frameProfesseur_Convoquer.setVisible(true);
+			}
+		});
 		btnConvoquer.setFont(new Font("Arial", Font.BOLD, 12));
 		btnConvoquer.setBounds(10, 237, 282, 23);
 		getContentPane().add(btnConvoquer);

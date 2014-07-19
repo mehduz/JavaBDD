@@ -119,13 +119,21 @@ public class Ihm_Administrateur_Medecin extends JFrame {
 		textField_2.setBounds(10, 233, 130, 20);
 		getContentPane().add(textField_2);
 		
-		JLabel lblLesAlergies = new JLabel("Nom");
+		JLabel lblLesAlergies = new JLabel("Nom m\u00E9decin");
 		lblLesAlergies.setForeground(Color.WHITE);
 		lblLesAlergies.setFont(new Font("Arial", Font.BOLD, 12));
 		lblLesAlergies.setBounds(10, 172, 142, 20);
 		getContentPane().add(lblLesAlergies);
 		
 		JButton btnMatire = new JButton("Retour");
+		btnMatire.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Administrateur_AjoutModificationSupressionBDD frameAdministrateur_AjoutModificationSupressionBDD = new Ihm_Administrateur_AjoutModificationSupressionBDD();
+				frameAdministrateur_AjoutModificationSupressionBDD.setVisible(true);
+			}
+		});
 		btnMatire.setFont(new Font("Arial", Font.BOLD, 12));
 		btnMatire.setBounds(164, 373, 130, 23);
 		getContentPane().add(btnMatire);
