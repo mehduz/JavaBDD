@@ -50,16 +50,11 @@ public class Ihm_Accueil extends JFrame {
 	 */
 	public static void main(String[] args) {
 		
-		/*Thread t = new Thread(new Server());
-		t.start();*/
-		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					frameAccueil = new Ihm_Accueil();
 					frameAccueil.setVisible(true);
-					byte[] address = {(byte)192, (byte)168, 1, 101};
-					((Ihm_Accueil)frameAccueil).getClient().connect(InetAddress.getByAddress(address), 65330);
 					} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -152,9 +147,10 @@ public class Ihm_Accueil extends JFrame {
 					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						String passwordMD5 = MD5.encryptMD5(passwordField.getText());
-						MessageIdentification msgIdentification = new MessageIdentification(MessageIdentification.class.getName(), textField.getText(), passwordMD5);
+						MessageIdentification msgIdentification = new MessageIdentification(MessageIdentification.class.getName(), textField.getText(), passwordField.getText());
+						client.connect(InetAddress.getByAddress(new byte[]{(byte) 192,(byte) 168,(byte)1,(byte)101}), 65530);
 						client.sendMessage(msgIdentification);
+						client.disconnect();
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Erreur de connexion : " + e1, "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 					}

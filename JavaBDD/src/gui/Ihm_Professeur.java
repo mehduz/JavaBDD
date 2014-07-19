@@ -44,6 +44,15 @@ public class Ihm_Professeur extends JFrame {
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
+		JButton btnConvoquer = new JButton("Convoquer ");
+		btnConvoquer.setFont(new Font("Arial", Font.BOLD, 12));
+		btnConvoquer.setBounds(10, 237, 282, 23);
+		getContentPane().add(btnConvoquer);
+		
+		JSeparator separator_5 = new JSeparator();
+		separator_5.setBounds(8, 224, 284, 2);
+		getContentPane().add(separator_5);
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(322, 20, 932, 651);
 		getContentPane().add(panel);

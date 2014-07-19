@@ -56,16 +56,38 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
+		JButton btnValider = new JButton("Valider");
+		btnValider.setFont(new Font("Arial", Font.BOLD, 12));
+		btnValider.setBounds(190, 442, 75, 23);
+		getContentPane().add(btnValider);
+		
+		JLabel lblClasse = new JLabel("Classe");
+		lblClasse.setForeground(Color.WHITE);
+		lblClasse.setFont(new Font("Arial", Font.BOLD, 12));
+		lblClasse.setBounds(10, 295, 130, 20);
+		getContentPane().add(lblClasse);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setMaximumRowCount(10);
+		comboBox_2.setBounds(10, 315, 184, 20);
+		getContentPane().add(comboBox_2);
+		
+		JLabel lblTelMobile = new JLabel("Tel mobile");
+		lblTelMobile.setForeground(Color.WHITE);
+		lblTelMobile.setFont(new Font("Arial", Font.BOLD, 12));
+		lblTelMobile.setBounds(210, 255, 90, 20);
+		getContentPane().add(lblTelMobile);
+		
 		JButton btnPhoto = new JButton("Photo");
 		btnPhoto.setFont(new Font("Arial", Font.BOLD, 12));
-		btnPhoto.setBounds(229, 433, 65, 23);
+		btnPhoto.setBounds(190, 415, 75, 23);
 		getContentPane().add(btnPhoto);
 		
 		textField_13 = new JTextField();
 		textField_13.setName("");
 		textField_13.setEnabled(false);
 		textField_13.setColumns(10);
-		textField_13.setBounds(94, 436, 129, 20);
+		textField_13.setBounds(94, 436, 70, 20);
 		getContentPane().add(textField_13);
 		
 		JLabel lblCodePostale = new JLabel("Code postal");
@@ -78,13 +100,13 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		textField_12.setName("");
 		textField_12.setEnabled(false);
 		textField_12.setColumns(10);
-		textField_12.setBounds(10, 436, 74, 20);
+		textField_12.setBounds(10, 436, 70, 20);
 		getContentPane().add(textField_12);
 		
 		JLabel lblVille = new JLabel("Ville");
 		lblVille.setForeground(Color.WHITE);
 		lblVille.setFont(new Font("Arial", Font.BOLD, 12));
-		lblVille.setBounds(94, 416, 129, 20);
+		lblVille.setBounds(94, 416, 70, 20);
 		getContentPane().add(lblVille);
 		
 		JLabel lblRue = new JLabel("Rue");
@@ -104,13 +126,13 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		textField_10.setName("");
 		textField_10.setEnabled(false);
 		textField_10.setColumns(10);
-		textField_10.setBounds(10, 394, 129, 20);
+		textField_10.setBounds(210, 315, 85, 20);
 		getContentPane().add(textField_10);
 		
-		JLabel lblDateDinscription = new JLabel("Date d'inscription");
+		JLabel lblDateDinscription = new JLabel("Inscription");
 		lblDateDinscription.setForeground(Color.WHITE);
 		lblDateDinscription.setFont(new Font("Arial", Font.BOLD, 12));
-		lblDateDinscription.setBounds(10, 374, 129, 20);
+		lblDateDinscription.setBounds(210, 295, 85, 20);
 		getContentPane().add(lblDateDinscription);
 		
 		JLabel lblSexe = new JLabel("Sexe");
@@ -137,46 +159,40 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		lblVilleNaissance_1.setBounds(10, 335, 129, 20);
 		getContentPane().add(lblVilleNaissance_1);
 		
-		JLabel lblPaysNaissance = new JLabel("Date naissance");
-		lblPaysNaissance.setForeground(Color.WHITE);
-		lblPaysNaissance.setFont(new Font("Arial", Font.BOLD, 12));
-		lblPaysNaissance.setBounds(10, 296, 129, 20);
-		getContentPane().add(lblPaysNaissance);
-		
 		textField_8 = new JTextField();
 		textField_8.setName("");
 		textField_8.setEnabled(false);
 		textField_8.setColumns(10);
-		textField_8.setBounds(10, 316, 129, 20);
+		textField_8.setBounds(210, 275, 84, 20);
 		getContentPane().add(textField_8);
 		
 		JLabel lblVilleNaissance = new JLabel("Pays naissance");
 		lblVilleNaissance.setForeground(Color.WHITE);
 		lblVilleNaissance.setFont(new Font("Arial", Font.BOLD, 12));
-		lblVilleNaissance.setBounds(161, 296, 129, 20);
+		lblVilleNaissance.setBounds(10, 374, 129, 20);
 		getContentPane().add(lblVilleNaissance);
 		
 		textField_7 = new JTextField();
 		textField_7.setName("");
 		textField_7.setEnabled(false);
 		textField_7.setColumns(10);
-		textField_7.setBounds(161, 316, 129, 20);
+		textField_7.setBounds(10, 394, 129, 20);
 		getContentPane().add(textField_7);
 		
 		JLabel lblAjouterModifier_4 = new JLabel("Tel fixe");
 		lblAjouterModifier_4.setForeground(Color.WHITE);
 		lblAjouterModifier_4.setFont(new Font("Arial", Font.BOLD, 12));
-		lblAjouterModifier_4.setBounds(161, 255, 129, 20);
+		lblAjouterModifier_4.setBounds(110, 255, 90, 20);
 		getContentPane().add(lblAjouterModifier_4);
 		
 		textField_6 = new JTextField();
 		textField_6.setName("");
 		textField_6.setEnabled(false);
 		textField_6.setColumns(10);
-		textField_6.setBounds(161, 275, 129, 20);
+		textField_6.setBounds(110, 275, 90, 20);
 		getContentPane().add(textField_6);
 		
-		JLabel lblAjouterModifier_3 = new JLabel("Tel mobile");
+		JLabel lblAjouterModifier_3 = new JLabel("Date naissance");
 		lblAjouterModifier_3.setForeground(Color.WHITE);
 		lblAjouterModifier_3.setFont(new Font("Arial", Font.BOLD, 12));
 		lblAjouterModifier_3.setBounds(10, 255, 129, 20);
@@ -186,7 +202,7 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		textField_5.setName("");
 		textField_5.setEnabled(false);
 		textField_5.setColumns(10);
-		textField_5.setBounds(10, 275, 130, 20);
+		textField_5.setBounds(10, 275, 90, 20);
 		getContentPane().add(textField_5);
 		
 		textField_4 = new JTextField();

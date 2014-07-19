@@ -183,7 +183,7 @@ public class Ihm_Professeur_ConsulterNotesTutores extends JFrame {
 		btnNewButton.setBounds(10, 143, 282, 23);
 		getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Consulter notes de vos tutot\u00E9s");
+		JButton btnNewButton_1 = new JButton("Consulter notes de vos tutor\u00E9s");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
