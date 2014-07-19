@@ -136,8 +136,21 @@ public class Ihm_Accueil extends JFrame {
 
 				frameAccueil.setVisible(false);
 				
-				Ihm_Eleve frameEleve = new Ihm_Eleve();
-				frameEleve.setVisible(true);
+				if("Simon".equals(textField.getText())) {
+					Ihm_Eleve frameEleve = new Ihm_Eleve();
+					frameEleve.setVisible(true);
+					frameEleve.setPanelIdentification(textField.getText(), "Élève");
+					
+				} else if ("Yann".equals(textField.getText())) {
+					Ihm_Professeur frameProfesseur = new Ihm_Professeur();
+					frameProfesseur.setVisible(true);
+					frameProfesseur.setPanelIdentification(textField.getText(), "Professeur");
+					
+				} else if ("Medhi".equals(textField.getText())) {
+					Ihm_Administrateur frameAdministrateur = new Ihm_Administrateur();
+					frameAdministrateur.setVisible(true);
+					frameAdministrateur.setPanelIdentification(textField.getText(), "Administrateur");
+				}				
 				
 				/*if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Erreur de connexion", JOptionPane.ERROR_MESSAGE);

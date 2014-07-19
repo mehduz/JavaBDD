@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
 
@@ -13,7 +14,12 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.Color;
+import java.io.IOException;
+import java.net.URI;
+
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 
@@ -46,16 +52,48 @@ public class Ihm_Eleve extends JFrame {
 		getContentPane().add(separator_4);
 		
 		JButton button_2 = new JButton("Informations");
+		button_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				URI uri = URI.create("http://www.efrei.fr/programme-cycle-ingenieur-par-apprentissage#.U8pn7vl_uBo");
+				try {
+					Desktop.getDesktop().browse(uri);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		button_2.setFont(new Font("Arial", Font.BOLD, 12));
 		button_2.setBounds(174, 634, 120, 23);
 		getContentPane().add(button_2);
 		
 		JButton button_1 = new JButton("Help");
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				URI uri = URI.create("http://www.efrei.fr/");
+				try {
+					Desktop.getDesktop().browse(uri);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		button_1.setFont(new Font("Arial", Font.BOLD, 12));
 		button_1.setBounds(94, 634, 70, 23);
 		getContentPane().add(button_1);
 		
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setVisible(false);
+				Ihm_Accueil frameAccueil = new Ihm_Accueil();
+				frameAccueil.setVisible(true);
+			}
+		});
 		btnLogout.setFont(new Font("Arial", Font.BOLD, 12));
 		btnLogout.setBounds(8, 634, 76, 23);
 		getContentPane().add(btnLogout);
@@ -73,12 +111,14 @@ public class Ihm_Eleve extends JFrame {
 		getContentPane().add(lblLogin);
 		
 		textField_1 = new JTextField();
+		textField_1.setEnabled(false);
 		textField_1.setColumns(10);
-		textField_1.setBounds(48, 590, 246, 15);
+		textField_1.setBounds(46, 611, 246, 15);
 		getContentPane().add(textField_1);
 		
 		textField = new JTextField();
-		textField.setBounds(48, 611, 246, 15);
+		textField.setEnabled(false);
+		textField.setBounds(46, 590, 246, 15);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -138,4 +178,10 @@ public class Ihm_Eleve extends JFrame {
 		getContentPane().add(lblNewLabel_3);
 
 	}
+	
+	public void setPanelIdentification(String login, String profil) {
+		textField.setText(login);
+		textField_1.setText(profil);
+	}
+	
 }
