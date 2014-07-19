@@ -1,16 +1,16 @@
 package beans;
 
-public class Vaccins {
+public class Vaccin {
 	
 	private long ID_vaccin;
 	private String Libelle;
 	
-	public Vaccins(long iD_vaccin, String libelle) {
+	public Vaccin(long iD_vaccin, String libelle) {
 		ID_vaccin = iD_vaccin;
 		Libelle = libelle;
 	}
 
-	public Vaccins() {
+	public Vaccin() {
 		
 	}
 

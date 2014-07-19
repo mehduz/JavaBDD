@@ -21,6 +21,7 @@ public class Eleve extends Personne {
 	private String Nom_classe;
 	private long ID_contact;
 	private long ID_prof;
+	private boolean Bulletinisvalid;
 	
 
 	public Eleve() {
@@ -65,6 +66,14 @@ public class Eleve extends Personne {
 
 
 	
+	public boolean isBulletinisvalid() {
+		return Bulletinisvalid;
+	}
+
+	public void setBulletinisvalid(boolean bulletinisvalid) {
+		Bulletinisvalid = bulletinisvalid;
+	}
+
 	public long getID_personne() {
 		return ID_personne;
 	}
