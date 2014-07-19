@@ -68,6 +68,9 @@ public class Eleve extends Personne {
 				+ Contact + ", Vaccination=" + Vaccination + ", Allergie="
 				+ Allergie + ", Remarques_medicale=" + Remarques_medicale;
 	}
+	
+	
+	
 
 	public long getMatricule() {
 		return Matricule;
