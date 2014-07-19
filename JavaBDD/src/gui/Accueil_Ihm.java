@@ -121,13 +121,13 @@ public class Accueil_Ihm extends JFrame {
 		lblNewLabel.setBounds(10, 11, 280, 104);
 		getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Login");
+		JButton btnNewButton = new JButton("Login1");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Ereur de connexion", JOptionPane.ERROR_MESSAGE);
-				}
+				} 
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
