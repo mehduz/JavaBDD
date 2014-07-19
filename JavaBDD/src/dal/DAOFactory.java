@@ -24,12 +24,21 @@ public class DAOFactory {
     private String              username;
     private String              password;
 
-    DAOFactory( String url, String username, String password ) {
+    public DAOFactory( String url, String username, String password ) {
         this.url = url;
         this.username = username;
         this.password = password;
+
     }
 
+    public DAOFactory() {
+    	
+    	   this.url = "universitymanagerdb";
+           this.username = "remoteuser";
+           this.password = "remote";
+
+    }
+    
     /*
      * Méthode chargée de récupérer les informations de connexion à la base de
      * données, charger le driver JDBC et retourner une instance de la Factory
@@ -73,11 +82,11 @@ public class DAOFactory {
     public Connection getConnection() throws SQLException {
 
 	Connection conn = null;
-		
+
 		try {
 		    conn =
-		       DriverManager.getConnection("jdbc:mysql://192.168.1.103/?universitymanagerdb"
-		       		+ "user=remoteuser&password=remote");
+		       DriverManager.getConnection("jdbc:mysql://192.168.1.103:3306/"+this.url,
+		       		 this.username,this.password);
 
 		    return conn;
 
