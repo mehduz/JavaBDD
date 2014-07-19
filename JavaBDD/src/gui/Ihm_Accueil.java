@@ -1,13 +1,10 @@
 package gui;
 
-import communication.*;
 import server.*;
 
 import java.awt.EventQueue;
 
-import javax.swing.Icon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -26,10 +23,6 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.UnsupportedEncodingException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.security.NoSuchAlgorithmException;
 
 public class Ihm_Accueil extends JFrame {
 
