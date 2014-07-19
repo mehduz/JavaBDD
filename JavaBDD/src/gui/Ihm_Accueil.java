@@ -28,6 +28,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import javax.swing.JPasswordField;
 
 public class Ihm_Accueil extends JFrame {
 
@@ -36,9 +37,9 @@ public class Ihm_Accueil extends JFrame {
 	 */
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
-	private JTextField textField_1;
 	private static Window frameAccueil;
 	private Client client = Client.getInstance();
+	private JPasswordField passwordField;
 
 	public Client getClient() {
 		return client;
@@ -93,31 +94,15 @@ public class Ihm_Accueil extends JFrame {
 				}
 			}
 		});
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(10, 218, 280, 23);
+		getContentPane().add(passwordField);
 		textField.setName("");
 		textField.setText("...");
 		textField.setBounds(10, 163, 280, 25);
 		getContentPane().add(textField);
 		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				if("...".equals(textField_1.getText())) {
-					textField_1.setText("");
-				}
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if("".equals(textField_1.getText())) {
-					textField_1.setText("...");
-				}
-			}
-		});
-		textField_1.setText("...");
-		textField_1.setColumns(10);
-		textField_1.setBounds(10, 219, 280, 25);
-		getContentPane().add(textField_1);
 		
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setForeground(new Color(255, 255, 255));
@@ -163,17 +148,17 @@ public class Ihm_Accueil extends JFrame {
 					frameAdministrateur.setPanelIdentification(textField.getText(), "Administrateur");
 				}				
 				
-				/*if("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
+				if("...".equals(textField.getText()) || "...".equals(passwordField.getText())) {
 					JOptionPane.showMessageDialog(null, "Veuillez saisir votre identifiant et mot de passe.", "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						String passwordMD5 = MD5.encryptMD5(textField_1.getText());
+						String passwordMD5 = MD5.encryptMD5(passwordField.getText());
 						MessageIdentification msgIdentification = new MessageIdentification(MessageIdentification.class.getName(), textField.getText(), passwordMD5);
 						client.sendMessage(msgIdentification);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Erreur de connexion : " + e1, "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 					}
-				}*/
+				}
 				
 			}
 		});
