@@ -2,6 +2,7 @@ package dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mysql.jdbc.PreparedStatement;
@@ -9,26 +10,18 @@ import com.mysql.jdbc.Statement;
 
 public class DAODataBaseAccessor {
 
-	private String dbName;
-	private String user;
-	private String password;
-	
 	public DAODataBaseAccessor () {
 	
-		 dbName = "universitymanagerdb";
-		 user = "remoteuser";
-		 password = "remote";
-		
 	}
 	
-	public  Connection getDataBaseConnection() {
+	public static Connection getDataBaseConnection(String user,String password) {
 		
 		Connection conn = null;
 		
 		try {
 		    conn =
-		       DriverManager.getConnection("jdbc:mysql://192.168.1.103/?" +dbName+
-		                                   "user="+user+"&password="+password);
+		       DriverManager.getConnection("jdbc:mysql://192.168.1.103/?universitymanagerdb"
+		       		+ "user=remoteuser&password=remote");
 
 		    return conn;
 
@@ -55,5 +48,50 @@ public class DAODataBaseAccessor {
 	    return preparedStatement;
 	}
 	
+	/* Fermeture silencieuse du resultset */
+	public static void fermetureSilencieuse( ResultSet resultSet ) {
+	    if ( resultSet != null ) {
+	        try {
+	            resultSet.close();
+	        } catch ( SQLException e ) {
+	            System.out.println( "Échec de la fermeture du ResultSet : " + e.getMessage() );
+	        }
+	    }
+	}
+
+	/* Fermeture silencieuse du statement */
+	public static void fermetureSilencieuse( Statement statement ) {
+	    if ( statement != null ) {
+	        try {
+	            statement.close();
+	        } catch ( SQLException e ) {
+	            System.out.println( "Échec de la fermeture du Statement : " + e.getMessage() );
+	        }
+	    }
+	}
+
+	/* Fermeture silencieuse de la connexion */
+	public static void fermetureSilencieuse( Connection connexion ) {
+	    if ( connexion != null ) {
+	        try {
+	            connexion.close();
+	        } catch ( SQLException e ) {
+	            System.out.println( "Échec de la fermeture de la connexion : " + e.getMessage() );
+	        }
+	    }
+	}
+
+	/* Fermetures silencieuses du statement et de la connexion */
+	public static void fermeturesSilencieuses( Statement statement, Connection connexion ) {
+	    fermetureSilencieuse( statement );
+	    fermetureSilencieuse( connexion );
+	}
+
+	/* Fermetures silencieuses du resultset, du statement et de la connexion */
+	public static void fermeturesSilencieuses( ResultSet resultSet, Statement statement, Connection connexion ) {
+	    fermetureSilencieuse( resultSet );
+	    fermetureSilencieuse( statement );
+	    fermetureSilencieuse( connexion );
+	}
 	
 }
