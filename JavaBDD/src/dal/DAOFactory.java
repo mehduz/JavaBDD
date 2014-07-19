@@ -5,8 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
 
 public class DAOFactory {
 
@@ -65,10 +69,31 @@ public class DAOFactory {
     }
 
     /* Méthode chargée de fournir une connexion à la base de données */
-     /* package */ Connection getConnection() throws SQLException {
-        return DriverManager.getConnection( url, username, password );
+     /* package */
+    public Connection getConnection() throws SQLException {
+
+	Connection conn = null;
+		
+		try {
+		    conn =
+		       DriverManager.getConnection("jdbc:mysql://192.168.1.103/?universitymanagerdb"
+		       		+ "user=remoteuser&password=remote");
+
+		    return conn;
+
+		} catch (SQLException ex) {
+		    // handle any errors
+		    System.out.println("SQLException: " + ex.getMessage());
+		    System.out.println("SQLState: " + ex.getSQLState());
+		    System.out.println("VendorError: " + ex.getErrorCode());
+		}
+		
+		return conn;
+    	
     }
 
+
+    
     /*
      * Méthodes de récupération de l'implémentation des différents DAO (un seul
      * pour le moment)
