@@ -3,9 +3,9 @@ package dal.daoImpl;
 import beans.Suivi;
 import dal.DAOException;
 import dal.DAOFactory;
-import dal.dao.SuivreDao;
+import dal.dao.SuiviDao;
 
-public class SuiviDaoImpl extends SuperDaoImpl implements SuivreDao {
+public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	
 	public SuiviDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);

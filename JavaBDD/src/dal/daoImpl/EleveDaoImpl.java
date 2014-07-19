@@ -25,6 +25,7 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 			 "Code_postal, Ville, Email,Remarques_medicale, ID_personne, Nom_classe,"+
 			 " ID_contact, ID_prof) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+
 	 public EleveDaoImpl(DAOFactory daoFactory) {
 			super(daoFactory);
 			// TODO Auto-generated constructor stub
@@ -42,9 +43,14 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 	    try {
 	        /* Récupération d'une connexion depuis la Factory */
 	        connexion = daoFactory.getConnection();
-	    
-	  	  preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_INSERT_ELEVE, true, "hello" , "world" , "how are you" , 12345 , 6789);
-	          int statut = preparedStatement.executeUpdate();
+	      
+	  	  		 preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_INSERT_ELEVE, true, 
+	  			 eleve.getDate_naissance(), eleve.getVille_naissance(), eleve.getPays_naissance(), eleve.getDate_inscription(), 
+	 			 eleve.getEtablissement_prec(), eleve.getPhoto(), eleve.getRue(), eleve.getCode_postal(), eleve.getVille(),
+	 			 eleve.getEmail(), eleve.getRemarques_medicale(), eleve.getID_personne(), eleve.getNom_classe(), eleve.getID_contact(),
+	 			 eleve.getID_prof());
+	  	  
+	  	   int statut = preparedStatement.executeUpdate();
 	        /* Analyse du statut retourné par la requête d'insertion */
 	        if ( statut == 0 ) {
 	            throw new DAOException( "Échec de la création de l'utilisateur, aucune ligne ajoutée dans la table." );
@@ -128,7 +134,7 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 		eleve.setDate_naissance(resultSet.getDate("Date_naissance"));
 		eleve.setEmail(resultSet.getString("Email"));
 		eleve.setEtablissement_prec(resultSet.getString("Etablissement_prec"));
-		eleve.setID_personne(resultSet.getString("ID_personne"));
+		eleve.setID_contact(resultSet.getInt("ID_personne"));
 		eleve.setNom(resultSet.getString("Nom"));
 		eleve.setPays_naissance(resultSet.getString("Pays_naissance"));
 		eleve.setPhoto(resultSet.getString("Photo"));

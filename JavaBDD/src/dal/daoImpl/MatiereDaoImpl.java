@@ -2,9 +2,15 @@ package dal.daoImpl;
 
 import beans.Matiere;
 import dal.DAOException;
+import dal.DAOFactory;
 import dal.dao.MatiereDao;
  
-public class MatiereDaoImpl  implements MatiereDao {
+public class MatiereDaoImpl  extends SuperDaoImpl implements MatiereDao {
+
+	public MatiereDaoImpl(DAOFactory daoFactory) {
+		super(daoFactory);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void creer(Matiere classe) throws DAOException {

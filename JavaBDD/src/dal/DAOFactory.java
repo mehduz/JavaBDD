@@ -12,6 +12,19 @@ import java.util.Properties;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
+import dal.dao.ClasseDao;
+import dal.dao.ContactDao;
+import dal.dao.EleveDao;
+import dal.dao.MatiereDao;
+import dal.dao.PersonneDao;
+import dal.dao.SuiviDao;
+import dal.daoImpl.ClasseDaoImpl;
+import dal.daoImpl.ContactDaoImpl;
+import dal.daoImpl.EleveDaoImpl;
+import dal.daoImpl.MatiereDaoImpl;
+import dal.daoImpl.PersonneDaoImpl;
+import dal.daoImpl.SuiviDaoImpl;
+
 public class DAOFactory {
 
     private static final String FICHIER_PROPERTIES       = "/com/sdzee/dao/dao.properties";
@@ -101,13 +114,28 @@ public class DAOFactory {
     	
     }
 
-
+    public EleveDao getEleveDao() {
+        return new EleveDaoImpl( this );
+    }
     
-    /*
-     * Méthodes de récupération de l'implémentation des différents DAO (un seul
-     * pour le moment)
-     */
-//    public UtilisateurDao getUtilisateurDao() {
-//        return new UtilisateurDaoImpl( this );
-//    }
+    public ContactDao getContactDao() {
+        return new ContactDaoImpl( this );
+    }
+    
+    public ClasseDao getClasseDao() {
+        return new ClasseDaoImpl( this );
+    }
+    
+    public MatiereDao getMatiereDao() {
+        return new MatiereDaoImpl( this );
+    }
+    
+    public PersonneDao getPersonneDao() {
+        return new PersonneDaoImpl( this );
+    }
+    
+    public SuiviDao getSuiviDao() {
+        return new SuiviDaoImpl( this );
+    }
+
 }
