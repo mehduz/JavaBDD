@@ -1,8 +1,13 @@
 package gui;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetAddress;
@@ -17,8 +22,8 @@ public class Client {
 	private static Logger LOGGER = Logger.getLogger(Client.class.getName());
 
 	private Socket socket;
-	private BufferedReader in;
-	private PrintWriter out;
+	private InputStream in;
+	private OutputStream out;
 	private boolean isConnected;
 
 	public void connect(InetAddress addr, int port) {
@@ -26,9 +31,8 @@ public class Client {
 		try {
 			socket = new Socket(addr, 65330);
 			LOGGER.info("Demande de connexion");
-			in = new BufferedReader(new InputStreamReader(
-					socket.getInputStream()));	
-			out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+			in = socket.getInputStream();	
+			out = socket.getOutputStream();
 
 		} catch (UnknownHostException e) {
 			LOGGER.severe("connection error : " + e);
@@ -39,9 +43,28 @@ public class Client {
 		isConnected = true;
 	}
 	
-	public boolean login(String username, String password){
+	public void sendMessage(Message msg){
+		
+		BufferedOutputStream bos = null;
+		ObjectOutputStream oos = null;
+		ByteArrayOutputStream byos = null;
+		
+		try {
+			byos = new ByteArrayOutputStream();
+			bos = new BufferedOutputStream(byos);
+			oos = new ObjectOutputStream(bos);
+			oos.writeObject(msg);
+			out.write(byos.toByteArray());
+		} catch (IOException e) {
+			LOGGER.severe("[Client] Error IOException : " + e);
+		}
+		
+		finally {
+			oos = null;
+			bos = null;
+			byos = null;
+		}
 		
 	}
-	
 
 }
