@@ -3,7 +3,9 @@ package server;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Logger;
 
@@ -15,7 +17,7 @@ public class WorkerRunnable implements Runnable {
 	private static Logger LOGGER = Logger.getLogger(WorkerRunnable.class.getName());
 	
 	protected Socket clientSocket = null;
-		
+	
 	public WorkerRunnable(Socket clientSocket) {
 		super();
 		this.clientSocket = clientSocket;
@@ -27,18 +29,20 @@ public class WorkerRunnable implements Runnable {
 		Message msg = null;
 		BufferedInputStream bis = null;
 		ObjectInputStream ois = null;
-		ByteArrayInputStream bais = null;
 		
 		try{
-			int length = clientSocket.getInputStream().available();
-			byte[] response = new byte[length];
-			clientSocket.getInputStream().read(response);
-			bais = new ByteArrayInputStream(response);
-			bis = new BufferedInputStream(bais);
-			ois = new ObjectInputStream(bis);
-			msg = (Message)ois.readObject();
-			Dispatcher.dispatch(msg); 
+			
+			InputStream is = clientSocket.getInputStream();
+			
+			while(clientSocket.isConnected()){
+				if(is.available() == 0) continue;
+				ois = new ObjectInputStream(is);
+				msg = (Message)ois.readObject();
+				ois.close();
+				Dispatcher.dispatch(msg);
+			}
 		}
+		
 		catch(IOException | ClassNotFoundException e){
 			LOGGER.severe("erreur at reading message : " + e);
 		}

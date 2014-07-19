@@ -1,7 +1,5 @@
 package gui;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
@@ -38,17 +36,18 @@ public class Client {
 		if (isConnected)
 			return;
 		try {
-			socket = new Socket(addr, 65330);
+			socket = new Socket(addr, port);
 			LOGGER.info("Demande de connexion");
 			in = socket.getInputStream();
 			out = socket.getOutputStream();
-
+			isConnected = true;
+			
 		} catch (UnknownHostException e) {
 			LOGGER.severe("connection error : " + e);
 		} catch (IOException e) {
 			LOGGER.severe("stream error : " + e);
 		}
-		isConnected = true;
+		
 	}
 
 	public void disconnect() {
@@ -73,25 +72,20 @@ public class Client {
 			LOGGER.info("Client is not connected");
 			return;
 		}
-
-		BufferedOutputStream bos = null;
+		
 		ObjectOutputStream oos = null;
-		ByteArrayOutputStream byos = null;
 
 		try {
-			byos = new ByteArrayOutputStream();
-			bos = new BufferedOutputStream(byos);
-			oos = new ObjectOutputStream(bos);
+			oos = new ObjectOutputStream(out);
 			oos.writeObject(msg);
-			out.write(byos.toByteArray());
+			oos.close();
+			
 		} catch (IOException e) {
 			LOGGER.severe("[Client] Error IOException : " + e);
 		}
 
 		finally {
 			oos = null;
-			bos = null;
-			byos = null;
 		}
 
 	}
