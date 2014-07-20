@@ -27,7 +27,10 @@ import java.net.URI;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class Ihm_Professeur_MajNotes extends JFrame {
+import communication.ResponseEvent;
+import communication.ResponseListener;
+
+public class Ihm_Professeur_MajNotes extends JFrame implements ResponseListener {
 
 	/**
 	 * 
@@ -278,5 +281,11 @@ public class Ihm_Professeur_MajNotes extends JFrame {
 	public void setPanelIdentification(String login, String profil) {
 		textField.setText(login);
 		textField_1.setText(profil);
+	}
+
+	@Override
+	public void onResponseReceived(ResponseEvent re) {
+		// TODO Auto-generated method stub
+		
 	}
 }

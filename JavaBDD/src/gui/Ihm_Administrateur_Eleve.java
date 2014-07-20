@@ -29,7 +29,10 @@ import table.TableEleve;
 
 import javax.swing.JTable;
 
-public class Ihm_Administrateur_Eleve extends JFrame {
+import communication.ResponseEvent;
+import communication.ResponseListener;
+
+public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener {
 
 	/**
 	 * 
@@ -69,13 +72,18 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);
+		
+		JButton btnRemarquesMdecin = new JButton("Valider notes");
+		btnRemarquesMdecin.setFont(new Font("Arial", Font.BOLD, 10));
+		btnRemarquesMdecin.setBounds(162, 416, 133, 23);
+		getContentPane().add(btnRemarquesMdecin);
 		scrollPane.setBounds(314, 11, 950, 669);
 		
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
-		JButton btnValider = new JButton("Valider");
-		btnValider.setFont(new Font("Arial", Font.BOLD, 10));
-		btnValider.setBounds(225, 435, 70, 23);
+		JButton btnValider = new JButton("M\u00E9dical");
+		btnValider.setFont(new Font("Arial", Font.BOLD, 8));
+		btnValider.setBounds(225, 442, 70, 23);
 		getContentPane().add(btnValider);
 		
 		JLabel lblClasse = new JLabel("Classe");
@@ -96,8 +104,8 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		getContentPane().add(lblTelMobile);
 		
 		JButton btnPhoto = new JButton("Photo");
-		btnPhoto.setFont(new Font("Arial", Font.BOLD, 10));
-		btnPhoto.setBounds(150, 435, 70, 23);
+		btnPhoto.setFont(new Font("Arial", Font.BOLD, 8));
+		btnPhoto.setBounds(162, 442, 58, 23);
 		getContentPane().add(btnPhoto);
 		
 		textField_13 = new JTextField();
@@ -432,5 +440,11 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 	public void setPanelIdentification(String login, String profil) {
 		textField.setText(login);
 		textField_1.setText(profil);
+	}
+
+	@Override
+	public void onResponseReceived(ResponseEvent re) {
+		// TODO Auto-generated method stub
+		
 	}
 }
