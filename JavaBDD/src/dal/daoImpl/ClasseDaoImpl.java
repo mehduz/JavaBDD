@@ -3,11 +3,13 @@ package dal.daoImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 
 import beans.Allergie;
 import beans.Classe;
+import beans.Matiere;
 import dal.DAODataBaseManager;
 import dal.DAOException;
 import dal.DAOFactory;
@@ -17,7 +19,9 @@ public class ClasseDaoImpl extends SuperDaoImpl implements ClasseDao  {
 
 	 private static final String SQL_SELECT_PAR_LIBELLE = "SELECT * FROM Classe WHERE Nom_classe = ?";
 	 private static final String SQL_INSERT_CLASSE = "INSERT INTO classe (Nom_classe) VALUES (?)";
-	
+	 private static final String SQL_SELECT_ALL = "SELECT * FROM classe";
+	 
+	 
 	public ClasseDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
 		// TODO Auto-generated constructor stub
@@ -83,6 +87,38 @@ public class ClasseDaoImpl extends SuperDaoImpl implements ClasseDao  {
 
 		    return classe;
 		
+	}
+	
+	@Override
+	public ArrayList<Classe> getAll() throws DAOException {
+
+		    Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Classe classe = null;
+		    ArrayList<Classe> listeClasses = new ArrayList<Classe>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  classe = map( resultSet );
+		        		  listeClasses.add(classe);
+		        		   
+		        	  }
+		        	
+		        	return listeClasses;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
 	}
 	
 	private static Classe map( ResultSet resultSet ) throws SQLException {
