@@ -73,16 +73,16 @@ public class Ihm_Administrateur_AjoutModificationSupressionBDD extends JFrame im
 		getContentPane().add(separator_3);
 		
 		JComboBox <String> comboBox_1 = new JComboBox();
-		for (Classe c : ListeClasse.getListeClasse()) {
-			comboBox_1.addItem(c.getNom_classe());
+		for (Matiere m : ListeMatiere.getListeMatiere()) {
+			comboBox_1.addItem(m.getNom_matiere());
 		}
 		comboBox_1.setMaximumRowCount(10);
 		comboBox_1.setBounds(10, 467, 280, 25);
 		getContentPane().add(comboBox_1);
 		
 		JComboBox comboBox = new JComboBox();
-		for (Matiere m : ListeMatiere.getListeMatiere()) {
-			comboBox.addItem(m.getNom_matiere());
+		for (Classe c : ListeClasse.getListeClasse()) {
+			comboBox.addItem(c.getNom_classe());
 		}
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 390, 280, 25);
