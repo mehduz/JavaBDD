@@ -13,14 +13,14 @@ public class UniversityManager {
 		Server server = new Server();
 		new Thread(server).start();
 
-		try {
+		/*try {
 		    Thread.sleep(20 * 1000);
 		} catch (InterruptedException e) {
 		    e.printStackTrace();
 		}
 		
 		LOGGER.info("Stopping Server");
-		server.stop();
+		server.stop();*/
 		
 	}
 	
