@@ -26,6 +26,10 @@ import java.net.URI;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
+import liste.ListeClasse;
+import liste.ListeContact;
+import beans.Classe;
+import beans.Contact;
 import table.TableContact;
 
 public class Ihm_Administrateur_Contact extends JFrame {
@@ -131,7 +135,10 @@ public class Ihm_Administrateur_Contact extends JFrame {
 		lblAjouterModifier_1.setBounds(160, 213, 185, 20);
 		getContentPane().add(lblAjouterModifier_1);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox <String> comboBox = new JComboBox();
+		for (Contact c : ListeContact.getListeContact()) {
+			comboBox.addItem(c.getNom() + " " + c.getPrenom());
+		}
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 280, 20);
 		getContentPane().add(comboBox);

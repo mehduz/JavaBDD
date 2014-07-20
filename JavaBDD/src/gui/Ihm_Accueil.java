@@ -147,7 +147,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 
 				frameAccueil.setVisible(false);
 
-				/*if ("Simon".equals(textField.getText())) {
+				if ("Simon".equals(textField.getText())) {
 					Ihm_Eleve frameEleve = new Ihm_Eleve();
 					frameEleve.setVisible(true);
 					frameEleve.setPanelIdentification(textField.getText(),
@@ -164,7 +164,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 					frameAdministrateur.setVisible(true);
 					frameAdministrateur.setPanelIdentification(
 							textField.getText(), "Administrateur");
-				}*/
+				}
 
 				if ("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null,	"Veuillez saisir votre identifiant et mot de passe.",

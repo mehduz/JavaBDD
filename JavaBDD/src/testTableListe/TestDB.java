@@ -1,15 +1,18 @@
 package testTableListe;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import liste.ListeEleve;
 import liste.ListeEleveParClasse;
 
 import org.junit.Test;
 
+import beans.Eleve;
 import table.TableAllergie;
 import table.TableClasse;
 import table.TableContact;
@@ -37,8 +40,7 @@ public class TestDB {
 //	    JTable tableP = TableProfesseur.getTableProfesseur();
 //	    JTable tableS = TableSuivi.getTableSuivi();
 //	    JTable tableV = TableVaccin.getTableVaccin();
-	    JTable tableListeE = ListeEleveParClasse.getListeEleveParClasse("L3 Asyria");
-	    
+		JTable tableListeE = ListeEleveParClasse.getListeEleveParClasse("L3 Asyria");
 	    JScrollPane scrollPane = new JScrollPane(tableListeE);
 	    frame.add(scrollPane, BorderLayout.CENTER);
 	    frame.setSize(932, 651);

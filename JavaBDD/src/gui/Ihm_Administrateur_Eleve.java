@@ -21,6 +21,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -29,6 +30,8 @@ import table.TableEleve;
 
 import javax.swing.JTable;
 
+import liste.ListeEleve;
+import beans.Eleve;
 import communication.ResponseEvent;
 import communication.ResponseListener;
 
@@ -256,7 +259,10 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		lblAjouterModifier_1.setBounds(160, 213, 129, 20);
 		getContentPane().add(lblAjouterModifier_1);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox <String> comboBox = new JComboBox();
+		for (Eleve e : ListeEleve.getListeEleve()) {
+			comboBox.addItem((e.getNom()) + e.getPrenom());
+		}
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 130, 20);
 		getContentPane().add(comboBox);
