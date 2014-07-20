@@ -6,8 +6,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 import java.awt.Font;
 import java.awt.Dimension;
@@ -42,7 +44,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 	private static Logger LOGGER = Logger.getLogger(Ihm_Accueil.class.getName());
 
 	private JTextField textField;
-	private JTextField textField_1;
+	private JPasswordField textField_1;
 	private static Window frameAccueil;
 
 	/**
@@ -95,7 +97,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 
-		textField_1 = new JTextField();
+		textField_1 = new JPasswordField();
 		textField_1.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
@@ -237,10 +239,13 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 			return;
 		}
 		Personne p = ri.getPersonne();
-		GlobalProperties.registerProperty("LOGGED_USER", ri.getPersonne());
+		GlobalProperties.registerProperty("LOGGED_USER", p);
 		
 		switch(ri.getPermission()) {
 			case ELEVE :
+				frameAccueil.setVisible(false);
+				Ihm_Eleve frameEleve = new Ihm_Eleve();
+				frameEleve.setVisible(true);
 				break;
 			case PROF :
 				break;

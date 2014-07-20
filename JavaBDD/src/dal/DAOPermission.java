@@ -2,19 +2,9 @@ package dal;
 
 public enum DAOPermission {
 	
-	ELEVE(1),
-	PROF(2),
-	ADMIN(3);
-	
-	private final int value;
-	
-	private DAOPermission(int value) {
-		this.value = value;
-	}
-
-	public int getValue() {
-		return value;
-	}
+	ELEVE,
+	PROF,
+	ADMIN;
 	
 	private static DAOPermission[] values = null;
 	
@@ -22,7 +12,7 @@ public enum DAOPermission {
         if(DAOPermission.values == null) {
         	DAOPermission.values = DAOPermission.values();
         }
-        return DAOPermission.values[i];
+        return DAOPermission.values[i-1];
     }
 }
 

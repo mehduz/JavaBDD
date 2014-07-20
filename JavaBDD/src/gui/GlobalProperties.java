@@ -1,10 +1,10 @@
 package gui;
 import java.util.ArrayList;
-import java.util.Dictionary;
+import java.util.HashMap;
 
 public class GlobalProperties {
 		
-	private static Dictionary<String, Object> properties;
+	private static HashMap<String, Object> properties = new HashMap<String, Object>();
 	private static ArrayList<String> ValidKeys;
 	
 	public static void registerProperty(String key, Object value){

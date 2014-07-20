@@ -1,6 +1,8 @@
 package beans;
 
-public class Personne {
+import java.io.Serializable;
+
+public class Personne implements Serializable {
 	
 	private long ID_personne;
 	private String Nom;
