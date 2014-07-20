@@ -1,5 +1,6 @@
 package communication;
 
+import java.nio.charset.Charset;
 import java.util.EventObject;
 
 
