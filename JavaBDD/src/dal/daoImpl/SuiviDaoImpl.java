@@ -20,7 +20,7 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	private static final String SQL_INSERT_SUIVI = "INSERT INTO suivi (Note_CC, Note_examen, Matricule, ID_personne, Nom_matiere) VALUES (?, ?, ?, ?, ?)";
 	private static final String SQL_SELECT_PAR_ID_PERSONNE = "SELECT * FROM Suivi WHERE ID_personne = ?";
 	private	static final String SQL_SELECT_ALL = "SELECT * FROM Suivi";
-	
+	private static final String SQL_SELECT_ALL_PAR_MATIERE = "SELECT * FROM Suivi where Nom_matiere = ?";
 	
 	public SuiviDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -112,6 +112,41 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 		        /* Récupération d'une connexion depuis la Factory */
 		        connexion = daoFactory.getConnection();
 		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  Eleve eleveCorrespondant = this.daoFactory.getEleveDao().trouver(resultSet.getInt("ID_personne"));
+		        		  
+		        		  suivi = map( resultSet, eleveCorrespondant );
+		        		  listeSuivis.add(suivi);
+		        		   
+		        	  }
+		        	
+		        	return listeSuivis;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
+		
+	}
+	
+	public ArrayList<Suivi> getAllParMatiere(String nomMatiere) {
+		
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Suivi suivi = null;
+		    ArrayList<Suivi> listeSuivis = new ArrayList<Suivi>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL_PAR_MATIERE, false);
 		        resultSet = preparedStatement.executeQuery();
 		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
 		  
