@@ -29,7 +29,10 @@ import table.TableEleve;
 
 import javax.swing.JTable;
 
-public class Ihm_Administrateur_Eleve extends JFrame {
+import communication.ResponseEvent;
+import communication.ResponseListener;
+
+public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener {
 
 	/**
 	 * 
@@ -432,5 +435,11 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 	public void setPanelIdentification(String login, String profil) {
 		textField.setText(login);
 		textField_1.setText(profil);
+	}
+
+	@Override
+	public void onResponseReceived(ResponseEvent re) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -24,7 +24,10 @@ import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
-public class Ihm_Administrateur extends JFrame {
+import communication.ResponseEvent;
+import communication.ResponseListener;
+
+public class Ihm_Administrateur extends JFrame implements ResponseListener {
 
 	/**
 	 * 
@@ -216,6 +219,12 @@ public class Ihm_Administrateur extends JFrame {
 	public void setPanelIdentification(String login, String profil) {
 		textField.setText(login);
 		textField_1.setText(profil);
+	}
+
+	@Override
+	public void onResponseReceived(ResponseEvent re) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

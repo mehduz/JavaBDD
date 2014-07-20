@@ -26,9 +26,11 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 
+import communication.ResponseListener;
+
 import table.TableAllergie;
 
-public class Ihm_Administrateur_Allergie extends JFrame {
+public class Ihm_Administrateur_Allergie extends JFrame implements ResponseListener {
 
 	/**
 	 * 

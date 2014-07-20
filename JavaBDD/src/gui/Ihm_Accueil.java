@@ -19,6 +19,8 @@ import javax.swing.JButton;
 
 import communication.MessageIdentification;
 import communication.Reponse;
+import communication.ReponseIdentification;
+import communication.ResponseEvent;
 import communication.ResponseListener;
 
 import java.awt.event.ActionListener;
@@ -34,7 +36,7 @@ import java.nio.charset.Charset;
 import java.util.EventListener;
 import java.util.logging.Logger;
 
-public class Ihm_Accueil extends JFrame implements ResponseListener{
+public class Ihm_Accueil extends JFrame implements ResponseListener {
 
 	/**
 	 * 
@@ -240,11 +242,13 @@ public class Ihm_Accueil extends JFrame implements ResponseListener{
 	}
 
 	@Override
-	public void onResponseReceived() {
-		
-		JOptionPane.showMessageDialog(null,
-				"ZBLAAAAAAAAAA ! ",
-				"UZUZUZUZ",
-				JOptionPane.WARNING_MESSAGE);
+	public void onResponseReceived(ResponseEvent re) {
+		Reponse r = re.getR();
+		if(!r.getType().equals(ReponseIdentification.class.getName()))return;
+		ReponseIdentification ri = (ReponseIdentification)r;
+		if(!ri.isLogged()){
+			JOptionPane.showMessageDialog(null, "Informations de login incorrectes", "Utilisateur non reconnu", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
 	}
 }
