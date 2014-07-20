@@ -16,6 +16,7 @@ import dal.dao.ClasseDao;
 import dal.dao.ContactDao;
 import dal.dao.EleveDao;
 import dal.dao.MatiereDao;
+import dal.dao.MedecinDao;
 import dal.dao.PersonneDao;
 import dal.dao.ProfesseurDao;
 import dal.dao.SuiviDao;
@@ -25,6 +26,7 @@ import dal.daoImpl.ClasseDaoImpl;
 import dal.daoImpl.ContactDaoImpl;
 import dal.daoImpl.EleveDaoImpl;
 import dal.daoImpl.MatiereDaoImpl;
+import dal.daoImpl.MedecinDaoImpl;
 import dal.daoImpl.PersonneDaoImpl;
 import dal.daoImpl.ProfesseurDaoImpl;
 import dal.daoImpl.SuiviDaoImpl;
@@ -174,5 +176,8 @@ public class DAOFactory {
         return new ProfesseurDaoImpl( this );
     }
     
+    public MedecinDao getMedecinDao() {
+        return new MedecinDaoImpl( this );
+    }
 
 }
