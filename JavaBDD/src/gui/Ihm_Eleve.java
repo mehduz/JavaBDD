@@ -26,6 +26,8 @@ import javax.swing.JPanel;
 import communication.ResponseEvent;
 import communication.ResponseListener;
 
+import javax.swing.JProgressBar;
+
 public class Ihm_Eleve extends JFrame implements ResponseListener {
 
 	/**
@@ -34,6 +36,7 @@ public class Ihm_Eleve extends JFrame implements ResponseListener {
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JProgressBar progressBar;
 
 	/**
 	 * Create the frame.
@@ -152,12 +155,9 @@ public class Ihm_Eleve extends JFrame implements ResponseListener {
 		btnNewButton.setBounds(10, 143, 282, 23);
 		getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Imprimer votre bulletin de notes");
+		JButton btnNewButton_1 = new JButton("Imprimer votre bulletin de notes");		
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+
 		btnNewButton_1.setBounds(10, 190, 282, 23);
 		getContentPane().add(btnNewButton_1);
 		
@@ -181,7 +181,7 @@ public class Ihm_Eleve extends JFrame implements ResponseListener {
 		getContentPane().add(lblNewLabel_3);
 
 	}
-	
+
 	public void setPanelIdentification(String login, String profil) {
 		textField.setText(login);
 		textField_1.setText(profil);

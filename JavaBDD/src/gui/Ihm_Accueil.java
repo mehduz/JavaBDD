@@ -161,36 +161,26 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 					frameProfesseur.setPanelIdentification(textField.getText(),
 							"Professeur");
 
-				} else if ("Medhi".equals(textField.getText())) {
+				} else if ("Mehdi".equals(textField.getText())) {
 					Ihm_Administrateur frameAdministrateur = new Ihm_Administrateur();
 					frameAdministrateur.setVisible(true);
 					frameAdministrateur.setPanelIdentification(
 							textField.getText(), "Administrateur");
 				}
 
-				if ("...".equals(textField.getText())
-						|| "...".equals(textField_1.getText())) {
-					JOptionPane
-							.showMessageDialog(
-									null,
-									"Veuillez saisir votre identifiant et mot de passe.",
-									"Erreur de connexion",
-									JOptionPane.ERROR_MESSAGE);
+				if ("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
+					JOptionPane.showMessageDialog(null,	"Veuillez saisir votre identifiant et mot de passe.",
+												"Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						String passwordMD5 = MD5.encryptMD5(textField_1
-								.getText());
+						String passwordMD5 = MD5.encryptMD5(textField_1.getText());
 						MessageIdentification msgIdentification = new MessageIdentification(
-								MessageIdentification.class.getName(),
-								textField.getText(), passwordMD5);
+								MessageIdentification.class.getName(), textField.getText(), passwordMD5);
 						Client client = Client.getInstance();
 						client.sendMessage(msgIdentification);
 						client.disconnect();
 					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null,
-								"Erreur de connexion : " + e1,
-								"Erreur de connexion",
-								JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,	"Erreur de connexion : " + e1, "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 
