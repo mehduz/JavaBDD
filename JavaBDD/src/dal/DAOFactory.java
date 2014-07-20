@@ -43,6 +43,7 @@ public class DAOFactory {
 	private static final String PROPERTY_DRIVER = "driver";
 	private static final String PROPERTY_NOM_UTILISATEUR = "username";
 	private static final String PROPERTY_MOT_DE_PASSE = "password";
+	private static DAOFactory instance = null;
 	
 
 	private String url;
@@ -59,6 +60,7 @@ public class DAOFactory {
 	 * données, charger le driver JDBC et retourner une instance de la Factory
 	 */
 	public static DAOFactory getInstance() throws DAOConfigurationException {
+		if(instance  != null) return instance;
 		Properties properties = new Properties();
 		String url;
 		String driver;
@@ -114,14 +116,14 @@ public class DAOFactory {
 			config.setUsername(username);
 			config.setPassword(password);
 			/* Paramétrage de la taille du pool */
-<<<<<<< HEAD
+
 			config.setMinConnectionsPerPartition(5);
 			config.setMaxConnectionsPerPartition(10);
-=======
+
 			config.setMinConnectionsPerPartition(2);
 			config.setMaxConnectionsPerPartition(5);
->>>>>>> branch 'master' of https://github.com:443/mehduz/JavaBDD.git
 			config.setPartitionCount(2);
+			
 			/* Création du pool à partir de la configuration, via l'objet BoneCP */
 			connectionPool = new BoneCP(config);
 		} catch (SQLException e) {
