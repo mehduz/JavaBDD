@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.sql.PreparedStatement;
 
 import beans.Allergie;
-import beans.Eleve;
 import beans.Matiere;
 import dal.DAODataBaseManager;
 import dal.DAOException;
