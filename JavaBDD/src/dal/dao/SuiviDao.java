@@ -14,7 +14,7 @@ public interface SuiviDao {
 	 ArrayList<Suivi> getAllParMatiere(String nomMatiere);
 	
 	 ArrayList<Suivi> getAllParEleve(int idPersonne);
-	
-	 ArrayList<Suivi> getAllParIdProf();
 
+	 ArrayList<Suivi> getAllParIdProf(int idProf);
+	
 }

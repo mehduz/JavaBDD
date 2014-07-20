@@ -20,6 +20,7 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	private static final String SQL_INSERT_SUIVI = "INSERT INTO suivi (Note_CC, Note_examen, Matricule, ID_personne, Nom_matiere) VALUES (?, ?, ?, ?, ?)";
 	private static final String SQL_SELECT_PAR_ID_PERSONNE = "SELECT * FROM Suivi WHERE ID_personne = ?";
 	private	static final String SQL_SELECT_ALL = "SELECT * FROM Suivi";
+	private static final String SQL_SELECT_PAR_ID_PROF = "SELECT * from suivi, eleve where suivi.ID_personne = eleve.ID_personne AND eleve.ID_prof = ?";
 	
 	
 	public SuiviDaoImpl(DAOFactory daoFactory) {
@@ -141,7 +142,40 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	}
 	
 
-	
+	@Override
+	public ArrayList<Suivi> getAllParIdProf(int idProf) {
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Suivi suivi = null;
+		    ArrayList<Suivi> listeSuivis = new ArrayList<Suivi>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_PAR_ID_PROF, false, idProf);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  Eleve eleveCorrespondant = this.daoFactory.getEleveDao().trouver(resultSet.getInt("ID_personne"));
+		        		  
+		        		  suivi = mapAvecEleve( resultSet, eleveCorrespondant );
+		        		  listeSuivis.add(suivi);
+		        		   
+		        	  }
+		        	
+		        	return listeSuivis;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
+	}
+
 			
 	public ArrayList<Suivi> getAllParEleve(int idPersonne) {
 		
@@ -178,7 +212,7 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	
 	private static Suivi mapAvecEleve( ResultSet resultSet, Eleve eleve ) throws SQLException {
 		Suivi suivi = new Suivi();
-
+		
 		suivi.setID_personne(resultSet.getInt("ID_personne"));
 		suivi.setMatricule(resultSet.getInt("Matricule"));
 		suivi.setNom_matiere(resultSet.getString("Nom_matiere"));
@@ -201,11 +235,10 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	    return suivi;
 	}
 
-	@Override
-	public ArrayList<Suivi> getAllParIdProf() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+
+
+
+	
 }
  
