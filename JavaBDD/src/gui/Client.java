@@ -32,8 +32,7 @@ public class Client {
 		try {
 			serverPort = 65330;
 			listeners = new EventListenerList();
-			serverAddr = InetAddress.getByName("192.168.1.101");
-			System.out.println("");
+			serverAddr = InetAddress.getByName("192.168.1.101"); 
 		} catch (Exception e) {
 			LOGGER.severe("Client not created, fatal error ! :"  + e);
 			serverAddr = InetAddress.getLoopbackAddress();
