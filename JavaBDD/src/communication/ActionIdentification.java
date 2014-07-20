@@ -1,6 +1,9 @@
 package communication;
+import beans.Authentication;
 import beans.Eleve;
 import dal.DAOFactory;
+import dal.DAOPermission;
+import dal.dao.AuthenticationDao;
 import dal.dao.EleveDao;
 
 public class ActionIdentification extends Action{
@@ -17,10 +20,23 @@ public class ActionIdentification extends Action{
 	
 	@Override
 	public void execute(){
+		
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		EleveDao elevedao= daoFactory.getEleveDao();
+		AuthenticationDao authenticationDao = daoFactory.getAuthenticationDao();
 		MessageIdentification msg = (MessageIdentification) super.getMessage();
-		Eleve romain = elevedao.trouver(msg.getLogin(),msg.getPassword());
-		reponse = new ReponseIdentification(romain != null, romain); 
+		int permission;
+		
+		try{
+			Authentication authentication = authenticationDao.trouver(msg.getLogin(),msg.getPassword());
+			permission =  authentication.getType_personne();
+		}
+		catch(Exception e){
+			return;
+		}
+		
+		
+		//EleveDao elevedao= daoFactory.getEleveDao();
+		//Eleve romain = elevedao.trouver();
+		//reponse = new ReponseIdentification(romain != null, romain); 
 	}
 }
