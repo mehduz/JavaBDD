@@ -57,6 +57,8 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 	private JTextField textField_13;
 	private JTable table;
 	private JComboBox <String> comboBox;
+	private JComboBox <String> comboBox_1;
+	private JComboBox <String> comboBox_2;
 	
 
 	/**
@@ -97,7 +99,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		lblClasse.setBounds(10, 295, 130, 20);
 		getContentPane().add(lblClasse);
 		
-		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2 = new JComboBox();
 		comboBox_2.setMaximumRowCount(10);
 		comboBox_2.setBounds(10, 315, 184, 20);
 		getContentPane().add(comboBox_2);
@@ -171,7 +173,9 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		lblSexe.setBounds(161, 335, 130, 20);
 		getContentPane().add(lblSexe);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1 = new JComboBox();
+		comboBox_1.addItem("H");
+		comboBox_1.addItem("F");
 		comboBox_1.setMaximumRowCount(10);
 		comboBox_1.setBounds(161, 356, 130, 20);
 		getContentPane().add(comboBox_1);
@@ -457,7 +461,8 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 				textField_12.setText(table.getValueAt(x, 12).toString());
 				textField_13.setText(table.getValueAt(x, 13).toString());
 				//textField_6.setText(table.getValueAt(x, ).toString()); MOBILE ET FIXE A AJOUTER EN FIN DE TABLE
-
+				comboBox_1.setSelectedItem(table.getValueAt(x, 7).toString());
+				//comboBox_2.setSelectedItem(table.getValueAt(x, 7).getClass().toString()); AJOUTER CLASSE
 			}
 		});
 
