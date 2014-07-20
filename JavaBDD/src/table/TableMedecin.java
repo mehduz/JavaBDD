@@ -11,13 +11,14 @@ import dal.daoImpl.MedecinDaoImpl;
 public class TableMedecin {
 
 	public static JTable getTableMedecin() {
-		int taille = 3;
+		int taille = 6;
 		MedecinDaoImpl el = (MedecinDaoImpl) DAOFactory.getInstance().getMedecinDao();
 		ArrayList<Medecin> listeMedecin = el.getAll();
 
 		JTable table = new JTable(listeMedecin.size(), taille);
 		table.setEnabled(false);
-		Object columnNames[] = { "ID_medecin", "Nom", "Prenom" };
+		Object columnNames[] = { "ID_medecin", "Nom", "Prenom", "Email", "Tel_domicile"
+				, "Tel_mobile"};
 
 		for (int i = 0; i <= (taille - 1); i++) {
 			table.getTableHeader().getColumnModel().getColumn(i)
@@ -37,6 +38,18 @@ public class TableMedecin {
 					break;
 				case 2:
 					table.setValueAt(listeMedecin.get(actualRow).getPrenom(),
+							actualRow, actualColumn);
+					break;
+				case 3:
+					table.setValueAt(listeMedecin.get(actualRow).getEmail(),
+							actualRow, actualColumn);
+					break;
+				case 4:
+					table.setValueAt(listeMedecin.get(actualRow).getTel_domicile(),
+							actualRow, actualColumn);
+					break;
+				case 5:
+					table.setValueAt(listeMedecin.get(actualRow).getTel_mobile(),
 							actualRow, actualColumn);
 					break;
 				}

@@ -314,6 +314,9 @@ public class Ihm_Administrateur_Medecin extends JFrame implements ResponseListen
 				int x = comboBox.getSelectedIndex();
 				textField_2.setText(table.getValueAt(x, 1).toString());
 				textField_3.setText(table.getValueAt(x, 2).toString());
+				textField_4.setText(table.getValueAt(x, 3).toString());
+				textField_7.setText(table.getValueAt(x, 4).toString());
+				textField_5.setText(table.getValueAt(x, 5).toString());
 				repaint();
 			}
 		});
