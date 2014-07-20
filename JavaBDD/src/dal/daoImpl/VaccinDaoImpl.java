@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import java.sql.PreparedStatement;
 
+import beans.Allergie;
 import beans.Contact;
 import beans.Vaccin;
 import dal.DAODataBaseManager;
@@ -19,6 +19,9 @@ public class VaccinDaoImpl extends SuperDaoImpl implements VaccinDao {
 	final static String SQL_INSERT_VACCIN = "INSERT INTO vaccins (Libelle) VALUES (?)";
 	final static String SQL_SELECT_VACCIN_PAR_LIBELLE = "SELECT * FROM vaccins where libelle = ?";
 	final static String SQL_SELECT_ALL = "SELECT * FROM vaccins";
+	private static final String SQL_SELECT_VACCIN_ELEVE = "SELECT Libelle, Vaccins.ID_vaccin from Vaccins, Vaccine where Vaccine.ID_personne = ? AND  Vaccins.ID_vaccin = Vaccine.ID_vaccin;"; 
+	
+	
 	
 	public VaccinDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -45,8 +48,7 @@ public class VaccinDaoImpl extends SuperDaoImpl implements VaccinDao {
 	        if ( statut == 0 ) {
 	            throw new DAOException( "Échec de la création de l'utilisateur, aucune ligne ajoutée dans la table." );
 	        }
-	        
-	        
+
 	        /* Récupération de l'id auto-généré par la requête d'insertion */
 	        valeursAutoGenerees = preparedStatement.getGeneratedKeys();
 	        if ( valeursAutoGenerees.next() ) {
@@ -128,6 +130,39 @@ public class VaccinDaoImpl extends SuperDaoImpl implements VaccinDao {
 	}
 	
 	
+	public ArrayList<Vaccin> getAllParEleve(int idPersonne) {
+		
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Vaccin vaccin = null;
+		    ArrayList<Vaccin> listeVaccins = new ArrayList<Vaccin>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_VACCIN_ELEVE, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  vaccin = map( resultSet );
+		        		  listeVaccins.add(vaccin);
+		        		   
+		        	  }
+		        	
+		        	return listeVaccins;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
+	}
+	
+	
 	public static Vaccin map( ResultSet resultSet ) throws SQLException {
 		Vaccin vaccin = new Vaccin();
 
@@ -136,6 +171,7 @@ public class VaccinDaoImpl extends SuperDaoImpl implements VaccinDao {
 		
 	    return vaccin;
 	}
+	
 	
 
 }

@@ -16,11 +16,9 @@ public interface EleveDao {
 	 public ArrayList<Eleve> getAll() throws DAOException ;
 	 
 	 public ArrayList<Eleve> getAllParClasse(String nomClasse);
-	 
-	 public ArrayList<Vaccin> getVaccinsEleve(int idPersonne) throws DAOException;
-	 
-	 public ArrayList<Allergie> getAllergiesEleve(int idPersonne) throws DAOException;
 
-	public ArrayList<Eleve> getAllParMatiere(String nomMatiere);
+	public ArrayList<Eleve> getAllParMatiere(String nomMatiere) throws DAOException;
+	
+	
 	 
 } 
