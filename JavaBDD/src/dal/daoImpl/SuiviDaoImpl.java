@@ -85,7 +85,9 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
 		        if ( resultSet.next() ) {
 
-		        		  suivi = map( resultSet );
+		        	  Eleve eleveCorrespondant = this.daoFactory.getEleveDao().trouver(resultSet.getInt("ID_personne"));
+		        		
+		        		  suivi = map( resultSet,  eleveCorrespondant);
 
 		        }
 		    } catch ( SQLException e ) {
@@ -115,7 +117,9 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 		  
 		        	  while ( resultSet.next() ) {
 		        		
-		        		  suivi = map( resultSet );
+		        		  Eleve eleveCorrespondant = this.daoFactory.getEleveDao().trouver(resultSet.getInt("ID_personne"));
+		        		  
+		        		  suivi = map( resultSet, eleveCorrespondant );
 		        		  listeSuivis.add(suivi);
 		        		   
 		        	  }
@@ -131,7 +135,7 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 		
 	}
 	
-	private static Suivi map( ResultSet resultSet ) throws SQLException {
+	private static Suivi map( ResultSet resultSet, Eleve eleve ) throws SQLException {
 		Suivi suivi = new Suivi();
 
 		suivi.setID_personne(resultSet.getInt("ID_personne"));
@@ -139,6 +143,7 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 		suivi.setNom_matiere(resultSet.getString("Nom_matiere"));
 		suivi.setNote_CC(resultSet.getInt("Note_CC"));
 		suivi.setNote_examen(resultSet.getInt("Note_examen"));
+		suivi.setEleve(eleve);
 		
 	    return suivi;
 	}

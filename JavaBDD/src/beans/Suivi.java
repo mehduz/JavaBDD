@@ -2,44 +2,48 @@ package beans;
 
 public class Suivi {
 	
+	private Matiere matiere;
+	private Eleve eleve;
 	private long Note_CC;
 	private long Note_examen;
-	private long Matricule;
-	private long ID_personne;
-	private String Nom_matiere;
+
 	
-	public Suivi(long note_CC, long note_examen) {
-		Note_CC = note_CC;
-		Note_examen = note_examen;
+	public Suivi (Matiere matiere, Eleve eleve, long Note_CC, long Note_examen) {
+		
+		this.matiere = matiere;
+		this.eleve = eleve;
+		this.Note_CC = Note_CC;
+		this.Note_examen = Note_examen;
+		
 	}
-	
+
 	public Suivi() {
 		
 	}
 	
 	
 	public long getMatricule() {
-		return Matricule;
+		return eleve.getMatricule();
 	}
 
 	public void setMatricule(long matricule) {
-		Matricule = matricule;
+		eleve.setMatricule(matricule);
 	}
 
 	public long getID_personne() {
-		return ID_personne;
+		return eleve.getID_personne();
 	}
 
 	public void setID_personne(long iD_personne) {
-		ID_personne = iD_personne;
+		eleve.setID_personne(iD_personne);
 	}
 
 	public String getNom_matiere() {
-		return Nom_matiere;
+		return matiere.getNom_matiere();
 	}
 
 	public void setNom_matiere(String nom_matiere) {
-		Nom_matiere = nom_matiere;
+		this.matiere.setNom_matiere(nom_matiere);
 	}
 
 	public long getNote_CC() {
@@ -53,6 +57,12 @@ public class Suivi {
 	}
 	public void setNote_examen(long note_examen) {
 		Note_examen = note_examen;
+	}
+	
+	public void setEleve(Eleve eleve) {
+		
+		this.eleve = eleve;
+		
 	}
 
 }

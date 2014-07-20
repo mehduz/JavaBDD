@@ -83,9 +83,32 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 	}
 
 	@Override
-	public Eleve trouver(String email) throws DAOException {
+	public Eleve trouver(int idPersonne) throws DAOException {
 		// TODO Auto-generated method stub
-		return null;
+		
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Eleve eleve = null;
+
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ELEVE_PAR_ID_PERSONNE, false, idPersonne);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		        if ( resultSet.next() ) {
+
+		        		  eleve = map( resultSet );
+
+		        }
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
+		    return eleve;
 	}
 
 	@Override
