@@ -140,7 +140,11 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-
+				
+				setVisible(false);
+				Ihm_Administrateur IHM = new Ihm_Administrateur();
+				IHM.setVisible(true);
+				/*
 				if ("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null,	"Veuillez saisir votre identifiant et mot de passe.",
 												"Erreur de connexion", JOptionPane.ERROR_MESSAGE);
@@ -155,7 +159,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 					} catch (Exception e1) {
 						LOGGER.severe(LOGGER.getName()+ " Erreur de connexion : " + e1);
 					}
-				}
+				}*/
 
 			}
 		});
