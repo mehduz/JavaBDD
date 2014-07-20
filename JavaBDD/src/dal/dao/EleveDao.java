@@ -13,12 +13,13 @@ public interface EleveDao {
 	 Eleve trouver( int idPersonne ) throws DAOException;
 
 
-	 public ArrayList<Eleve> getAll() throws DAOException ;
+	  ArrayList<Eleve> getAll() throws DAOException ;
 	 
-	 public ArrayList<Eleve> getAllParClasse(String nomClasse);
+	  ArrayList<Eleve> getAllParClasse(String nomClasse);
 
-	public ArrayList<Eleve> getAllParMatiere(String nomMatiere) throws DAOException;
+	 ArrayList<Eleve> getAllParMatiere(String nomMatiere) throws DAOException;
 	
+	 ArrayList<Eleve> getAllParIdProf(int idProf) throws DAOException;
 	
 	 
 } 

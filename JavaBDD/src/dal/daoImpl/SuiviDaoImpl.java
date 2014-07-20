@@ -141,6 +141,7 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	}
 	
 
+	
 			
 	public ArrayList<Suivi> getAllParEleve(int idPersonne) {
 		

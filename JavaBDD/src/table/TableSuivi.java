@@ -1,12 +1,12 @@
-//package table;
-//
-//import java.util.ArrayList;
-//import javax.swing.JTable;
-//import beans.Suivi;
-//import dal.DAOFactory;
-//import dal.daoImpl.SuiviDaoImpl;
-//
-//public class TableSuivi {
+package table;
+
+import java.util.ArrayList;
+import javax.swing.JTable;
+import beans.Suivi;
+import dal.DAOFactory;
+import dal.daoImpl.SuiviDaoImpl;
+
+public class TableSuivi {
 //	
 //	public static JTable getTableSuivi() {
 //		
@@ -59,4 +59,4 @@
 //		return table;
 //	}
 //
-//}
+}

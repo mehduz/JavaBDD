@@ -27,6 +27,8 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 			 " ID_contact, ID_prof) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	 private static final String SQL_SELECT_ELEVE_MATIERE = "SELECT * FROM eleve, matieres";
 	 private static final String SQL_SELECT_ALL_PAR_MATIERE = "SELECT DISTINCT ID_personne FROM suivi where Nom_matiere = ?";
+	 private static final String SQL_SELECT_ALL_PAR_ID_PROF = "SELECT * FROM Eleve, Personne where ID_prof = ? AND Eleve.ID_personne = Personne.ID_personne";
+	 
 	 
 	 public EleveDaoImpl(DAOFactory daoFactory) {
 			super(daoFactory);
@@ -244,7 +246,38 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 	}
 	
 
+	public ArrayList<Eleve> getAllParIdProf(int idProf) throws DAOException {
 
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Eleve eleve = null;
+		    ArrayList<Eleve> listeEleves = new ArrayList<Eleve>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL_PAR_ID_PROF, false, idProf);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  eleve = map( resultSet );
+		        		  listeEleves.add(eleve);
+		        		   
+		        	  }
+		        	
+		        	return listeEleves;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+		
+	}
+		
 	
 
 
