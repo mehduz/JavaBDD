@@ -12,8 +12,6 @@ import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 import javax.swing.SwingConstants;
@@ -24,19 +22,13 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
-import javax.swing.UIManager;
-import javax.swing.ListSelectionModel;
-
-import java.awt.ComponentOrientation;
-
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class Ihm_Professeur_ConsulterNotesTutores extends JFrame {
+import communication.ResponseEvent;
+import communication.ResponseListener;
+
+public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements ResponseListener {
 
 	/**
 	 * 
@@ -237,5 +229,11 @@ public class Ihm_Professeur_ConsulterNotesTutores extends JFrame {
 	public void setPanelIdentification(String login, String profil) {
 		textField.setText(login);
 		textField_1.setText(profil);
+	}
+
+	@Override
+	public void onResponseReceived(ResponseEvent re) {
+		// TODO Auto-generated method stub
+		
 	}
 }
