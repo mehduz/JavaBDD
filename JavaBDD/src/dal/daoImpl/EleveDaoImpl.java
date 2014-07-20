@@ -26,7 +26,7 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 			 "Code_postal, Ville, Email,Remarques_medicale, ID_personne, Nom_classe,"+
 			 " ID_contact, ID_prof) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	 private static final String SQL_SELECT_ELEVE_MATIERE = "SELECT * FROM eleve, matieres";
-	 private static final String SQL_SELECT_ALL_PAR_MATIERE = "SELECT ID_personne FROM suivi where Nom_matiere = ?";
+	 private static final String SQL_SELECT_ALL_PAR_MATIERE = "SELECT DISTINCT ID_personne FROM suivi where Nom_matiere = ?";
 
 	 public EleveDaoImpl(DAOFactory daoFactory) {
 			super(daoFactory);
