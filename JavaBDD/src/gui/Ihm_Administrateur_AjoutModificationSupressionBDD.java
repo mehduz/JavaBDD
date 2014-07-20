@@ -24,10 +24,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
-import liste.ListeAllergie;
 import liste.ListeClasse;
 import liste.ListeMatiere;
-import beans.Allergie;
 import beans.Classe;
 import beans.Matiere;
 import communication.ResponseEvent;
