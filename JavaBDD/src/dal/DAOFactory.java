@@ -49,6 +49,7 @@ public class DAOFactory {
 	private String username;
 	private String password;
 	private BoneCP connectionPool = null;
+	private static DAOFactory instance = null;
 
 	private DAOFactory(BoneCP connectionPool) {
 		this.connectionPool = connectionPool;
@@ -59,6 +60,7 @@ public class DAOFactory {
 	 * données, charger le driver JDBC et retourner une instance de la Factory
 	 */
 	public static DAOFactory getInstance() throws DAOConfigurationException {
+		if(instance != null) return instance;
 		Properties properties = new Properties();
 		String url;
 		String driver;
@@ -114,13 +116,8 @@ public class DAOFactory {
 			config.setUsername(username);
 			config.setPassword(password);
 			/* Paramétrage de la taille du pool */
-<<<<<<< HEAD
 			config.setMinConnectionsPerPartition(5);
 			config.setMaxConnectionsPerPartition(10);
-=======
-			config.setMinConnectionsPerPartition(2);
-			config.setMaxConnectionsPerPartition(5);
->>>>>>> branch 'master' of https://github.com:443/mehduz/JavaBDD.git
 			config.setPartitionCount(2);
 			/* Création du pool à partir de la configuration, via l'objet BoneCP */
 			connectionPool = new BoneCP(config);
@@ -134,7 +131,7 @@ public class DAOFactory {
 		 * Enregistrement du pool créé dans une variable d'instance via un appel
 		 * au constructeur de DAOFactory
 		 */
-		DAOFactory instance = new DAOFactory(connectionPool);
+		instance = new DAOFactory(connectionPool);
 		return instance;
 	}
 
