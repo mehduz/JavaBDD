@@ -18,8 +18,8 @@ public interface EleveDao {
 	 
 	 public ArrayList<Eleve> getAllParClasse(String nomClasse);
 	 
+	// public ArrayList<Vaccin> getVaccinsEleve(int idPersonne) throws DAOException;
 	 
-	 
-	 
+	// public ArrayList<Allergie> getAllergiesEleve(int idPersonne) throws DAOException;
 	 
 } 
