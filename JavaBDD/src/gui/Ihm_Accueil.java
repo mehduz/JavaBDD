@@ -17,6 +17,7 @@ import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import beans.Personne;
 import communication.MessageIdentification;
 import communication.Reponse;
 import communication.ReponseIdentification;
@@ -30,10 +31,6 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.nio.charset.Charset;
-import java.util.EventListener;
 import java.util.logging.Logger;
 
 public class Ihm_Accueil extends JFrame implements ResponseListener {
@@ -42,8 +39,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 	 * 
 	 */
 	private static final long serialVersionUID = -684831082624221575L;
-	private static Logger LOGGER = Logger
-			.getLogger(Ihm_Accueil.class.getName());
+	private static Logger LOGGER = Logger.getLogger(Ihm_Accueil.class.getName());
 
 	private JTextField textField;
 	private JTextField textField_1;
@@ -149,7 +145,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 
 				frameAccueil.setVisible(false);
 
-				if ("Simon".equals(textField.getText())) {
+				/*if ("Simon".equals(textField.getText())) {
 					Ihm_Eleve frameEleve = new Ihm_Eleve();
 					frameEleve.setVisible(true);
 					frameEleve.setPanelIdentification(textField.getText(),
@@ -166,7 +162,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 					frameAdministrateur.setVisible(true);
 					frameAdministrateur.setPanelIdentification(
 							textField.getText(), "Administrateur");
-				}
+				}*/
 
 				if ("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null,	"Veuillez saisir votre identifiant et mot de passe.",
@@ -240,6 +236,18 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 			JOptionPane.showMessageDialog(null, "Informations de login incorrectes", "Utilisateur non reconnu", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
+		Personne p = ri.getPersonne();
 		GlobalProperties.registerProperty("LOGGED_USER", ri.getPersonne());
+		
+		switch(ri.getPermission()) {
+			case ELEVE :
+				break;
+			case PROF :
+				break;
+			case ADMIN :
+				break;
+		}
+		
+		
 	}
 }

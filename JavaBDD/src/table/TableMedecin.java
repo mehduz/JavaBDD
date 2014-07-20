@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 
 import beans.Medecin;
-import beans.Suivi;
 import dal.DAOFactory;
 import dal.daoImpl.MedecinDaoImpl;
-import dal.daoImpl.SuiviDaoImpl;
 
 public class TableMedecin {
 

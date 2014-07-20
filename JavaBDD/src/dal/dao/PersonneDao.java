@@ -7,6 +7,6 @@ public interface PersonneDao {
 
 	int creer( Personne classe ) throws DAOException;
 
-	Personne trouver( int idPersonne ) throws DAOException;
+	Personne trouver( long l ) throws DAOException;
 	
 }

@@ -1,9 +1,12 @@
-package Test;
+package testTableListe;
 
 import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import liste.ListeEleveParClasse;
 
 import org.junit.Test;
 
@@ -25,17 +28,18 @@ public class TestDB {
 	    JFrame frame = new JFrame();
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
-	    JTable tableA = TableAllergie.getTableAllergie();
-	    JTable tableCl = TableClasse.getTableClasse();
-	    JTable tableCo = TableContact.getTableContact();
-	    JTable tableE = TableEleve.getTableEleve();
-	    JTable tableMa = TableMatiere.getTableMatiere();
-	    JTable tableMe = TableMedecin.getTableMedecin();
-	    JTable tableP = TableProfesseur.getTableProfesseur();
-	    JTable tableS = TableSuivi.getTableSuivi();
-	    JTable tableV = TableVaccin.getTableVaccin();
+//	    JTable tableA = TableAllergie.getTableAllergie();
+//	    JTable tableCl = TableClasse.getTableClasse();
+//	    JTable tableCo = TableContact.getTableContact();
+//	    JTable tableE = TableEleve.getTableEleve();
+//	    JTable tableMa = TableMatiere.getTableMatiere();
+//	    JTable tableMe = TableMedecin.getTableMedecin();
+//	    JTable tableP = TableProfesseur.getTableProfesseur();
+//	    JTable tableS = TableSuivi.getTableSuivi();
+//	    JTable tableV = TableVaccin.getTableVaccin();
+	    JTable tableListeE = ListeEleveParClasse.getListeEleveParClasse("L3 Asyria");
 	    
-	    JScrollPane scrollPane = new JScrollPane(tableS);
+	    JScrollPane scrollPane = new JScrollPane(tableListeE);
 	    frame.add(scrollPane, BorderLayout.CENTER);
 	    frame.setSize(932, 651);
 	    frame.setVisible(true);

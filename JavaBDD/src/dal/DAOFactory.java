@@ -7,11 +7,13 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 import beans.Allergie;
+import beans.Authentication;
 
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
 import dal.dao.AllergieDao;
+import dal.dao.AuthenticationDao;
 import dal.dao.ClasseDao;
 import dal.dao.ContactDao;
 import dal.dao.EleveDao;
@@ -22,6 +24,7 @@ import dal.dao.ProfesseurDao;
 import dal.dao.SuiviDao;
 import dal.dao.VaccinDao;
 import dal.daoImpl.AllergieDaoImpl;
+import dal.daoImpl.AuthenticationDaoImpl;
 import dal.daoImpl.ClasseDaoImpl;
 import dal.daoImpl.ContactDaoImpl;
 import dal.daoImpl.EleveDaoImpl;
@@ -179,5 +182,8 @@ public class DAOFactory {
     public MedecinDao getMedecinDao() {
         return new MedecinDaoImpl( this );
     }
-
+    
+    public AuthenticationDao getAuthenticationDao(){
+    	return new AuthenticationDaoImpl(this) ;
+    }
 }

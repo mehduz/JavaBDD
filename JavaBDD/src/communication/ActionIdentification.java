@@ -1,26 +1,44 @@
 package communication;
-import beans.Eleve;
-import dal.DAOFactory;
-import dal.dao.EleveDao;
 
-public class ActionIdentification extends Action{
+import beans.Authentication;
+import beans.Eleve;
+import beans.Personne;
+import beans.Professeur;
+import dal.DAOFactory;
+import dal.DAOPermission;
+import dal.dao.AuthenticationDao;
+import dal.dao.EleveDao;
+import dal.dao.PersonneDao;
+import dal.dao.ProfesseurDao;
+
+public class ActionIdentification extends Action {
 
 	private ReponseIdentification reponse = null;
-	
+
 	public ReponseIdentification getReponse() {
 		return reponse;
 	}
 
-	public ActionIdentification(Message msg){
+	public ActionIdentification(Message msg) {
 		super(msg);
 	}
-	
+
 	@Override
 	public void execute(){
+		
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		EleveDao elevedao= daoFactory.getEleveDao();
+		AuthenticationDao authenticationDao = daoFactory.getAuthenticationDao();
 		MessageIdentification msg = (MessageIdentification) super.getMessage();
-		Eleve romain = elevedao.trouver(msg.getLogin(),msg.getPassword());
-		reponse = new ReponseIdentification(romain != null, romain); 
+		Authentication authentication = null;
+		Personne p = null;
+		
+		authentication = authenticationDao.trouver(msg.getLogin(),msg.getPassword());
+		if(authentication == null){
+			reponse = new ReponseIdentification(false, null, null);
+			return;
+		}
+		PersonneDao personneDao= daoFactory.getPersonneDao();
+		p = personneDao.trouver(authentication.getID_personne());
+		reponse = new ReponseIdentification(p != null, p, DAOPermission.fromInt(authentication.getType_personne()));
 	}
 }

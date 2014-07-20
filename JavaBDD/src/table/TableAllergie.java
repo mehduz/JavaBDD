@@ -5,8 +5,6 @@ import javax.swing.JTable;
 import beans.Allergie;
 import dal.DAOFactory;
 import dal.daoImpl.AllergieDaoImpl;
-import dal.daoImpl.SuiviDaoImpl;
-import dal.daoImpl.VaccinDaoImpl;
 
 public class TableAllergie {
 

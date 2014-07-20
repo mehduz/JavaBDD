@@ -30,7 +30,7 @@ import communication.ResponseEvent;
 import communication.ResponseListener;
 import table.TableMatiere;
 
-public class Ihm_Administrateur_Matierre extends JFrame implements ResponseListener {
+public class Ihm_Administrateur_Matiere extends JFrame implements ResponseListener {
 
 	/**
 	 * 
@@ -45,7 +45,7 @@ public class Ihm_Administrateur_Matierre extends JFrame implements ResponseListe
 	/**
 	 * Create the frame.
 	 */
-	public Ihm_Administrateur_Matierre() {
+	public Ihm_Administrateur_Matiere() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("University Manager");
 		setSize(new Dimension(1280, 720));
