@@ -201,5 +201,11 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	    return suivi;
 	}
 
+	@Override
+	public ArrayList<Suivi> getAllParIdProf() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
  
