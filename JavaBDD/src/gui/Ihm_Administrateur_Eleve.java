@@ -117,7 +117,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		textField_13 = new JTextField();
 		textField_13.setName("");
-		textField_13.setEnabled(false);
+		textField_13.setEnabled(true);
 		textField_13.setColumns(10);
 		textField_13.setBounds(65, 436, 70, 20);
 		getContentPane().add(textField_13);
@@ -130,7 +130,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		textField_12 = new JTextField();
 		textField_12.setName("");
-		textField_12.setEnabled(false);
+		textField_12.setEnabled(true);
 		textField_12.setColumns(10);
 		textField_12.setBounds(10, 436, 50, 20);
 		getContentPane().add(textField_12);
@@ -149,14 +149,14 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		textField_11 = new JTextField();
 		textField_11.setName("");
-		textField_11.setEnabled(false);
+		textField_11.setEnabled(true);
 		textField_11.setColumns(10);
 		textField_11.setBounds(162, 394, 129, 20);
 		getContentPane().add(textField_11);
 		
 		textField_10 = new JTextField();
 		textField_10.setName("");
-		textField_10.setEnabled(false);
+		textField_10.setEnabled(true);
 		textField_10.setColumns(10);
 		textField_10.setBounds(210, 315, 85, 20);
 		getContentPane().add(textField_10);
@@ -182,7 +182,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		textField_9 = new JTextField();
 		textField_9.setName("");
-		textField_9.setEnabled(false);
+		textField_9.setEnabled(true);
 		textField_9.setColumns(10);
 		textField_9.setBounds(10, 355, 129, 20);
 		getContentPane().add(textField_9);
@@ -195,7 +195,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		textField_8 = new JTextField();
 		textField_8.setName("");
-		textField_8.setEnabled(false);
+		textField_8.setEnabled(true);
 		textField_8.setColumns(10);
 		textField_8.setBounds(210, 275, 84, 20);
 		getContentPane().add(textField_8);
@@ -208,7 +208,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		textField_7 = new JTextField();
 		textField_7.setName("");
-		textField_7.setEnabled(false);
+		textField_7.setEnabled(true);
 		textField_7.setColumns(10);
 		textField_7.setBounds(10, 394, 129, 20);
 		getContentPane().add(textField_7);
@@ -221,7 +221,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		textField_6 = new JTextField();
 		textField_6.setName("");
-		textField_6.setEnabled(false);
+		textField_6.setEnabled(true);
 		textField_6.setColumns(10);
 		textField_6.setBounds(110, 275, 90, 20);
 		getContentPane().add(textField_6);
@@ -234,14 +234,14 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		textField_5 = new JTextField();
 		textField_5.setName("");
-		textField_5.setEnabled(false);
+		textField_5.setEnabled(true);
 		textField_5.setColumns(10);
 		textField_5.setBounds(10, 275, 90, 20);
 		getContentPane().add(textField_5);
 		
 		textField_4 = new JTextField();
 		textField_4.setName("");
-		textField_4.setEnabled(false);
+		textField_4.setEnabled(true);
 		textField_4.setColumns(10);
 		textField_4.setBounds(10, 233, 129, 20);
 		getContentPane().add(textField_4);
@@ -254,7 +254,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		textField_3 = new JTextField();
 		textField_3.setName("");
-		textField_3.setEnabled(false);
+		textField_3.setEnabled(true);
 		textField_3.setColumns(10);
 		textField_3.setBounds(160, 233, 130, 20);
 		getContentPane().add(textField_3);
@@ -403,13 +403,13 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		getContentPane().add(lblLogin);
 		
 		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
+		textField_1.setEnabled(true);
 		textField_1.setColumns(10);
 		textField_1.setBounds(48, 611, 246, 15);
 		getContentPane().add(textField_1);
 		
 		textField = new JTextField();
-		textField.setEnabled(false);
+		textField.setEnabled(true);
 		textField.setBounds(48, 590, 246, 15);
 		getContentPane().add(textField);
 		textField.setColumns(10);
@@ -463,6 +463,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 				//textField_6.setText(table.getValueAt(x, ).toString()); MOBILE ET FIXE A AJOUTER EN FIN DE TABLE
 				//comboBox_1.setSelectedItem(table.getValueAt(x, 7).toString());
 				//comboBox_2.setSelectedItem(table.getValueAt(x, 7).getClass().toString()); AJOUTER CLASSE
+				repaint();
 			}
 		});
 
