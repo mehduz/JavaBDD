@@ -116,7 +116,7 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 		    try {
 		        /* Récupération d'une connexion depuis la Factory */
 		        connexion = daoFactory.getConnection();
-		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL, false);
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL, false, nomMatiere);
 		        resultSet = preparedStatement.executeQuery();
 		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
 		  
