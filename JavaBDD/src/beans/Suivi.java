@@ -59,6 +59,12 @@ public class Suivi {
 		Note_examen = note_examen;
 	}
 	
+	public Eleve getEleve() {
+		
+		return this.eleve;
+		
+	}
+	
 	public void setEleve(Eleve eleve) {
 		
 		this.eleve = eleve;
