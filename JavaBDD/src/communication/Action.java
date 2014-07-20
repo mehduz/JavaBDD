@@ -1,7 +1,5 @@
 package communication;
 
-import javax.xml.ws.Response;
-
 public abstract class Action {
 	
 	private Message message;
