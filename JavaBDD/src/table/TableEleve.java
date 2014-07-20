@@ -1,9 +1,7 @@
 package table;
 
 import java.util.ArrayList;
-
 import javax.swing.JTable;
-
 import beans.Eleve;
 import dal.DAOFactory;
 import dal.daoImpl.EleveDaoImpl;
@@ -11,23 +9,24 @@ import dal.daoImpl.EleveDaoImpl;
 public class TableEleve {
 
 	public static JTable getTableEleve() {
+		int taille = 15;
 		EleveDaoImpl el = new EleveDaoImpl(new DAOFactory());
 		ArrayList<Eleve> listeEleve = el.getAll();
 
-		JTable table = new JTable(listeEleve.size(), 15);
+		JTable table = new JTable(listeEleve.size(), taille);
 		table.setEnabled(false);
 		Object columnNames[] = { "Nom", "Prenom", "Matricule", "Email",
 				"Date_naissance", "Ville_naissance", "Pays_naissance", "Sexe",
 				"Date_inscription", "Etablissement_prec", "Photo", "Rue",
 				"Code_postal", "Ville", "Remarques_medicale" };
 
-		for (int i = 0; i <= 14; i++) {
+		for (int i = 0; i <= (taille - 1); i++) {
 			table.getTableHeader().getColumnModel().getColumn(i)
 					.setHeaderValue(columnNames[i]);
 		}
 
 		for (int actualRow = 0; actualRow <= listeEleve.size() - 1; actualRow++) {
-			for (int actualColumn = 0; actualColumn <= 14; actualColumn++) {
+			for (int actualColumn = 0; actualColumn <= (taille - 1); actualColumn++) {
 				switch (actualColumn) {
 				case 0:
 					table.setValueAt(listeEleve.get(actualRow).getNom(),
