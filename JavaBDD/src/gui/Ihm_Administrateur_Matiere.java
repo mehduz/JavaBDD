@@ -26,6 +26,10 @@ import java.net.URI;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
+import liste.ListeContact;
+import liste.ListeMatiere;
+import beans.Contact;
+import beans.Matiere;
 import communication.ResponseEvent;
 import communication.ResponseListener;
 import table.TableMatiere;
@@ -77,7 +81,10 @@ public class Ihm_Administrateur_Matiere extends JFrame implements ResponseListen
 		lblProfesseurAssoci.setBounds(10, 264, 185, 20);
 		getContentPane().add(lblProfesseurAssoci);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox <String> comboBox = new JComboBox();
+		for (Matiere m : ListeMatiere.getListeMatiere()) {
+			comboBox.addItem(m.getNom_matiere());
+		}
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 280, 25);
 		getContentPane().add(comboBox);

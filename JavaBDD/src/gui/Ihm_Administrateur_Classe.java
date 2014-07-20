@@ -23,6 +23,10 @@ import java.net.URI;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
+import liste.ListeClasse;
+import liste.ListeEleve;
+import beans.Classe;
+import beans.Eleve;
 import communication.ResponseEvent;
 import communication.ResponseListener;
 
@@ -47,7 +51,10 @@ public class Ihm_Administrateur_Classe extends JFrame implements ResponseListene
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox <String> comboBox = new JComboBox();
+		for (Classe c : ListeClasse.getListeClasse()) {
+			comboBox.addItem(c.getNom_classe());
+		}
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 280, 25);
 		getContentPane().add(comboBox);

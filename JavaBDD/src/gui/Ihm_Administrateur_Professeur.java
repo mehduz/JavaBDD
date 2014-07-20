@@ -26,6 +26,10 @@ import java.net.URI;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
+import liste.ListeMedecin;
+import liste.ListeProfesseur;
+import beans.Medecin;
+import beans.Professeur;
 import communication.ResponseEvent;
 import communication.ResponseListener;
 import table.TableProfesseur;
@@ -119,7 +123,10 @@ public class Ihm_Administrateur_Professeur extends JFrame implements ResponseLis
 		lblAjouterModifier_1.setBounds(160, 213, 185, 20);
 		getContentPane().add(lblAjouterModifier_1);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox <String> comboBox = new JComboBox();
+		for (Professeur p : ListeProfesseur.getListeProfesseur()) {
+			comboBox.addItem(p.getNom() + " " + p.getPrenom());
+		}
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 280, 20);
 		getContentPane().add(comboBox);
