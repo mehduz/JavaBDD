@@ -3,10 +3,12 @@ package dal.daoImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 
 import beans.Contact;
+import beans.Eleve;
 import dal.DAODataBaseManager;
 import dal.DAOException;
 import dal.DAOFactory;
@@ -14,14 +16,12 @@ import dal.dao.ContactDao;
 
 public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 
-//	/*Création de la personne*/
-//	INSERT INTO personne (Nom, Prenom, Email, Tel_domicile, Tel_mobile) VALUES (?, ?, ?, ?, ?);
-//	/*Récupération de son ID_personne générer par auto_increment*/
-//	SELECT ID_personne FROM personne WHERE Nom = ? AND Prenom = ? AND Email = ?;
-//	/*Création du profil contact à l'aide de l'ID_personne précédemment récupéré*/
 	
 	final static String SQL_INSERT_CONTACT = "INSERT INTO contact (Adresse_contact, ID_personne) VALUES (?, ?)";
-	
+	 private static final String SQL_SELECT_CONTACT_PAR_ID_PERSONNE = "SELECT * FROM Contact, Personne WHERE Professeur.ID_personne = ? AND Contact.ID_personne = Personne.ID_personne ";
+	 private static final String SQL_SELECT_ALL = "SELECT * FROM Contact, Personne WHERE  Contact.ID_personne = Personne.ID_personne ";
+
+
 	public ContactDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
 		// TODO Auto-generated constructor stub
@@ -66,10 +66,84 @@ public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 	}
 
 	@Override
-	public Contact trouver(String id_contact) throws DAOException {
-		// TODO Auto-generated method stub
+	public Contact trouver(int id_personne) throws DAOException {
 
-		return null;
+		    Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Contact contact = null;
+
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_CONTACT_PAR_ID_PERSONNE, false, id_personne);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		        if ( resultSet.next() ) {
+
+		        		  
+		        	contact = map( resultSet );
+		        		   
+		        	  
+
+		        }
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
+		    return contact;
 	}
+	
+	public ArrayList<Contact> getAll() {
+
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Contact contact = null;
+		    ArrayList<Contact> listeContact = new ArrayList<Contact>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  contact = map( resultSet );
+		        		  listeContact.add(contact);
+		        		   
+		        	  }
+		        	
+		        	return listeContact;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
+	}
+	
+	public static Contact map(ResultSet resultSet) throws SQLException {
+		
+		Contact contact = new Contact();
+
+	contact.setNom(resultSet.getString("Nom"));
+	contact.setPrenom(resultSet.getString("Prenom"));
+	contact.setEmail(resultSet.getString("Email"));
+	contact.setTel_domicile(resultSet.getInt("Tel_domicile"));
+	contact.setTel_mobile(resultSet.getInt("Tel_mobile"));
+	contact.setID_contact(resultSet.getInt("ID_contact"));
+	contact.setID_personne(resultSet.getInt("ID_personne"));
+	
+	return contact;
+	
+	}
+	
+	
 
 }
