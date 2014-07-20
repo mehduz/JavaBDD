@@ -1,5 +1,7 @@
 package dal.dao;
 
+import java.util.ArrayList;
+
 import beans.Contact;
 import dal.DAOException;
 
@@ -9,5 +11,6 @@ public interface ContactDao {
 
 	Contact trouver( int id_personne ) throws DAOException;
 	
+	public ArrayList<Contact> getAll() throws DAOException;
 
 }

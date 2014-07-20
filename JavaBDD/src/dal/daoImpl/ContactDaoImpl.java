@@ -96,7 +96,7 @@ public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 		    return contact;
 	}
 	
-	public ArrayList<Contact> getAll() {
+	public ArrayList<Contact> getAll() throws DAOException{
 
 		 Connection connexion = null;
 		    PreparedStatement preparedStatement = null;
