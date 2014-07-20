@@ -9,6 +9,7 @@ import javax.swing.JTable;
 
 import liste.ListeEleve;
 import liste.ListeEleveParClasse;
+import liste.ListeEleveParMatiere;
 
 import org.junit.Test;
 
@@ -40,8 +41,10 @@ public class TestDB {
 //	    JTable tableP = TableProfesseur.getTableProfesseur();
 //	    JTable tableS = TableSuivi.getTableSuivi();
 //	    JTable tableV = TableVaccin.getTableVaccin();
-		JTable tableListeE = ListeEleveParClasse.getListeEleveParClasse("L3 Asyria");
-	    JScrollPane scrollPane = new JScrollPane(tableListeE);
+//		JTable tableListeEparC = ListeEleveParClasse.getListeEleveParClasse("L3 Asyria");
+		JTable tableListeEparM = ListeEleveParMatiere.getListeEleveParMatiere("Informatique");
+		
+	    JScrollPane scrollPane = new JScrollPane(tableListeEparM);
 	    frame.add(scrollPane, BorderLayout.CENTER);
 	    frame.setSize(932, 651);
 	    frame.setVisible(true);
