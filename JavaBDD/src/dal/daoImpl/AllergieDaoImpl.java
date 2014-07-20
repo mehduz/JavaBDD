@@ -60,7 +60,7 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 		
 	}
 	
-	private static Allergie map( ResultSet resultSet ) throws SQLException {
+	public static Allergie map( ResultSet resultSet ) throws SQLException {
 		Allergie allergie = new Allergie();
 
 		allergie.setLibelle(resultSet.getString("Libelle"));

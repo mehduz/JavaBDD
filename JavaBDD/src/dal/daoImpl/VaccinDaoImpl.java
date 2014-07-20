@@ -128,7 +128,7 @@ public class VaccinDaoImpl extends SuperDaoImpl implements VaccinDao {
 	}
 	
 	
-	private static Vaccin map( ResultSet resultSet ) throws SQLException {
+	public static Vaccin map( ResultSet resultSet ) throws SQLException {
 		Vaccin vaccin = new Vaccin();
 
 		vaccin.setLibelle(resultSet.getString("Libelle"));
