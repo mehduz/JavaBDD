@@ -1,20 +1,22 @@
-package Table;
+package table;
 
 import java.util.ArrayList;
 
 import javax.swing.JTable;
 
 import beans.Eleve;
+import beans.Suivi;
 import dal.DAOFactory;
 import dal.daoImpl.EleveDaoImpl;
+import dal.daoImpl.SuiviDaoImpl;
 
-public class TableEleve {
+public class TableSuivi {
+	
+	/*public static JTable getTableSuivi() {
+		SuiviDaoImpl el = new SuiviDaoImpl(new DAOFactory());
+		ArrayList<Suivi> listeSuivi = el.getAll();
 
-	public static JTable getTableEleve() {
-		EleveDaoImpl el = new EleveDaoImpl(new DAOFactory());
-		ArrayList<Eleve> listeEleve = el.getAll();
-
-		JTable table = new JTable(listeEleve.size(), 15);
+		JTable table = new JTable(listeSuivi.size(), 15);
 		table.setEnabled(false);
 		Object columnNames[] = { "Nom", "Prenom", "Matricule", "Email",
 				"Date_naissance", "Ville_naissance", "Pays_naissance", "Sexe",
@@ -26,68 +28,68 @@ public class TableEleve {
 					.setHeaderValue(columnNames[i]);
 		}
 
-		for (int actualRow = 0; actualRow <= listeEleve.size() - 1; actualRow++) {
+		for (int actualRow = 0; actualRow <= listeSuivi.size() - 1; actualRow++) {
 			for (int actualColumn = 0; actualColumn <= 14; actualColumn++) {
 				switch (actualColumn) {
 				case 0:
-					table.setValueAt(listeEleve.get(actualRow).getNom(),
+					table.setValueAt(listeSuivi.get(actualRow).getNom(),
 							actualRow, actualColumn);
 					break;
 				case 1:
-					table.setValueAt(listeEleve.get(actualRow).getPrenom(),
+					table.setValueAt(listeSuivi.get(actualRow).getPrenom(),
 							actualRow, actualColumn);
 					break;
 				case 2:
-					table.setValueAt(listeEleve.get(actualRow).getMatricule(),
+					table.setValueAt(listeSuivi.get(actualRow).getMatricule(),
 							actualRow, actualColumn);
 					break;
 				case 3:
-					table.setValueAt(listeEleve.get(actualRow).getEmail(),
+					table.setValueAt(listeSuivi.get(actualRow).getEmail(),
 							actualRow, actualColumn);
 					break;
 				case 4:
-					table.setValueAt(listeEleve.get(actualRow)
+					table.setValueAt(listeSuivi.get(actualRow)
 							.getDate_naissance(), actualRow, actualColumn);
 					break;
 				case 5:
-					table.setValueAt(listeEleve.get(actualRow)
+					table.setValueAt(listeSuivi.get(actualRow)
 							.getVille_naissance(), actualRow, actualColumn);
 					break;
 				case 6:
-					table.setValueAt(listeEleve.get(actualRow)
+					table.setValueAt(listeSuivi.get(actualRow)
 							.getPays_naissance(), actualRow, actualColumn);
 					break;
 				case 7:
-					table.setValueAt(listeEleve.get(actualRow).getSexe(),
+					table.setValueAt(listeSuivi.get(actualRow).getSexe(),
 							actualRow, actualColumn);
 					break;
 				case 8:
-					table.setValueAt(listeEleve.get(actualRow)
+					table.setValueAt(listeSuivi.get(actualRow)
 							.getDate_inscription(), actualRow, actualColumn);
 					break;
 				case 9:
-					table.setValueAt(listeEleve.get(actualRow)
+					table.setValueAt(listeSuivi.get(actualRow)
 							.getEtablissement_prec(), actualRow, actualColumn);
 					break;
 				case 10:
-					table.setValueAt(listeEleve.get(actualRow).getPhoto(),
+					table.setValueAt(listeSuivi.get(actualRow).getPhoto(),
 							actualRow, actualColumn);
 					break;
 				case 11:
-					table.setValueAt(listeEleve.get(actualRow).getRue(),
+					table.setValueAt(listeSuivi.get(actualRow).getRue(),
 							actualRow, actualColumn);
 					break;
 				case 12:
 					table.setValueAt(
-							listeEleve.get(actualRow).getCode_postal(),
+							listeSuivi.get(actualRow).getCode_postal(),
 							actualRow, actualColumn);
 					break;
 				case 13:
-					table.setValueAt(listeEleve.get(actualRow).getVille(),
+					table.setValueAt(listeSuivi.get(actualRow).getVille(),
 							actualRow, actualColumn);
 					break;
 				case 14:
-					table.setValueAt(listeEleve.get(actualRow)
+					table.setValueAt(listeSuivi.get(actualRow)
 							.getRemarques_medicale(), actualRow, actualColumn);
 					break;
 				}
@@ -95,5 +97,6 @@ public class TableEleve {
 		}
 		
 		return table;
-	}
+	}*/
+
 }

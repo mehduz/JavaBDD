@@ -11,7 +11,7 @@ import javax.swing.JTable;
 
 import org.junit.Test;
 
-import Table.TableEleve;
+import table.TableEleve;
 import beans.Eleve;
 import dal.DAOFactory;
 import dal.daoImpl.EleveDaoImpl;

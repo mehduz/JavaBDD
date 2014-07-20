@@ -1,4 +1,4 @@
-package Table;
+package table;
 
 public class TableProfesseur {
 
