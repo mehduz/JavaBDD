@@ -1,6 +1,8 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -24,6 +26,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
+import table.TableMatiere;
+
 public class Ihm_Administrateur_Matierre extends JFrame {
 
 	/**
@@ -34,7 +38,8 @@ public class Ihm_Administrateur_Matierre extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-
+	private JTable table;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -45,6 +50,15 @@ public class Ihm_Administrateur_Matierre extends JFrame {
 		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
+		
+		table = TableMatiere.getTableMatiere();
+		table.setOpaque(false);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(314, 11, 950, 669);
 		
 		textField_3 = new JTextField();
 		textField_3.setName("");

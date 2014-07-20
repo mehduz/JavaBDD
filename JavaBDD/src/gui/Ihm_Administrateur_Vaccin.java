@@ -1,6 +1,8 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -24,6 +26,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
+import table.TableContact;
+import table.TableVaccin;
+
 public class Ihm_Administrateur_Vaccin extends JFrame {
 
 	/**
@@ -33,6 +38,7 @@ public class Ihm_Administrateur_Vaccin extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTable table;
 
 	/**
 	 * Create the frame.
@@ -44,6 +50,15 @@ public class Ihm_Administrateur_Vaccin extends JFrame {
 		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
+		
+		table = TableVaccin.getTableVaccin();
+		table.setOpaque(false);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(314, 11, 950, 669);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setMaximumRowCount(10);

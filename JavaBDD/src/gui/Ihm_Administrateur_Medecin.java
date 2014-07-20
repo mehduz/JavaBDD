@@ -1,6 +1,8 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -24,6 +26,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
+import table.TableContact;
+import table.TableMedecin;
+
 public class Ihm_Administrateur_Medecin extends JFrame {
 
 	/**
@@ -37,6 +42,7 @@ public class Ihm_Administrateur_Medecin extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_7;
+	private JTable table;
 
 	/**
 	 * Create the frame.
@@ -48,6 +54,15 @@ public class Ihm_Administrateur_Medecin extends JFrame {
 		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
+		
+		table = TableMedecin.getTableMedecin();
+		table.setOpaque(false);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(314, 11, 950, 669);
 		
 		JLabel lblTelFixe = new JLabel("Tel fixe");
 		lblTelFixe.setForeground(Color.WHITE);

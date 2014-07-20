@@ -116,10 +116,6 @@ public class Ihm_Administrateur_Classe extends JFrame {
 		btnAjouter.setBounds(10, 143, 282, 23);
 		getContentPane().add(btnAjouter);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(322, 20, 932, 651);
-		getContentPane().add(panel);
-		
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(8, 577, 284, 2);
 		getContentPane().add(separator_4);

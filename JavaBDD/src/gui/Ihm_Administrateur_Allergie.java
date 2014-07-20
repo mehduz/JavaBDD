@@ -1,9 +1,11 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
@@ -21,8 +23,10 @@ import java.io.IOException;
 import java.net.URI;
 
 import javax.swing.SwingConstants;
-import javax.swing.JPanel;
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+
+import table.TableAllergie;
 
 public class Ihm_Administrateur_Allergie extends JFrame {
 
@@ -33,7 +37,8 @@ public class Ihm_Administrateur_Allergie extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-
+	private JTable table;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -44,6 +49,17 @@ public class Ihm_Administrateur_Allergie extends JFrame {
 		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
+		
+		table = TableAllergie.getTableAllergie();
+		table.setOpaque(false);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(314, 11, 950, 669);
+		
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setMaximumRowCount(10);
@@ -115,10 +131,6 @@ public class Ihm_Administrateur_Allergie extends JFrame {
 		btnAjouter.setFont(new Font("Arial", Font.BOLD, 12));
 		btnAjouter.setBounds(10, 143, 282, 23);
 		getContentPane().add(btnAjouter);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(322, 20, 932, 651);
-		getContentPane().add(panel);
 		
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(8, 577, 284, 2);

@@ -1,6 +1,8 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -24,6 +26,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
+import table.TableAllergie;
+import table.TableContact;
+
 public class Ihm_Administrateur_Contact extends JFrame {
 
 	/**
@@ -38,7 +43,8 @@ public class Ihm_Administrateur_Contact extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-
+	private JTable table;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -49,6 +55,15 @@ public class Ihm_Administrateur_Contact extends JFrame {
 		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
+		
+		table = TableContact.getTableContact();
+		table.setOpaque(false);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(314, 11, 950, 669);
 		
 		JLabel lblTelFixe = new JLabel("Tel fixe");
 		lblTelFixe.setForeground(Color.WHITE);
@@ -185,10 +200,6 @@ public class Ihm_Administrateur_Contact extends JFrame {
 		btnAjouter.setFont(new Font("Arial", Font.BOLD, 12));
 		btnAjouter.setBounds(10, 143, 282, 23);
 		getContentPane().add(btnAjouter);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(322, 20, 932, 651);
-		getContentPane().add(panel);
 		
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(8, 577, 284, 2);
