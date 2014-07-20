@@ -21,6 +21,6 @@ public class ActionIdentification extends Action{
 		EleveDao elevedao= daoFactory.getEleveDao();
 		MessageIdentification msg = (MessageIdentification) super.getMessage();
 		Eleve romain = elevedao.trouver(msg.getLogin(),msg.getPassword());
-		reponse = new ReponseIdentification(romain != null);
+		reponse = new ReponseIdentification(romain != null, romain); 
 	}
 }
