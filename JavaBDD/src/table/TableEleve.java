@@ -1,24 +1,29 @@
 package table;
 
 import java.util.ArrayList;
+
 import javax.swing.JTable;
+
 import beans.Eleve;
+import beans.Suivi;
 import dal.DAOFactory;
 import dal.daoImpl.EleveDaoImpl;
+import dal.daoImpl.SuiviDaoImpl;
 
 public class TableEleve {
+	
 
 	public static JTable getTableEleve() {
-		int taille = 15;
-		EleveDaoImpl el = (EleveDaoImpl) DAOFactory.getInstance().getEleveDao();
-		ArrayList<Eleve> listeEleve = el.getAll();
-
+		int taille = 18;
+		EleveDaoImpl el_eleve = (EleveDaoImpl) DAOFactory.getInstance().getEleveDao();
+		ArrayList<Eleve> listeEleve = el_eleve.getAll();
+		
 		JTable table = new JTable(listeEleve.size(), taille);
 		table.setEnabled(false);
 		Object columnNames[] = { "Nom", "Prenom", "Matricule", "Email",
 				"Date_naissance", "Ville_naissance", "Pays_naissance", "Sexe",
 				"Date_inscription", "Etablissement_prec", "Photo", "Rue",
-				"Code_postal", "Ville", "Remarques_medicale" };
+				"Code_postal", "Ville", "Remarques_medicale", "Tel_domicile", "Tel_mobile", "Classe" };
 
 		for (int i = 0; i <= (taille - 1); i++) {
 			table.getTableHeader().getColumnModel().getColumn(i)
@@ -88,6 +93,18 @@ public class TableEleve {
 				case 14:
 					table.setValueAt(listeEleve.get(actualRow)
 							.getRemarques_medicale(), actualRow, actualColumn);
+					break;
+				case 15:
+					table.setValueAt(listeEleve.get(actualRow)
+							.getTel_domicile(), actualRow, actualColumn);
+					break;
+				case 16:
+					table.setValueAt(listeEleve.get(actualRow)
+							.getTel_mobile(), actualRow, actualColumn);
+					break;
+				case 17:
+					table.setValueAt(/*listeEleve.get(actualRow)
+							.getNom_classe()*/"Test", actualRow, actualColumn);
 					break;
 				}
 			}

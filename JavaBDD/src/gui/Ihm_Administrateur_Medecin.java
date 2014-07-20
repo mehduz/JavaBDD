@@ -17,6 +17,8 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
@@ -48,6 +50,7 @@ public class Ihm_Administrateur_Medecin extends JFrame implements ResponseListen
 	private JTextField textField_5;
 	private JTextField textField_7;
 	private JTable table;
+	private JComboBox <String> comboBox ;
 
 	/**
 	 * Create the frame.
@@ -79,7 +82,7 @@ public class Ihm_Administrateur_Medecin extends JFrame implements ResponseListen
 		
 		textField_7 = new JTextField();
 		textField_7.setName("");
-		textField_7.setEnabled(false);
+		textField_7.setEnabled(true);
 		textField_7.setColumns(10);
 		textField_7.setBounds(160, 313, 130, 20);
 		getContentPane().add(textField_7);
@@ -92,14 +95,14 @@ public class Ihm_Administrateur_Medecin extends JFrame implements ResponseListen
 		
 		textField_5 = new JTextField();
 		textField_5.setName("");
-		textField_5.setEnabled(false);
+		textField_5.setEnabled(true);
 		textField_5.setColumns(10);
 		textField_5.setBounds(10, 313, 130, 20);
 		getContentPane().add(textField_5);
 		
 		textField_4 = new JTextField();
 		textField_4.setName("");
-		textField_4.setEnabled(false);
+		textField_4.setEnabled(true);
 		textField_4.setColumns(10);
 		textField_4.setBounds(10, 273, 280, 20);
 		getContentPane().add(textField_4);
@@ -112,7 +115,7 @@ public class Ihm_Administrateur_Medecin extends JFrame implements ResponseListen
 		
 		textField_3 = new JTextField();
 		textField_3.setName("");
-		textField_3.setEnabled(false);
+		textField_3.setEnabled(true);
 		textField_3.setColumns(10);
 		textField_3.setBounds(160, 233, 130, 20);
 		getContentPane().add(textField_3);
@@ -123,10 +126,11 @@ public class Ihm_Administrateur_Medecin extends JFrame implements ResponseListen
 		lblAjouterModifier_1.setBounds(160, 213, 185, 20);
 		getContentPane().add(lblAjouterModifier_1);
 		
-		JComboBox <String> comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		for (Medecin m : ListeMedecin.getListeMedecin()) {
 			comboBox.addItem(m.getNom() + " " + m.getPrenom());
 		}
+		comboBox.setSelectedItem(null);
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 280, 20);
 		getContentPane().add(comboBox);
@@ -139,7 +143,7 @@ public class Ihm_Administrateur_Medecin extends JFrame implements ResponseListen
 		
 		textField_2 = new JTextField();
 		textField_2.setName("");
-		textField_2.setEnabled(false);
+		textField_2.setEnabled(true);
 		textField_2.setColumns(10);
 		textField_2.setBounds(10, 233, 130, 20);
 		getContentPane().add(textField_2);
@@ -304,7 +308,15 @@ public class Ihm_Administrateur_Medecin extends JFrame implements ResponseListen
 		lblNewLabel_3.setIcon(new ImageIcon(Ihm_Eleve.class.getResource("/gui/ressources/fond_principal.jpg")));
 		lblNewLabel_3.setBounds(300, 0, 974, 691);
 		getContentPane().add(lblNewLabel_3);
-
+		
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				int x = comboBox.getSelectedIndex();
+				textField_2.setText(table.getValueAt(x, 1).toString());
+				textField_3.setText(table.getValueAt(x, 2).toString());
+				repaint();
+			}
+		});
 	}
 	
 	public void setPanelIdentification(String login, String profil) {
