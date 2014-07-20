@@ -27,6 +27,7 @@ import javax.swing.JComboBox;
 
 import liste.ListeClasse;
 import liste.ListeEleveParClasse;
+import liste.ListeEleveParMatiere;
 import liste.ListeMatiere;
 import beans.Classe;
 import beans.Matiere;
@@ -61,8 +62,20 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 		for (Classe c : ListeClasse.getListeClasse()) {
 			comboBox.addItem(c.getNom_classe());
 		}
+		
+		JLabel lblListelvesPar = new JLabel("Liste \u00E9l\u00E8ves par mati\u00E8res");
+		lblListelvesPar.setForeground(Color.WHITE);
+		lblListelvesPar.setFont(new Font("Arial", Font.BOLD, 15));
+		lblListelvesPar.setBounds(6, 259, 193, 20);
+		getContentPane().add(lblListelvesPar);
+		
+		JLabel lblListelvesPas = new JLabel("Liste \u00E9l\u00E8ves pas classe");
+		lblListelvesPas.setForeground(Color.WHITE);
+		lblListelvesPas.setFont(new Font("Arial", Font.BOLD, 15));
+		lblListelvesPas.setBounds(6, 190, 180, 20);
+		getContentPane().add(lblListelvesPas);
 		comboBox.setMaximumRowCount(10);
-		comboBox.setBounds(6, 190, 280, 25);
+		comboBox.setBounds(6, 210, 280, 25);
 		getContentPane().add(comboBox);
 		comboBox.addActionListener (new ActionListener () {
 		    public void actionPerformed(ActionEvent e) {
@@ -70,8 +83,6 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 		    	liste = new JTable();
 		    	liste = ListeEleveParClasse.getListeEleveParClasse(comboBox.getSelectedItem().toString());
 				scrollPane.setViewportView(liste);
-		    	
-		    	System.out.print("Test");
 		    	
 		    }
 		});
@@ -82,8 +93,17 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 			comboBox_1.addItem(m.getNom_matiere());
 		}
 		comboBox_1.setMaximumRowCount(10);
-		comboBox_1.setBounds(6, 273, 280, 25);
+		comboBox_1.setBounds(6, 280, 280, 25);
 		getContentPane().add(comboBox_1);
+		comboBox_1.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+				
+		    	liste = new JTable();
+		    	liste = ListeEleveParMatiere.getListeEleveParMatiere(comboBox_1.getSelectedItem().toString());
+				scrollPane.setViewportView(liste);
+		    	
+		    }
+		});
 		
 		//
 		liste = ListeEleveParClasse.getListeEleveParClasse(comboBox.getSelectedItem().toString());
@@ -98,34 +118,18 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 		
 		//		
 		JSeparator separator_6 = new JSeparator();
-		separator_6.setBounds(6, 343, 284, 2);
+		separator_6.setBounds(6, 316, 284, 2);
 		getContentPane().add(separator_6);
 		
 		JButton button_4 = new JButton("Mode SQL");
 		button_4.setFont(new Font("Arial", Font.BOLD, 12));
 		button_4.setEnabled(false);
-		button_4.setBounds(8, 356, 282, 23);
+		button_4.setBounds(8, 329, 282, 23);
 		getContentPane().add(button_4);
 		
 		JSeparator separator_5 = new JSeparator();
-		separator_5.setBounds(6, 260, 284, 2);
+		separator_5.setBounds(6, 246, 284, 2);
 		getContentPane().add(separator_5);
-		
-		JButton btnListelvesPar = new JButton("Liste \u00E9l\u00E8ves par mati\u00E8res");
-		btnListelvesPar.setFont(new Font("Arial", Font.BOLD, 12));
-		btnListelvesPar.setBounds(8, 309, 282, 23);
-		getContentPane().add(btnListelvesPar);
-		
-		JButton btnListelvesPas = new JButton("Liste \u00E9l\u00E8ves pas classe");
-		btnListelvesPas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				
-			}
-		});
-		btnListelvesPas.setFont(new Font("Arial", Font.BOLD, 12));
-		btnListelvesPas.setBounds(6, 226, 282, 23);
-		getContentPane().add(btnListelvesPas);
 		
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setBounds(6, 177, 284, 2);

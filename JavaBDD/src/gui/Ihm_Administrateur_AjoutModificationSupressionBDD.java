@@ -60,40 +60,7 @@ public class Ihm_Administrateur_AjoutModificationSupressionBDD extends JFrame im
 				frameAdministrateur_Vacin.setVisible(true);
 			}
 		});
-		
-		JButton button_3 = new JButton("Liste \u00E9l\u00E8ves par mati\u00E8res");
-		button_3.setFont(new Font("Arial", Font.BOLD, 12));
-		button_3.setBounds(12, 496, 282, 23);
-		getContentPane().add(button_3);
-		
-		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(10, 454, 284, 2);
-		getContentPane().add(separator_3);
-		
-		JComboBox <String> comboBox_1 = new JComboBox();
-		for (Matiere m : ListeMatiere.getListeMatiere()) {
-			comboBox_1.addItem(m.getNom_matiere());
-		}
-		comboBox_1.setMaximumRowCount(10);
-		comboBox_1.setBounds(10, 467, 280, 25);
-		getContentPane().add(comboBox_1);
-		
-		JComboBox comboBox = new JComboBox();
-		for (Classe c : ListeClasse.getListeClasse()) {
-			comboBox.addItem(c.getNom_classe());
-		}
-		comboBox.setMaximumRowCount(10);
-		comboBox.setBounds(10, 390, 280, 25);
-		getContentPane().add(comboBox);
-		
-		JSeparator separator_6 = new JSeparator();
-		separator_6.setBounds(10, 377, 284, 2);
-		getContentPane().add(separator_6);
-		
-		JButton button = new JButton("Liste \u00E9l\u00E8ves pas classe");
-		button.setFont(new Font("Arial", Font.BOLD, 12));
-		button.setBounds(10, 420, 282, 23);
-		getContentPane().add(button);
+
 		btnVaccin.setFont(new Font("Arial", Font.BOLD, 12));
 		btnVaccin.setBounds(84, 346, 130, 23);
 		getContentPane().add(btnVaccin);
