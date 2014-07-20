@@ -240,5 +240,6 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 			JOptionPane.showMessageDialog(null, "Informations de login incorrectes", "Utilisateur non reconnu", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
+		GlobalProperties.registerProperty("LOGGED_USER", ri.getPersonne());
 	}
 }

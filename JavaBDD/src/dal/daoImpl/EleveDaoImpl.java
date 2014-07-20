@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import java.sql.PreparedStatement;
 
 import dal.DAODataBaseManager;
@@ -20,6 +19,7 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 	
 
 	 private static final String SQL_SELECT_ALL = "SELECT * FROM Eleve, Personne WHERE Eleve.ID_personne = Personne.ID_personne ";
+	 private static final String SQL_SELECT_ALL_PAR_CLASSE = "SELECT * FROM Eleve, Personne WHERE Eleve.ID_personne = Personne.ID_personne AND Eleve.Nom_classe = ?";
 	 private static final String SQL_SELECT_PAR_LOGIN_MDP = "SELECT ID_personne FROM Authentication WHERE Login = ? and MDP = ?";
 	 private static final String SQL_SELECT_ELEVE_PAR_ID_PERSONNE = "SELECT * FROM Eleve, Personne WHERE Eleve.ID_personne = ? AND Eleve.ID_personne = Personne.ID_personne ";
 	 private static final String SQL_INSERT_ELEVE = "INSERT INTO eleve (Date_naissance, Ville_naissance, Pays_naissance,Sexe,"+
@@ -208,6 +208,39 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 		eleve.setMatricule(resultSet.getLong("Matricule"));
 		
 	    return eleve;
+	}
+
+	@Override
+	public ArrayList<Eleve> getAllParClasse(String nomClasse) {
+
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Eleve eleve = null;
+		    ArrayList<Eleve> listeEleves = new ArrayList<Eleve>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL_PAR_CLASSE, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  eleve = map( resultSet );
+		        		  listeEleves.add(eleve);
+		        		   
+		        	  }
+		        	
+		        	return listeEleves;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+		
 	}
 
 

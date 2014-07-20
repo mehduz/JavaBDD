@@ -1,4 +1,6 @@
 package dal.dao;
+import java.util.ArrayList;
+
 import dal.DAOException;
 import beans.*;
 
@@ -12,5 +14,12 @@ public interface EleveDao {
 	 
 	 Eleve trouver(String login, String mdp) throws DAOException;
 
-
+	 public ArrayList<Eleve> getAll() throws DAOException ;
+	 
+	 public ArrayList<Eleve> getAllParClasse(String nomClasse);
+	 
+	 
+	 
+	 
+	 
 } 

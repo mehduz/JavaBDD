@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import java.sql.PreparedStatement;
 
 import beans.Eleve;
@@ -159,5 +158,36 @@ public class ProfesseurDaoImpl extends SuperDaoImpl implements ProfesseurDao {
 
 	}
 	
+	
+	@Override
+	public Professeur trouver(int idPersonne) throws DAOException {
+		// TODO Auto-generated method stub
+		
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Professeur professeur = null;
+
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_PROFESSEUR_PAR_ID_PERSONNE, false, idPersonne);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		        if ( resultSet.next() ) {
+
+		        	professeur = map( resultSet );
+
+		        }
+		        
+		        return professeur;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
+	}
 	
 }

@@ -2,16 +2,14 @@ package beans;
 
 public class Authentication {
 
-	private String Login;
-	private String MDP;
+
 	private long ID_personne;
 	private int Type_personne;
 
-	public Authentication(String login, String mDP, long iD_personne,
+	public Authentication(long iD_personne,
 			int type_personne) {
 		super();
-		Login = login;
-		MDP = mDP;
+
 		ID_personne = iD_personne;
 		Type_personne = type_personne;
 	}
@@ -20,21 +18,6 @@ public class Authentication {
 
 	}
 
-	public String getLogin() {
-		return Login;
-	}
-
-	public void setLogin(String login) {
-		Login = login;
-	}
-
-	public String getMDP() {
-		return MDP;
-	}
-
-	public void setMDP(String mDP) {
-		MDP = mDP;
-	}
 
 	public long getID_personne() {
 		return ID_personne;
@@ -54,8 +37,8 @@ public class Authentication {
 
 	@Override
 	public String toString() {
-		return "Authentication [Login=" + Login + ", MDP=" + MDP
-				+ ", ID_personne=" + ID_personne + ", Type_personne="
+		return "Authentication: "
+				+ " ID_personne=" + ID_personne + ", Type_personne="
 				+ Type_personne + "]";
 	}
 
