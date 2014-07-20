@@ -139,6 +139,10 @@ public class DAOFactory {
 		return connectionPool.getConnection();
 	}
 
+	public void closeConnectionPool(){
+		connectionPool.close();
+	}
+	
 	/*
 	 * Méthodes de récupération de l'implémentation des différents DAO (un seul
 	 * pour le moment)
