@@ -116,7 +116,7 @@ public class Client {
 	
 	public void fireResponse(ResponseEvent responseEvent){
 		for(ResponseListener rl : listeners.getListeners(ResponseListener.class)){
-			rl.onResponseReceived();
+			rl.onResponseReceived(responseEvent);
 		}
 	}
 }
