@@ -1,10 +1,6 @@
 package Test;
 
-import static org.junit.Assert.*;
-
 import java.awt.BorderLayout;
-import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -20,9 +16,6 @@ import table.TableMedecin;
 import table.TableProfesseur;
 import table.TableSuivi;
 import table.TableVaccin;
-import beans.Eleve;
-import dal.DAOFactory;
-import dal.daoImpl.EleveDaoImpl;
 
 public class TestDB {
 

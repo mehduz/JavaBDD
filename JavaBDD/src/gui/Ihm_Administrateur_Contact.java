@@ -24,10 +24,8 @@ import java.io.IOException;
 import java.net.URI;
 
 import javax.swing.SwingConstants;
-import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
-import table.TableAllergie;
 import table.TableContact;
 
 public class Ihm_Administrateur_Contact extends JFrame {

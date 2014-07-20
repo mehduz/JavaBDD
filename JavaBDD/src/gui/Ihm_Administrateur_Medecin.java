@@ -24,12 +24,10 @@ import java.io.IOException;
 import java.net.URI;
 
 import javax.swing.SwingConstants;
-import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
 import communication.ResponseEvent;
 import communication.ResponseListener;
-import table.TableContact;
 import table.TableMedecin;
 
 public class Ihm_Administrateur_Medecin extends JFrame implements ResponseListener {
