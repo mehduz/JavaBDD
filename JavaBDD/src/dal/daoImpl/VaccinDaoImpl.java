@@ -3,9 +3,11 @@ package dal.daoImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 
+import beans.Contact;
 import beans.Vaccin;
 import dal.DAODataBaseManager;
 import dal.DAOException;
@@ -16,6 +18,7 @@ public class VaccinDaoImpl extends SuperDaoImpl implements VaccinDao {
 
 	final static String SQL_INSERT_VACCIN = "INSERT INTO vaccins (Libelle) VALUES (?)";
 	final static String SQL_SELECT_VACCIN_PAR_LIBELLE = "SELECT * FROM vaccins where libelle = ?";
+	final static String SQL_SELECT_ALL = "SELECT * FROM vaccins";
 	
 	public VaccinDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -91,6 +94,39 @@ public class VaccinDaoImpl extends SuperDaoImpl implements VaccinDao {
 		    return vaccin;
 		
 	}
+	
+	@Override
+	public ArrayList<Vaccin> getAll() throws DAOException {
+
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Vaccin vaccin = null;
+		    ArrayList<Vaccin> listeVaccins = new ArrayList<Vaccin>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  vaccin = map( resultSet );
+		        		  listeVaccins.add(vaccin);
+		        		   
+		        	  }
+		        	
+		        	return listeVaccins;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+	}
+	
 	
 	private static Vaccin map( ResultSet resultSet ) throws SQLException {
 		Vaccin vaccin = new Vaccin();

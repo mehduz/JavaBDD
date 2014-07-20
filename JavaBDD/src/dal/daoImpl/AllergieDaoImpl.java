@@ -3,10 +3,12 @@ package dal.daoImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 
 import beans.Allergie;
+import beans.Vaccin;
 import dal.DAODataBaseManager;
 import dal.DAOException;
 import dal.DAOFactory;
@@ -17,6 +19,7 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 	
 	final static String SQL_INSERT_ALLERGIE = "INSERT INTO allergies (Libelle) VALUES (?)";
 	final static String SQL_SELECT_ALLERGIE_PAR_LIBELLE = "SELECT * FROM allergies where libelle = ?";
+	final static String SQL_SELECT_ALL = "SELECT * FROM allergies";
 	
 	public AllergieDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -102,5 +105,39 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 		
 		
 	}
+	
+	@Override
+	public ArrayList<Allergie> getAll() throws DAOException {
+
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Allergie allergie = null;
+		    ArrayList<Allergie> listeAllergies = new ArrayList<Allergie>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  allergie = map( resultSet );
+		        		  listeAllergies.add(allergie);
+		        		   
+		        	  }
+		        	
+		        	return listeAllergies;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+	}
+	
+	
 	
 }

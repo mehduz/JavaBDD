@@ -3,9 +3,11 @@ package dal.daoImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 
+import beans.Allergie;
 import beans.Eleve;
 import beans.Matiere;
 import dal.DAODataBaseManager;
@@ -16,7 +18,8 @@ import dal.dao.MatiereDao;
 public class MatiereDaoImpl  extends SuperDaoImpl implements MatiereDao {
 
 	 private static final String SQL_INSERT_MATIERE = "INSERT INTO matiere (Nom_matiere) VALUES (?)";
-		
+	 private static final String SQL_SELECT_ALL = "SELECT * from matiere";
+	 
 	
 	public MatiereDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -63,6 +66,40 @@ public class MatiereDaoImpl  extends SuperDaoImpl implements MatiereDao {
 		
 		return m;
 	}
+	
+	
+	@Override
+	public ArrayList<Matiere> getAll() throws DAOException {
+
+		    Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Matiere matiere = null;
+		    ArrayList<Matiere> listeMatieres = new ArrayList<Matiere>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  matiere = map( resultSet );
+		        		  listeMatieres.add(matiere);
+		        		   
+		        	  }
+		        	
+		        	return listeMatieres;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+	}
+	
 	
 	@Override
 	public Matiere trouver(String nom_matiere) throws DAOException {
