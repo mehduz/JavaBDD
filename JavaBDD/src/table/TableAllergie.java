@@ -13,7 +13,7 @@ public class TableAllergie {
 	public static JTable getTableAllergie() {
 		int taille = 2;
 
-		AllergieDaoImpl el = new AllergieDaoImpl(new DAOFactory());
+		AllergieDaoImpl el = (AllergieDaoImpl) DAOFactory.getInstance().getAllergieDao();
 		ArrayList<Allergie> listAllergie = el.getAll();
 
 		JTable table = new JTable(listAllergie.size(), taille);

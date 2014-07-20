@@ -6,21 +6,29 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import beans.Allergie;
+
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
+import dal.dao.AllergieDao;
 import dal.dao.ClasseDao;
 import dal.dao.ContactDao;
 import dal.dao.EleveDao;
 import dal.dao.MatiereDao;
 import dal.dao.PersonneDao;
+import dal.dao.ProfesseurDao;
 import dal.dao.SuiviDao;
+import dal.dao.VaccinDao;
+import dal.daoImpl.AllergieDaoImpl;
 import dal.daoImpl.ClasseDaoImpl;
 import dal.daoImpl.ContactDaoImpl;
 import dal.daoImpl.EleveDaoImpl;
 import dal.daoImpl.MatiereDaoImpl;
 import dal.daoImpl.PersonneDaoImpl;
+import dal.daoImpl.ProfesseurDaoImpl;
 import dal.daoImpl.SuiviDaoImpl;
+import dal.daoImpl.VaccinDaoImpl;
 
 public class DAOFactory {
 	
@@ -153,5 +161,18 @@ public class DAOFactory {
     public SuiviDao getSuiviDao() {
         return new SuiviDaoImpl( this );
     }
+    
+    public AllergieDao getAllergieDao() {
+        return new AllergieDaoImpl( this );
+    }
+
+    public VaccinDao getVaccinDao() {
+        return new VaccinDaoImpl( this );
+    }
+
+    public ProfesseurDao getProfesseurDao() {
+        return new ProfesseurDaoImpl( this );
+    }
+    
 
 }

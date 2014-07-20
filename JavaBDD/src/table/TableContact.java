@@ -13,7 +13,7 @@ public class TableContact {
 	public static JTable getTableContact() {
 
 		int taille = 7;
-		ContactDaoImpl el = new ContactDaoImpl(new DAOFactory());
+		ContactDaoImpl el = (ContactDaoImpl) DAOFactory.getInstance().getContactDao();
 		ArrayList<Contact> listeContact = el.getAll();
 
 		JTable table = new JTable(listeContact.size(), taille);

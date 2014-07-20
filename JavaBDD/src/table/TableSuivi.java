@@ -13,7 +13,7 @@ public class TableSuivi {
 	public static JTable getTableSuivi() {
 		
 		int taille = 1;
-		SuiviDaoImpl el = new SuiviDaoImpl(new DAOFactory());
+		SuiviDaoImpl el = (SuiviDaoImpl) DAOFactory.getInstance().getSuiviDao();
 		ArrayList<Suivi> listeSuivi = el.getAll();
 
 		JTable table = new JTable(listeSuivi.size(), taille);

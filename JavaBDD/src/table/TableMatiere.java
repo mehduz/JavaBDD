@@ -12,7 +12,7 @@ public class TableMatiere {
 
 	public static JTable getTableMatiere() {
 		int taille = 1;
-		MatiereDaoImpl el = new MatiereDaoImpl(new DAOFactory());
+		MatiereDaoImpl el = (MatiereDaoImpl) DAOFactory.getInstance().getMatiereDao();
 		ArrayList<Matiere> listeMatiere = el.getAll();
 
 		JTable table = new JTable(listeMatiere.size(), taille);

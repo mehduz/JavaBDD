@@ -12,7 +12,7 @@ public class TableProfesseur {
 
 	public static JTable getTableProfesseur() {
 		int taille = 6;
-		ProfesseurDaoImpl el = new ProfesseurDaoImpl(new DAOFactory());
+		ProfesseurDaoImpl el = (ProfesseurDaoImpl) DAOFactory.getInstance().getProfesseurDao();
 		ArrayList<Professeur> listeProf = el.getAll();
 
 		JTable table = new JTable(listeProf.size(), taille);

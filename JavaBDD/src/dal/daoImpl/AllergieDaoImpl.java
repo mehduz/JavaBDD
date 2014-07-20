@@ -1,11 +1,12 @@
 package dal.daoImpl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.mysql.jdbc.PreparedStatement;
+
 
 import beans.Allergie;
 import beans.Vaccin;

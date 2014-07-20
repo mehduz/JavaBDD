@@ -10,7 +10,7 @@ public class TableEleve {
 
 	public static JTable getTableEleve() {
 		int taille = 15;
-		EleveDaoImpl el = new EleveDaoImpl(new DAOFactory());
+		EleveDaoImpl el = (EleveDaoImpl) DAOFactory.getInstance().getEleveDao();
 		ArrayList<Eleve> listeEleve = el.getAll();
 
 		JTable table = new JTable(listeEleve.size(), taille);

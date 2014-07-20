@@ -14,7 +14,7 @@ public class TableMedecin {
 
 	public static JTable getTableMedecin() {
 		int taille = 3;
-		MedecinDaoImpl el = new MedecinDaoImpl(new DAOFactory());
+		MedecinDaoImpl el = (MedecinDaoImpl) DAOFactory.getInstance().getMatiereDao();
 		ArrayList<Medecin> listeMedecin = el.getAll();
 
 		JTable table = new JTable(listeMedecin.size(), taille);

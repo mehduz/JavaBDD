@@ -17,7 +17,7 @@ public class TableClasse {
 	public static JTable getTableClasse() {
 		int taille = 1;
 
-		ClasseDaoImpl el = new ClasseDaoImpl(new DAOFactory());
+		ClasseDaoImpl el = (ClasseDaoImpl) DAOFactory.getInstance().getClasseDao();
 		ArrayList<Classe> listClasse = el.getAll();
 
 		JTable table = new JTable(listClasse.size(), taille);

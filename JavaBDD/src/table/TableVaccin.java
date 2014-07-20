@@ -12,7 +12,7 @@ public class TableVaccin {
 	public static JTable getTableVaccin() {
 		int taille = 2;
 
-		VaccinDaoImpl el = new VaccinDaoImpl(new DAOFactory());
+		VaccinDaoImpl el = (VaccinDaoImpl) DAOFactory.getInstance().getVaccinDao();
 		ArrayList<Vaccin> listeVaccin = el.getAll();
 
 		JTable table = new JTable(listeVaccin.size(), taille);
