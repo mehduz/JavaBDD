@@ -19,6 +19,9 @@ public class Suivi {
 
 	public Suivi() {
 		
+		this.matiere = new Matiere();
+		this.eleve = new Eleve();
+		
 	}
 	
 	
