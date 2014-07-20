@@ -461,7 +461,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 				textField_12.setText(table.getValueAt(x, 12).toString());
 				textField_13.setText(table.getValueAt(x, 13).toString());
 				//textField_6.setText(table.getValueAt(x, ).toString()); MOBILE ET FIXE A AJOUTER EN FIN DE TABLE
-				comboBox_1.setSelectedItem(table.getValueAt(x, 7).toString());
+				//comboBox_1.setSelectedItem(table.getValueAt(x, 7).toString());
 				//comboBox_2.setSelectedItem(table.getValueAt(x, 7).getClass().toString()); AJOUTER CLASSE
 			}
 		});
