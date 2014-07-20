@@ -11,8 +11,15 @@ import javax.swing.JTable;
 
 import org.junit.Test;
 
+import table.TableAllergie;
+import table.TableClasse;
+import table.TableContact;
 import table.TableEleve;
+import table.TableMatiere;
+import table.TableMedecin;
 import table.TableProfesseur;
+import table.TableSuivi;
+import table.TableVaccin;
 import beans.Eleve;
 import dal.DAOFactory;
 import dal.daoImpl.EleveDaoImpl;
@@ -25,11 +32,18 @@ public class TestDB {
 	    JFrame frame = new JFrame();
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
-	   /* JTable tableE = TableEleve.getTableEleve();
-	   // JTable tableP = TableProfesseur.getTableSuivi(6);
+	    JTable tableA = TableAllergie.getTableAllergie();
+	    JTable tableCl = TableClasse.getTableClasse();
+	    JTable tableCo = TableContact.getTableContact();
+	    JTable tableE = TableEleve.getTableEleve();
+	    JTable tableMa = TableMatiere.getTableMatiere();
+	    //JTable tableMe = TableMedecin.getMedecin();
+	    JTable tableP = TableProfesseur.getTableProfesseur();
+	    JTable tableS = TableSuivi.getTableSuivi();
+	    JTable tableV = TableVaccin.getTableVaccin();
 	    
-	    JScrollPane scrollPane = new JScrollPane(tableP);*/
-	    //frame.add(scrollPane, BorderLayout.CENTER);
+	    JScrollPane scrollPane = new JScrollPane(tableCl);
+	    frame.add(scrollPane, BorderLayout.CENTER);
 	    frame.setSize(932, 651);
 	    frame.setVisible(true);
 	    try {
