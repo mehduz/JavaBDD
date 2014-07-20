@@ -261,7 +261,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		JComboBox <String> comboBox = new JComboBox();
 		for (Eleve e : ListeEleve.getListeEleve()) {
-			comboBox.addItem((e.getNom()) + e.getPrenom());
+			comboBox.addItem((e.getNom()) + " " + e.getPrenom());
 		}
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 130, 20);
@@ -275,7 +275,8 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		textField_2 = new JTextField();
 		textField_2.setName("");
-		textField_2.setEnabled(false);
+		textField_2.setText(comboBox.getSelectedItem().toString());
+		textField_2.setEnabled(true);
 		textField_2.setColumns(10);
 		textField_2.setBounds(160, 192, 130, 20);
 		getContentPane().add(textField_2);

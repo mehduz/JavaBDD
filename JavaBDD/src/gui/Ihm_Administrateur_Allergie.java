@@ -26,6 +26,10 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 
+import liste.ListeAllergie;
+import liste.ListeClasse;
+import beans.Allergie;
+import beans.Classe;
 import communication.ResponseEvent;
 import communication.ResponseListener;
 import table.TableAllergie;
@@ -63,7 +67,10 @@ public class Ihm_Administrateur_Allergie extends JFrame implements ResponseListe
 		
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox <String> comboBox = new JComboBox();
+		for (Allergie a : ListeAllergie.getListeAllergie()) {
+			comboBox.addItem(a.getLibelle());
+		}
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 280, 25);
 		getContentPane().add(comboBox);

@@ -24,6 +24,10 @@ import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
+import liste.ListeClasse;
+import liste.ListeMatiere;
+import beans.Classe;
+import beans.Matiere;
 import communication.ResponseEvent;
 import communication.ResponseListener;
 
@@ -48,11 +52,17 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 		getContentPane().setLayout(null);
 		
 		JComboBox comboBox_1 = new JComboBox();
+		for (Matiere m : ListeMatiere.getListeMatiere()) {
+			comboBox_1.addItem(m.getNom_matiere());
+		}
 		comboBox_1.setMaximumRowCount(10);
 		comboBox_1.setBounds(6, 273, 280, 25);
 		getContentPane().add(comboBox_1);
 		
 		JComboBox comboBox = new JComboBox();
+		for (Classe c : ListeClasse.getListeClasse()) {
+			comboBox.addItem(c.getNom_classe());
+		}
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(6, 190, 280, 25);
 		getContentPane().add(comboBox);
