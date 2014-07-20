@@ -17,6 +17,8 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
@@ -44,6 +46,7 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTable table;
+	private JComboBox <String> comboBox;
 
 	/**
 	 * Create the frame.
@@ -67,10 +70,11 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 		
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
-		JComboBox <String> comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		for (Vaccin v : ListeVaccin.getListeVaccin()) {
 			comboBox.addItem(v.getLibelle());
 		}
+		comboBox.setSelectedItem(null);
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 280, 25);
 		getContentPane().add(comboBox);
@@ -83,7 +87,7 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 		
 		textField_2 = new JTextField();
 		textField_2.setName("");
-		textField_2.setEnabled(false);
+		textField_2.setEnabled(true);
 		textField_2.setColumns(10);
 		textField_2.setBounds(10, 245, 280, 25);
 		getContentPane().add(textField_2);
@@ -248,6 +252,14 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 		lblNewLabel_3.setIcon(new ImageIcon(Ihm_Eleve.class.getResource("/gui/ressources/fond_principal.jpg")));
 		lblNewLabel_3.setBounds(300, 0, 974, 691);
 		getContentPane().add(lblNewLabel_3);
+		
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				int x = comboBox.getSelectedIndex();
+				textField_2.setText(table.getValueAt(x, 1).toString());
+				repaint();
+			}
+		});
 
 	}
 	

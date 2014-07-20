@@ -55,6 +55,7 @@ public class Ihm_Administrateur_Classe extends JFrame implements ResponseListene
 		for (Classe c : ListeClasse.getListeClasse()) {
 			comboBox.addItem(c.getNom_classe());
 		}
+		comboBox.setSelectedItem(null);
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 280, 25);
 		getContentPane().add(comboBox);

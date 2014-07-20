@@ -269,6 +269,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		for (Eleve e : ListeEleve.getListeEleve()) {
 			comboBox.addItem((e.getNom()) + " " + e.getPrenom());
 		}
+		comboBox.setSelectedItem(null);
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 130, 20);
 		getContentPane().add(comboBox);
@@ -454,15 +455,16 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 				textField_3.setText(table.getValueAt(x, 1).toString());
 				textField_4.setText(table.getValueAt(x, 3).toString());
 				textField_5.setText(table.getValueAt(x, 4).toString());
+				textField_6.setText(table.getValueAt(x, 15).toString());
 				textField_7.setText(table.getValueAt(x, 6).toString());
 				textField_9.setText(table.getValueAt(x, 5).toString());
 				textField_10.setText(table.getValueAt(x, 9).toString());
 				textField_11.setText(table.getValueAt(x, 11).toString());
 				textField_12.setText(table.getValueAt(x, 12).toString());
 				textField_13.setText(table.getValueAt(x, 13).toString());
-				//textField_6.setText(table.getValueAt(x, ).toString()); MOBILE ET FIXE A AJOUTER EN FIN DE TABLE
-				//comboBox_1.setSelectedItem(table.getValueAt(x, 7).toString());
-				//comboBox_2.setSelectedItem(table.getValueAt(x, 7).getClass().toString()); AJOUTER CLASSE
+				textField_8.setText(table.getValueAt(x, 16).toString());
+				comboBox_1.setSelectedItem(table.getValueAt(x, 7).toString());
+				//POUR L'AJOUT DES CLASSEScomboBox_2.setSelectedItem(table.getValueAt(x, 17).toString());
 				repaint();
 			}
 		});
