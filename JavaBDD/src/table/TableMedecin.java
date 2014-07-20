@@ -1,14 +1,18 @@
 package table;
 
 import java.util.ArrayList;
+
 import javax.swing.JTable;
+
+import beans.Medecin;
 import beans.Suivi;
 import dal.DAOFactory;
+import dal.daoImpl.MedecinDaoImpl;
 import dal.daoImpl.SuiviDaoImpl;
 
 public class TableMedecin {
 
-	/*public static JTable getTableMedecin() {
+	public static JTable getTableMedecin() {
 		int taille = 3;
 		MedecinDaoImpl el = new MedecinDaoImpl(new DAOFactory());
 		ArrayList<Medecin> listeMedecin = el.getAll();
@@ -26,7 +30,7 @@ public class TableMedecin {
 			for (int actualColumn = 0; actualColumn <= (taille - 1); actualColumn++) {
 				switch (actualColumn) {
 				case 0:
-					table.setValueAt(listeMedecin.get(actualRow).getID_medecin,
+					table.setValueAt(listeMedecin.get(actualRow).getID_medecin(),
 							actualRow, actualColumn);
 					break;
 				case 1:
@@ -42,6 +46,6 @@ public class TableMedecin {
 		}
 
 		return table;
-	}*/
+	}
 
 }

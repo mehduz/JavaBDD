@@ -37,12 +37,12 @@ public class TestDB {
 	    JTable tableCo = TableContact.getTableContact();
 	    JTable tableE = TableEleve.getTableEleve();
 	    JTable tableMa = TableMatiere.getTableMatiere();
-	    //JTable tableMe = TableMedecin.getMedecin();
+	    JTable tableMe = TableMedecin.getTableMedecin();
 	    JTable tableP = TableProfesseur.getTableProfesseur();
 	    JTable tableS = TableSuivi.getTableSuivi();
 	    JTable tableV = TableVaccin.getTableVaccin();
 	    
-	    JScrollPane scrollPane = new JScrollPane(tableCl);
+	    JScrollPane scrollPane = new JScrollPane(tableMe);
 	    frame.add(scrollPane, BorderLayout.CENTER);
 	    frame.setSize(932, 651);
 	    frame.setVisible(true);

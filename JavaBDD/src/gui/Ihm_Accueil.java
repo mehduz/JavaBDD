@@ -1,7 +1,5 @@
 package gui;
 
-import server.*;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -27,7 +25,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import javax.swing.JPasswordField;
 
 public class Ihm_Accueil extends JFrame {

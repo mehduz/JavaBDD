@@ -1,9 +1,11 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
@@ -21,8 +23,11 @@ import java.io.IOException;
 import java.net.URI;
 
 import javax.swing.SwingConstants;
-import javax.swing.JPanel;
 import javax.swing.JComboBox;
+
+import table.TableEleve;
+
+import javax.swing.JTable;
 
 public class Ihm_Administrateur_Eleve extends JFrame {
 
@@ -44,6 +49,7 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 	private JTextField textField_11;
 	private JTextField textField_12;
 	private JTextField textField_13;
+	private JTable table;
 
 	/**
 	 * Create the frame.
@@ -56,9 +62,20 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
+		table = TableEleve.getTableEleve();
+		table.setOpaque(false);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(314, 11, 950, 669);
+		
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
+		
 		JButton btnValider = new JButton("Valider");
-		btnValider.setFont(new Font("Arial", Font.BOLD, 12));
-		btnValider.setBounds(190, 442, 75, 23);
+		btnValider.setFont(new Font("Arial", Font.BOLD, 10));
+		btnValider.setBounds(225, 435, 70, 23);
 		getContentPane().add(btnValider);
 		
 		JLabel lblClasse = new JLabel("Classe");
@@ -79,18 +96,18 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		getContentPane().add(lblTelMobile);
 		
 		JButton btnPhoto = new JButton("Photo");
-		btnPhoto.setFont(new Font("Arial", Font.BOLD, 12));
-		btnPhoto.setBounds(190, 415, 75, 23);
+		btnPhoto.setFont(new Font("Arial", Font.BOLD, 10));
+		btnPhoto.setBounds(150, 435, 70, 23);
 		getContentPane().add(btnPhoto);
 		
 		textField_13 = new JTextField();
 		textField_13.setName("");
 		textField_13.setEnabled(false);
 		textField_13.setColumns(10);
-		textField_13.setBounds(94, 436, 70, 20);
+		textField_13.setBounds(65, 436, 70, 20);
 		getContentPane().add(textField_13);
 		
-		JLabel lblCodePostale = new JLabel("Code postal");
+		JLabel lblCodePostale = new JLabel("Cpostal");
 		lblCodePostale.setForeground(Color.WHITE);
 		lblCodePostale.setFont(new Font("Arial", Font.BOLD, 12));
 		lblCodePostale.setBounds(10, 416, 74, 20);
@@ -100,13 +117,13 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		textField_12.setName("");
 		textField_12.setEnabled(false);
 		textField_12.setColumns(10);
-		textField_12.setBounds(10, 436, 70, 20);
+		textField_12.setBounds(10, 436, 50, 20);
 		getContentPane().add(textField_12);
 		
 		JLabel lblVille = new JLabel("Ville");
 		lblVille.setForeground(Color.WHITE);
 		lblVille.setFont(new Font("Arial", Font.BOLD, 12));
-		lblVille.setBounds(94, 416, 70, 20);
+		lblVille.setBounds(65, 416, 70, 20);
 		getContentPane().add(lblVille);
 		
 		JLabel lblRue = new JLabel("Rue");
@@ -302,10 +319,6 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		btnAjouter.setBounds(10, 143, 282, 23);
 		getContentPane().add(btnAjouter);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(322, 20, 932, 651);
-		getContentPane().add(panel);
-		
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(8, 577, 284, 2);
 		getContentPane().add(separator_4);
@@ -420,5 +433,4 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		textField.setText(login);
 		textField_1.setText(profil);
 	}
-	
 }
