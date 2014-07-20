@@ -132,6 +132,7 @@ public class VaccinDaoImpl extends SuperDaoImpl implements VaccinDao {
 		Vaccin vaccin = new Vaccin();
 
 		vaccin.setLibelle(resultSet.getString("Libelle"));
+		vaccin.setID_vaccin(resultSet.getInt("ID_vaccin"));
 		
 	    return vaccin;
 	}

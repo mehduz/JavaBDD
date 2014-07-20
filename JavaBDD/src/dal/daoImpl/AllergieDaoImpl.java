@@ -63,6 +63,8 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 		Allergie allergie = new Allergie();
 
 		allergie.setLibelle(resultSet.getString("Libelle"));
+		allergie.setID_allergie(resultSet.getInt("ID_allergie"));
+		
 		
 	    return allergie;
 	}

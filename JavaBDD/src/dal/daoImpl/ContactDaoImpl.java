@@ -139,6 +139,7 @@ public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 	contact.setTel_mobile(resultSet.getInt("Tel_mobile"));
 	contact.setID_contact(resultSet.getInt("ID_contact"));
 	contact.setID_personne(resultSet.getInt("ID_personne"));
+	contact.setAdresse(resultSet.getString("Adresse_contact"));
 	
 	return contact;
 	
