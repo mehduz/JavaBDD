@@ -64,7 +64,7 @@ public class SuiviDaoImpl extends SuperDaoImpl implements SuiviDao {
 	        throw new DAOException( e );
 	    } finally {
 	        DAODataBaseManager.fermeturesSilencieuses( valeursAutoGenerees, preparedStatement, connexion );
-	    }
+	    }	
 
 	}
 

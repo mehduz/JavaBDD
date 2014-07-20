@@ -3,10 +3,11 @@ package dal.daoImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.sql.PreparedStatement;
 
+import beans.Eleve;
 import beans.Personne;
+import beans.Professeur;
 import dal.DAODataBaseManager;
 import dal.DAOException;
 import dal.DAOFactory;
@@ -23,7 +24,7 @@ public class PersonneDaoImpl extends SuperDaoImpl implements PersonneDao {
 	
 	
 	final static String SQL_INSERT_PERSONNE = "INSERT INTO personne (Nom, Prenom, Email, Tel_domicile, Tel_mobile) VALUES (?, ?, ?, ?, ?)";
-	
+	final static String SQL_SELECT_PERSONNE_PAR_ID = "SELECT * FROM Personne where ID_personne = ?";
 	
 	public PersonneDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -79,8 +80,54 @@ public class PersonneDaoImpl extends SuperDaoImpl implements PersonneDao {
 
 	@Override
 	public Personne trouver(int idPersonne) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+
+
+		Connection connexion = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+	    Personne personne = null;
+
+	    try {
+	        /* Récupération d'une connexion depuis la Factory */
+	        connexion = daoFactory.getConnection();
+	        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_PERSONNE_PAR_ID, false, idPersonne);
+	        resultSet = preparedStatement.executeQuery();
+	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+	        if ( resultSet.next() ) {
+
+	        	personne = map( resultSet );
+	        		   
+	        	  
+	        	
+	        	
+	        }
+	    } catch ( SQLException e ) {
+	        throw new DAOException( e );
+	    } finally {
+	    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+	    }
+
+	    return personne;
+		
+		
+	}
+	
+	/*
+	 * Simple méthode utilitaire permettant de faire la correspondance (le
+	 * mapping) entre une ligne issue de la table des utilisateurs (un
+	 * ResultSet) et un bean Utilisateur.
+	 */
+	private static Personne map( ResultSet resultSet ) throws SQLException {
+		Personne personne = new Personne();
+
+		personne.setEmail(resultSet.getString("Email"));
+		personne.setID_personne(resultSet.getInt("ID_personne"));
+		personne.setNom(resultSet.getString("Nom"));
+		personne.setPrenom(resultSet.getString("Prenom"));
+		personne.setTel_domicile(resultSet.getInt("Tel_domicile"));
+		personne.setTel_mobile(resultSet.getInt("Tel_mobile"));
+
+	    return personne;
 	}
 
 	
