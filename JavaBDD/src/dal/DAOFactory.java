@@ -115,7 +115,7 @@ public class DAOFactory {
 			config.setPassword(password);
 			/* Paramétrage de la taille du pool */
 			config.setMinConnectionsPerPartition(5);
-			config.setMaxConnectionsPerPartition(2);
+			config.setMaxConnectionsPerPartition(10);
 			config.setPartitionCount(2);
 			/* Création du pool à partir de la configuration, via l'objet BoneCP */
 			connectionPool = new BoneCP(config);

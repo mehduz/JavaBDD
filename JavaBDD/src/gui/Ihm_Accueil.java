@@ -1,7 +1,5 @@
 package gui;
 
-import server.*;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -223,9 +221,14 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 				Ihm_Eleve frameEleve = new Ihm_Eleve();
 				frameEleve.setVisible(true);
 				break;
+				
 			case PROF :
 				break;
+				
 			case ADMIN :
+				frameAccueil.setVisible(false);
+				Ihm_Administrateur frameAdmin = new Ihm_Administrateur();
+				frameAdmin.setVisible(true);
 				break;
 		}
 	}

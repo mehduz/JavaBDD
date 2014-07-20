@@ -32,9 +32,8 @@ public class Client {
 		try {
 			serverPort = 65330;
 			listeners = new EventListenerList();
-			byte [] address = {(byte) 192,(byte) 168,1,101};
-			serverAddr = InetAddress.getByAddress(address);
-		} catch (UnknownHostException e) {
+			serverAddr = InetAddress.getByName("192.168.1.101");
+		} catch (Exception e) {
 			LOGGER.severe("Client not created, fatal error ! :"  + e);
 			serverAddr = InetAddress.getLoopbackAddress();
 		}
@@ -106,7 +105,7 @@ public class Client {
 		}
 
 	}
-	
+	 
 	public void addListener(ResponseListener rp){
 		listeners.add(ResponseListener.class, rp);
 	}

@@ -11,7 +11,9 @@ public class UniversityManager {
 	public static void main(String[] args){
 	
 		Server server = new Server();
-		new Thread(server).start();
+		Thread t  = new Thread(server);
+		LOGGER.info("Launching server");
+		t.start();
 
 		/*try {
 		    Thread.sleep(20 * 1000);
