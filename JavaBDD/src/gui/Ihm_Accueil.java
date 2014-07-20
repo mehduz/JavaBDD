@@ -36,7 +36,7 @@ import java.nio.charset.Charset;
 import java.util.EventListener;
 import java.util.logging.Logger;
 
-public class Ihm_Accueil extends JFrame implements ResponseListener{
+public class Ihm_Accueil extends JFrame implements ResponseListener {
 
 	/**
 	 * 

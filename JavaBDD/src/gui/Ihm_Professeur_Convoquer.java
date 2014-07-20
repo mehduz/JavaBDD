@@ -23,9 +23,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
+
 import javax.swing.JComboBox;
 
-public class Ihm_Professeur_Convoquer extends JFrame {
+import communication.ResponseEvent;
+import communication.ResponseListener;
+
+public class Ihm_Professeur_Convoquer extends JFrame implements ResponseListener {
 
 	/**
 	 * 
@@ -233,6 +237,12 @@ public class Ihm_Professeur_Convoquer extends JFrame {
 	public void setPanelIdentification(String login, String profil) {
 		textField.setText(login);
 		textField_1.setText(profil);
+	}
+
+	@Override
+	public void onResponseReceived(ResponseEvent re) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
