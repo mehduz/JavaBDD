@@ -1,16 +1,17 @@
 package server;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.ObjectInputStream;
-import java.net.ServerSocket;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Logger;
 
+
 import communication.Dispatcher;
 import communication.Message;
+import communication.Reponse;
 
 public class WorkerRunnable implements Runnable {
 
@@ -26,30 +27,25 @@ public class WorkerRunnable implements Runnable {
 	@Override
 	public void run(){
 		
-		Message msg = null;
-		BufferedInputStream bis = null;
+		Message msg = null; 
 		ObjectInputStream ois = null;
+		ObjectOutputStream oos = null;
 		
-		try{
-			
+		try{ 
 			InputStream is = clientSocket.getInputStream();
-			
-			while(clientSocket.isConnected()){
-				if(is.available() == 0) continue;
-				ois = new ObjectInputStream(is);
-				msg = (Message)ois.readObject();
-				ois.close();
-				Dispatcher.dispatch(msg);
-			}
+			OutputStream os = clientSocket.getOutputStream();
+			ois = new ObjectInputStream(is);
+			oos = new ObjectOutputStream(os);
+			msg = (Message)ois.readObject();
+			Reponse reponse = Dispatcher.dispatch(msg);
+			oos.writeObject(reponse);
 		}
-		
-		catch(IOException | ClassNotFoundException e){
+		catch(Exception e){
 			LOGGER.severe("erreur at reading message : " + e);
 		}
-		
-		Thread.currentThread().interrupt();
-		return;
-		
+		finally{
+			Thread.currentThread().interrupt();
+		}
 	}
 
 }
