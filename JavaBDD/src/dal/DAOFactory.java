@@ -114,8 +114,13 @@ public class DAOFactory {
 			config.setUsername(username);
 			config.setPassword(password);
 			/* Paramétrage de la taille du pool */
+<<<<<<< HEAD
+			config.setMinConnectionsPerPartition(5);
+			config.setMaxConnectionsPerPartition(10);
+=======
 			config.setMinConnectionsPerPartition(2);
 			config.setMaxConnectionsPerPartition(5);
+>>>>>>> branch 'master' of https://github.com:443/mehduz/JavaBDD.git
 			config.setPartitionCount(2);
 			/* Création du pool à partir de la configuration, via l'objet BoneCP */
 			connectionPool = new BoneCP(config);

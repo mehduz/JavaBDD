@@ -32,8 +32,12 @@ public class Client {
 		try {
 			serverPort = 65330;
 			listeners = new EventListenerList();
+<<<<<<< HEAD
+			serverAddr = InetAddress.getByName("192.168.1.101");
+=======
 			serverAddr = InetAddress.getByName("master-PC");
 			System.out.println("");
+>>>>>>> branch 'master' of https://github.com:443/mehduz/JavaBDD.git
 		} catch (Exception e) {
 			LOGGER.severe("Client not created, fatal error ! :"  + e);
 			serverAddr = InetAddress.getLoopbackAddress();
@@ -106,7 +110,7 @@ public class Client {
 		}
 
 	}
-	
+	 
 	public void addListener(ResponseListener rp){
 		listeners.add(ResponseListener.class, rp);
 	}
