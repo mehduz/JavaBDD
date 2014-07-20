@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 
 import java.awt.Font;
 import java.awt.Dimension;
@@ -46,6 +45,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 	private JTextField textField;
 	private JPasswordField textField_1;
 	private static Window frameAccueil;
+	public Ihm_Accueil currentInstance = this;
 
 	/**
 	 * Launch the application.
@@ -61,7 +61,6 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 				frameAccueil.setVisible(true);
 			}
 		});
-
 	}
 
 	/**
@@ -145,27 +144,6 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 			@Override
 			public void mousePressed(MouseEvent e) {
 
-				frameAccueil.setVisible(false);
-
-				if ("Simon".equals(textField.getText())) {
-					Ihm_Eleve frameEleve = new Ihm_Eleve();
-					frameEleve.setVisible(true);
-					frameEleve.setPanelIdentification(textField.getText(),
-							"Élève");
-
-				} else if ("Yann".equals(textField.getText())) {
-					Ihm_Professeur frameProfesseur = new Ihm_Professeur();
-					frameProfesseur.setVisible(true);
-					frameProfesseur.setPanelIdentification(textField.getText(),
-							"Professeur");
-
-				} else if ("Mehdi".equals(textField.getText())) {
-					Ihm_Administrateur frameAdministrateur = new Ihm_Administrateur();
-					frameAdministrateur.setVisible(true);
-					frameAdministrateur.setPanelIdentification(
-							textField.getText(), "Administrateur");
-				}
-
 				if ("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null,	"Veuillez saisir votre identifiant et mot de passe.",
 												"Erreur de connexion", JOptionPane.ERROR_MESSAGE);
@@ -178,7 +156,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 						client.sendMessage(msgIdentification);
 						client.disconnect();
 					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null,	"Erreur de connexion : " + e1, "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
+						LOGGER.severe(LOGGER.getName()+ " Erreur de connexion : " + e1);
 					}
 				}
 
@@ -231,13 +209,14 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 
 	@Override
 	public void onResponseReceived(ResponseEvent re) {
-		Reponse r = re.getR();
+		Reponse r = (Reponse) re.getSource();
 		if(!r.getType().equals(ReponseIdentification.class.getName()))return;
 		ReponseIdentification ri = (ReponseIdentification)r;
 		if(!ri.isLogged()){
-			JOptionPane.showMessageDialog(null, "Informations de login incorrectes", "Utilisateur non reconnu", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this,"Informations de login incorrectes", "Utilisateur non reconnu", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
+		
 		Personne p = ri.getPersonne();
 		GlobalProperties.registerProperty("LOGGED_USER", p);
 		
@@ -252,7 +231,5 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 			case ADMIN :
 				break;
 		}
-		
-		
 	}
 }
