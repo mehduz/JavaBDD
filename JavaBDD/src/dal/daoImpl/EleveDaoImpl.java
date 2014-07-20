@@ -152,7 +152,7 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 	 * mapping) entre une ligne issue de la table des utilisateurs (un
 	 * ResultSet) et un bean Utilisateur.
 	 */
-	private static Eleve map( ResultSet resultSet ) throws SQLException {
+	public static Eleve map( ResultSet resultSet ) throws SQLException {
 		Eleve eleve = new Eleve();
 
 		eleve.setCode_postal(resultSet.getInt("Code_postal"));

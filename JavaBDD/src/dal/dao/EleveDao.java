@@ -1,4 +1,6 @@
 package dal.dao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dal.DAOException;
@@ -13,13 +15,13 @@ public interface EleveDao {
 	 Eleve trouver( int idPersonne ) throws DAOException;
 
 
-	  ArrayList<Eleve> getAll() throws DAOException ;
+	 ArrayList<Eleve> getAll() throws DAOException ;
 	 
-	  ArrayList<Eleve> getAllParClasse(String nomClasse);
+	 ArrayList<Eleve> getAllParClasse(String nomClasse);
 
 	 ArrayList<Eleve> getAllParMatiere(String nomMatiere) throws DAOException;
 	
 	 ArrayList<Eleve> getAllParIdProf(int idProf) throws DAOException;
-	
+
 	 
 } 
