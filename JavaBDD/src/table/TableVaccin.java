@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import beans.Vaccin;
 import dal.DAOFactory;
-import dal.daoImpl.SuiviDaoImpl;
 import dal.daoImpl.VaccinDaoImpl;
 
 public class TableVaccin {

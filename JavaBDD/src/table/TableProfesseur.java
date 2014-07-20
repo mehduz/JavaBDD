@@ -3,10 +3,8 @@ package table;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import beans.Professeur;
-import beans.Suivi;
 import dal.DAOFactory;
 import dal.daoImpl.ProfesseurDaoImpl;
-import dal.daoImpl.SuiviDaoImpl;
 
 public class TableProfesseur {
 

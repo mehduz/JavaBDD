@@ -79,7 +79,7 @@ public class PersonneDaoImpl extends SuperDaoImpl implements PersonneDao {
 	}
 
 	@Override
-	public Personne trouver(int idPersonne) throws DAOException {
+	public Personne trouver(long idPersonne) throws DAOException {
 
 
 		Connection connexion = null;

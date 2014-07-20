@@ -119,7 +119,7 @@ public class Ihm_Administrateur_AjoutModificationSupressionBDD extends JFrame im
 			@Override
 			public void mousePressed(MouseEvent e) {
 				setVisible(false);
-				Ihm_Administrateur_Matierre frameAdministrateur_Matierre = new Ihm_Administrateur_Matierre();
+				Ihm_Administrateur_Matiere frameAdministrateur_Matierre = new Ihm_Administrateur_Matiere();
 				frameAdministrateur_Matierre.setVisible(true);
 			}
 		});

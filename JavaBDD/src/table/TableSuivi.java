@@ -2,10 +2,8 @@ package table;
 
 import java.util.ArrayList;
 import javax.swing.JTable;
-import beans.Eleve;
 import beans.Suivi;
 import dal.DAOFactory;
-import dal.daoImpl.EleveDaoImpl;
 import dal.daoImpl.SuiviDaoImpl;
 
 public class TableSuivi {

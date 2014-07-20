@@ -4,13 +4,9 @@ import java.util.ArrayList;
 
 import javax.swing.JTable;
 
-import beans.Allergie;
 import beans.Classe;
 import dal.DAOFactory;
-import dal.daoImpl.AllergieDaoImpl;
 import dal.daoImpl.ClasseDaoImpl;
-import dal.daoImpl.SuiviDaoImpl;
-import dal.daoImpl.VaccinDaoImpl;
 
 public class TableClasse {
 
