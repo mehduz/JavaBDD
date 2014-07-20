@@ -49,9 +49,6 @@ public class AuthenticationDaoImpl extends SuperDaoImpl implements Authenticatio
 		    
 			return auth;
 
-			
-		
-		
 	}
 
 	private static Authentication map( ResultSet resultSet ) throws SQLException {
