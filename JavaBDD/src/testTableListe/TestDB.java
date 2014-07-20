@@ -20,8 +20,6 @@ import table.TableContact;
 import table.TableEleve;
 import table.TableMatiere;
 import table.TableMedecin;
-import table.TableProfesseur;
-import table.TableSuivi;
 import table.TableVaccin;
 
 public class TestDB {

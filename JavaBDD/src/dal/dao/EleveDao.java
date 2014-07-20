@@ -13,14 +13,13 @@ public interface EleveDao {
 	 Eleve trouver( int idPersonne ) throws DAOException;
 
 
-	 public ArrayList<Eleve> getAll() throws DAOException ;
+	  ArrayList<Eleve> getAll() throws DAOException ;
 	 
-	 public ArrayList<Eleve> getAllParClasse(String nomClasse);
-	 
-	 public ArrayList<Vaccin> getVaccinsEleve(int idPersonne) throws DAOException;
-	 
-	 public ArrayList<Allergie> getAllergiesEleve(int idPersonne) throws DAOException;
+	  ArrayList<Eleve> getAllParClasse(String nomClasse);
 
-	public ArrayList<Eleve> getAllParMatiere(String nomMatiere);
+	 ArrayList<Eleve> getAllParMatiere(String nomMatiere) throws DAOException;
+	
+	 ArrayList<Eleve> getAllParIdProf(int idProf) throws DAOException;
+	
 	 
 } 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 
 
+
 import beans.Allergie;
 import beans.Vaccin;
 import dal.DAODataBaseManager;
@@ -21,6 +22,8 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 	final static String SQL_INSERT_ALLERGIE = "INSERT INTO allergies (Libelle) VALUES (?)";
 	final static String SQL_SELECT_ALLERGIE_PAR_LIBELLE = "SELECT * FROM allergies where libelle = ?";
 	final static String SQL_SELECT_ALL = "SELECT * FROM allergies";
+	private static final String SQL_SELECT_ALLERGIE_ELEVE = "SELECT Libelle, Allergies.ID_allergie from Allergies, Allergique where ID_personne = ? AND Allergies.ID_allergie = Allergique.ID_allergie"; 
+		
 	
 	public AllergieDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -139,6 +142,40 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 		    } finally {
 		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
 		    }
+	}
+	
+	public ArrayList<Allergie> getAllParEleve(int idPersonne) {
+		
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Allergie allergie = null;
+		    ArrayList<Allergie> listeAllergies = new ArrayList<Allergie>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALLERGIE_ELEVE, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  allergie = map( resultSet );
+		        		  listeAllergies.add(allergie);
+		        		   
+		        	  }
+		        	
+		        	return listeAllergies;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+			
+		
+		
 	}
 	
 	

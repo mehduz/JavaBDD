@@ -27,7 +27,9 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 			 " ID_contact, ID_prof) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	 private static final String SQL_SELECT_ELEVE_MATIERE = "SELECT * FROM eleve, matieres";
 	 private static final String SQL_SELECT_ALL_PAR_MATIERE = "SELECT DISTINCT ID_personne FROM suivi where Nom_matiere = ?";
-
+	 private static final String SQL_SELECT_ALL_PAR_ID_PROF = "SELECT * FROM Eleve, Personne where ID_prof = ? AND Eleve.ID_personne = Personne.ID_personne";
+	 
+	 
 	 public EleveDaoImpl(DAOFactory daoFactory) {
 			super(daoFactory);
 			// TODO Auto-generated constructor stub
@@ -243,71 +245,40 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 		
 	}
 	
-	@Override
-	public ArrayList<Vaccin> getVaccinsEleve(int idPersonne)
-			throws DAOException {
-		
-		 Connection connexion = null;
-		    PreparedStatement preparedStatement = null;
-		    ResultSet resultSet = null;
-		    Vaccin vaccin = null;
-		    ArrayList<Vaccin> listeVaccins = new ArrayList<Vaccin>();
-		    
-		    try {
-		        /* Récupération d'une connexion depuis la Factory */
-		        connexion = daoFactory.getConnection();
-		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL_PAR_CLASSE, false);
-		        resultSet = preparedStatement.executeQuery();
-		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
-		  
-		        	  while ( resultSet.next() ) {
-		        		
-		        		  vaccin = VaccinDaoImpl.map( resultSet );
-		        		  listeVaccins.add(vaccin);
-		        		   
-		        	  }
-		        	
-		        	return listeVaccins;
-		        
-		    } catch ( SQLException e ) {
-		        throw new DAOException( e );
-		    } finally {
-		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
-		    }
-	}
 
-	@Override
-	public ArrayList<Allergie> getAllergiesEleve(int idPersonne)
-			throws DAOException {
-		
+	public ArrayList<Eleve> getAllParIdProf(int idProf) throws DAOException {
+
 		 Connection connexion = null;
 		    PreparedStatement preparedStatement = null;
 		    ResultSet resultSet = null;
-		    Allergie allergies = null;
-		    ArrayList<Allergie> listeAllergies = new ArrayList<Allergie>();
+		    Eleve eleve = null;
+		    ArrayList<Eleve> listeEleves = new ArrayList<Eleve>();
 		    
 		    try {
 		        /* Récupération d'une connexion depuis la Factory */
 		        connexion = daoFactory.getConnection();
-		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL_PAR_CLASSE, false);
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL_PAR_ID_PROF, false, idProf);
 		        resultSet = preparedStatement.executeQuery();
 		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
 		  
 		        	  while ( resultSet.next() ) {
 		        		
-		        		  allergies = AllergieDaoImpl.map( resultSet );
-		        		  listeAllergies.add(allergies);
+		        		  eleve = map( resultSet );
+		        		  listeEleves.add(eleve);
 		        		   
 		        	  }
 		        	
-		        	return listeAllergies;
+		        	return listeEleves;
 		        
 		    } catch ( SQLException e ) {
 		        throw new DAOException( e );
 		    } finally {
 		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
 		    }
+		
 	}
+		
+	
 
 
 }	

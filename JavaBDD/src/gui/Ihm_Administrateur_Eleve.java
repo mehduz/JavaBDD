@@ -57,6 +57,8 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 	private JTextField textField_13;
 	private JTable table;
 	private JComboBox <String> comboBox;
+	private JComboBox <String> comboBox_1;
+	private JComboBox <String> comboBox_2;
 	
 
 	/**
@@ -97,7 +99,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		lblClasse.setBounds(10, 295, 130, 20);
 		getContentPane().add(lblClasse);
 		
-		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2 = new JComboBox();
 		comboBox_2.setMaximumRowCount(10);
 		comboBox_2.setBounds(10, 315, 184, 20);
 		getContentPane().add(comboBox_2);
@@ -171,7 +173,9 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		lblSexe.setBounds(161, 335, 130, 20);
 		getContentPane().add(lblSexe);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1 = new JComboBox();
+		comboBox_1.addItem("H");
+		comboBox_1.addItem("F");
 		comboBox_1.setMaximumRowCount(10);
 		comboBox_1.setBounds(161, 356, 130, 20);
 		getContentPane().add(comboBox_1);
@@ -262,13 +266,6 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		getContentPane().add(lblAjouterModifier_1);
 		
 		comboBox = new JComboBox();
-		comboBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				int x = comboBox.getSelectedIndex();
-				textField_2.setText((table.getValueAt(x, 0).toString()));			
-			}
-		});
-		
 		for (Eleve e : ListeEleve.getListeEleve()) {
 			comboBox.addItem((e.getNom()) + " " + e.getPrenom());
 		}
@@ -284,7 +281,6 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		
 		textField_2 = new JTextField();
 		textField_2.setName("");
-		textField_2.setText(comboBox.getSelectedItem().toString());
 		textField_2.setEnabled(true);
 		textField_2.setColumns(10);
 		textField_2.setBounds(160, 192, 130, 20);
@@ -450,6 +446,25 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		lblNewLabel_3.setIcon(new ImageIcon(Ihm_Eleve.class.getResource("/gui/ressources/fond_principal.jpg")));
 		lblNewLabel_3.setBounds(300, 0, 974, 691);
 		getContentPane().add(lblNewLabel_3);
+		
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				int x = comboBox.getSelectedIndex();
+				textField_2.setText(table.getValueAt(x, 0).toString());
+				textField_3.setText(table.getValueAt(x, 1).toString());
+				textField_4.setText(table.getValueAt(x, 3).toString());
+				textField_5.setText(table.getValueAt(x, 4).toString());
+				textField_7.setText(table.getValueAt(x, 6).toString());
+				textField_9.setText(table.getValueAt(x, 5).toString());
+				textField_10.setText(table.getValueAt(x, 9).toString());
+				textField_11.setText(table.getValueAt(x, 11).toString());
+				textField_12.setText(table.getValueAt(x, 12).toString());
+				textField_13.setText(table.getValueAt(x, 13).toString());
+				//textField_6.setText(table.getValueAt(x, ).toString()); MOBILE ET FIXE A AJOUTER EN FIN DE TABLE
+				comboBox_1.setSelectedItem(table.getValueAt(x, 7).toString());
+				//comboBox_2.setSelectedItem(table.getValueAt(x, 7).getClass().toString()); AJOUTER CLASSE
+			}
+		});
 
 	}
 	
