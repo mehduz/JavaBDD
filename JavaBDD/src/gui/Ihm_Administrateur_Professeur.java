@@ -6,6 +6,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
@@ -62,6 +63,8 @@ public class Ihm_Administrateur_Professeur extends JFrame {
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);
 		scrollPane.setBounds(314, 11, 950, 669);
+		
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 		JLabel lblTelFixe = new JLabel("Tel fixe");
 		lblTelFixe.setForeground(Color.WHITE);
@@ -185,10 +188,6 @@ public class Ihm_Administrateur_Professeur extends JFrame {
 		btnAjouter.setFont(new Font("Arial", Font.BOLD, 12));
 		btnAjouter.setBounds(10, 143, 282, 23);
 		getContentPane().add(btnAjouter);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(322, 20, 932, 651);
-		getContentPane().add(panel);
 		
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(8, 577, 284, 2);

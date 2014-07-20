@@ -97,7 +97,7 @@ public class Ihm_Administrateur_Eleve extends JFrame {
 		
 		JButton btnPhoto = new JButton("Photo");
 		btnPhoto.setFont(new Font("Arial", Font.BOLD, 10));
-		btnPhoto.setBounds(160, 435, 60, 23);
+		btnPhoto.setBounds(150, 435, 70, 23);
 		getContentPane().add(btnPhoto);
 		
 		textField_13 = new JTextField();

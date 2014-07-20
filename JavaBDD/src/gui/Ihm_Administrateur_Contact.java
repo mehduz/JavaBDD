@@ -6,6 +6,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
@@ -64,6 +65,8 @@ public class Ihm_Administrateur_Contact extends JFrame {
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);
 		scrollPane.setBounds(314, 11, 950, 669);
+		
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 		JLabel lblTelFixe = new JLabel("Tel fixe");
 		lblTelFixe.setForeground(Color.WHITE);
