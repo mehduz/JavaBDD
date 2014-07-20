@@ -52,9 +52,6 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 	 */
 	public static void main(String[] args) {
 
-		Thread t = new Thread(new Server());
-		t.start();
-
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				frameAccueil = new Ihm_Accueil();
