@@ -1,6 +1,8 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -24,7 +26,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
+import table.TableEleve;
 import liste.ListeClasse;
+import liste.ListeEleveParClasse;
 import liste.ListeMatiere;
 import beans.Classe;
 import beans.Matiere;
@@ -39,6 +43,7 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTable table;
 
 	/**
 	 * Create the frame.
@@ -67,6 +72,15 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 		comboBox.setBounds(6, 190, 280, 25);
 		getContentPane().add(comboBox);
 		
+		System.out.println(comboBox.getSelectedItem().toString());
+		table = ListeEleveParClasse.getListeEleveParClasse(comboBox.getSelectedItem().toString());
+		table.setOpaque(false);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		
 		JSeparator separator_6 = new JSeparator();
 		separator_6.setBounds(6, 343, 284, 2);
 		getContentPane().add(separator_6);
@@ -87,6 +101,12 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 		getContentPane().add(btnListelvesPar);
 		
 		JButton btnListelvesPas = new JButton("Liste \u00E9l\u00E8ves pas classe");
+		btnListelvesPas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				
+			}
+		});
 		btnListelvesPas.setFont(new Font("Arial", Font.BOLD, 12));
 		btnListelvesPas.setBounds(6, 226, 282, 23);
 		getContentPane().add(btnListelvesPas);
