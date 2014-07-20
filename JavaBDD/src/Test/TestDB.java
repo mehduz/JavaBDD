@@ -25,11 +25,11 @@ public class TestDB {
 	    JFrame frame = new JFrame();
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
-	    JTable tableE = TableEleve.getTableEleve();
-	    JTable tableP = TableProfesseur.getTableSuivi(6);
+	   /* JTable tableE = TableEleve.getTableEleve();
+	   // JTable tableP = TableProfesseur.getTableSuivi(6);
 	    
-	    JScrollPane scrollPane = new JScrollPane(tableP);
-	    frame.add(scrollPane, BorderLayout.CENTER);
+	    JScrollPane scrollPane = new JScrollPane(tableP);*/
+	    //frame.add(scrollPane, BorderLayout.CENTER);
 	    frame.setSize(932, 651);
 	    frame.setVisible(true);
 	    try {
