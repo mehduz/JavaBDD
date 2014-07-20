@@ -42,7 +42,7 @@ public class TestDB {
 	    JTable tableS = TableSuivi.getTableSuivi();
 	    JTable tableV = TableVaccin.getTableVaccin();
 	    
-	    JScrollPane scrollPane = new JScrollPane(tableMe);
+	    JScrollPane scrollPane = new JScrollPane(tableS);
 	    frame.add(scrollPane, BorderLayout.CENTER);
 	    frame.setSize(932, 651);
 	    frame.setVisible(true);

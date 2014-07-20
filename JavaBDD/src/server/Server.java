@@ -15,7 +15,7 @@ public class Server implements Runnable{
   
     public Server(){
     	this(65330);
-    }
+    } 
     
     public Server(int port){
         this.serverPort = port;
@@ -29,19 +29,19 @@ public class Server implements Runnable{
         while(! isStopped()){
             Socket clientSocket = null;
             try {
-                clientSocket = this.serverSocket.accept();
+                clientSocket = this.serverSocket.accept(); 
             } catch (IOException e) {
                 if(isStopped()) {
                    LOGGER.info("Server Stopped.") ;
                    return;
                 }
-                LOGGER.severe("Error accepting client connection" + e.toString()) ;
+                LOGGER.severe("Error accepting client connection" + e.toString()) ; 
                 throw new RuntimeException(
                     "Error accepting client connection", e);
-            }
+            } 
             new Thread(
                 new WorkerRunnable(clientSocket)
-            ).start();
+            ).start(); 
         }
         LOGGER.info("Server Stopped.") ;
     }
