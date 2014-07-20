@@ -9,8 +9,8 @@ import dal.daoImpl.VaccinDaoImpl;
 
 public class TableVaccin {
 
-	/*public static JTable getTableVaccin() {
-		int taille = 10;
+	public static JTable getTableVaccin() {
+		int taille = 2;
 
 		VaccinDaoImpl el = new VaccinDaoImpl(new DAOFactory());
 		ArrayList<Vaccin> listeVaccin = el.getAll();
@@ -28,7 +28,7 @@ public class TableVaccin {
 			for (int actualColumn = 0; actualColumn <= (taille - 1); actualColumn++) {
 				switch (actualColumn) {
 				case 0:
-					table.setValueAt(listeVaccin.get(actualRow).getID_vaccin,
+					table.setValueAt(listeVaccin.get(actualRow).getID_vaccin(),
 							actualRow, actualColumn);
 					break;
 				case 1:
@@ -40,6 +40,6 @@ public class TableVaccin {
 		}
 
 		return table;
-	}*/
+	}
 
 }

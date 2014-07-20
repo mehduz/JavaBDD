@@ -10,8 +10,8 @@ import dal.daoImpl.SuiviDaoImpl;
 
 public class TableContact {
 
-	/*public static JTable getTableContact() {
-		
+	public static JTable getTableContact() {
+
 		int taille = 7;
 		ContactDaoImpl el = new ContactDaoImpl(new DAOFactory());
 		ArrayList<Contact> listeContact = el.getAll();
@@ -62,6 +62,6 @@ public class TableContact {
 		}
 
 		return table;
-	}*/
+	}
 
 }
