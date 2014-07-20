@@ -24,6 +24,12 @@ import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
+import liste.ListeAllergie;
+import liste.ListeClasse;
+import liste.ListeMatiere;
+import beans.Allergie;
+import beans.Classe;
+import beans.Matiere;
 import communication.ResponseEvent;
 import communication.ResponseListener;
 
@@ -66,12 +72,18 @@ public class Ihm_Administrateur_AjoutModificationSupressionBDD extends JFrame im
 		separator_3.setBounds(10, 454, 284, 2);
 		getContentPane().add(separator_3);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox <String> comboBox_1 = new JComboBox();
+		for (Classe c : ListeClasse.getListeClasse()) {
+			comboBox_1.addItem(c.getNom_classe());
+		}
 		comboBox_1.setMaximumRowCount(10);
 		comboBox_1.setBounds(10, 467, 280, 25);
 		getContentPane().add(comboBox_1);
 		
 		JComboBox comboBox = new JComboBox();
+		for (Matiere m : ListeMatiere.getListeMatiere()) {
+			comboBox.addItem(m.getNom_matiere());
+		}
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 390, 280, 25);
 		getContentPane().add(comboBox);

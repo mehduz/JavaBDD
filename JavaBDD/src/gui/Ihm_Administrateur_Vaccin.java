@@ -26,6 +26,10 @@ import java.net.URI;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
+import liste.ListeAllergie;
+import liste.ListeVaccin;
+import beans.Allergie;
+import beans.Vaccin;
 import communication.ResponseEvent;
 import communication.ResponseListener;
 import table.TableVaccin;
@@ -63,7 +67,10 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 		
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox <String> comboBox = new JComboBox();
+		for (Vaccin v : ListeVaccin.getListeVaccin()) {
+			comboBox.addItem(v.getLibelle());
+		}
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 280, 25);
 		getContentPane().add(comboBox);
