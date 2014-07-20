@@ -23,10 +23,8 @@ import java.io.IOException;
 import java.net.URI;
 
 import javax.swing.SwingConstants;
-import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
-import table.TableEleve;
 import liste.ListeClasse;
 import liste.ListeEleveParClasse;
 import liste.ListeMatiere;
@@ -43,7 +41,9 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTable table;
+	private JTable liste;
+	private JComboBox comboBox, comboBox_1;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Create the frame.
@@ -55,8 +55,29 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
+
+		//
+		comboBox = new JComboBox();
+		for (Classe c : ListeClasse.getListeClasse()) {
+			comboBox.addItem(c.getNom_classe());
+		}
+		comboBox.setMaximumRowCount(10);
+		comboBox.setBounds(6, 190, 280, 25);
+		getContentPane().add(comboBox);
+		comboBox.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+				
+		    	liste = new JTable();
+		    	liste = ListeEleveParClasse.getListeEleveParClasse(comboBox.getSelectedItem().toString());
+				scrollPane.setViewportView(liste);
+		    	
+		    	System.out.print("Test");
+		    	
+		    }
+		});
 		
-		JComboBox comboBox_1 = new JComboBox();
+		//
+		comboBox_1 = new JComboBox();
 		for (Matiere m : ListeMatiere.getListeMatiere()) {
 			comboBox_1.addItem(m.getNom_matiere());
 		}
@@ -64,23 +85,18 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 		comboBox_1.setBounds(6, 273, 280, 25);
 		getContentPane().add(comboBox_1);
 		
-		JComboBox comboBox = new JComboBox();
-		for (Classe c : ListeClasse.getListeClasse()) {
-			comboBox.addItem(c.getNom_classe());
-		}
-		comboBox.setMaximumRowCount(10);
-		comboBox.setBounds(6, 190, 280, 25);
-		getContentPane().add(comboBox);
+		//
+		liste = ListeEleveParClasse.getListeEleveParClasse(comboBox.getSelectedItem().toString());
+		liste.setOpaque(false);
 		
-		System.out.println(comboBox.getSelectedItem().toString());
-		table = ListeEleveParClasse.getListeEleveParClasse(comboBox.getSelectedItem().toString());
-		table.setOpaque(false);
-		
-		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane = new JScrollPane(liste);
+		scrollPane.setBounds(314, 11, 950, 669);
+		scrollPane.getViewport().setOpaque(false);
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
-		scrollPane.getViewport().setOpaque(false);
+		getContentPane().add(scrollPane);
 		
+		//		
 		JSeparator separator_6 = new JSeparator();
 		separator_6.setBounds(6, 343, 284, 2);
 		getContentPane().add(separator_6);
@@ -114,10 +130,6 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setBounds(6, 177, 284, 2);
 		getContentPane().add(separator_3);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(322, 20, 932, 651);
-		getContentPane().add(panel);
 		
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(8, 577, 284, 2);
@@ -256,5 +268,4 @@ public class Ihm_Administrateur extends JFrame implements ResponseListener {
 		// TODO Auto-generated method stub
 		
 	}
-	
 }
