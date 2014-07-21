@@ -173,6 +173,7 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
     	eleve.setVille(resultSet.getString("Ville"));
 		eleve.setVille_naissance(resultSet.getString("Ville_naissance"));
 		eleve.setMatricule(resultSet.getLong("Matricule"));
+		eleve.setNom_classe(resultSet.getString("Nom_classe"));
 		
 	    return eleve;
 	}

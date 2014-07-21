@@ -1,5 +1,7 @@
 package dal.dao;
 
+import java.util.ArrayList;
+
 import beans.Professeur;
 import dal.DAOException;
 
@@ -13,5 +15,6 @@ public interface ProfesseurDao {
 
 	Professeur trouver(int idPersonne) throws DAOException;
 	
+	ArrayList<Professeur> getAllParMatiere(String nom_matiere) throws DAOException;
 	
 }
