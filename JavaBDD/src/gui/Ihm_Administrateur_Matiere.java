@@ -17,11 +17,14 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -29,9 +32,15 @@ import javax.swing.JComboBox;
 import liste.ListeContact;
 import liste.ListeMatiere;
 import beans.Contact;
+import beans.Eleve;
 import beans.Matiere;
+import beans.Professeur;
 import communication.ResponseEvent;
 import communication.ResponseListener;
+import dal.DAOFactory;
+import dal.daoImpl.EleveDaoImpl;
+import dal.daoImpl.ProfesseurDaoImpl;
+import table.TableEleve;
 import table.TableMatiere;
 
 public class Ihm_Administrateur_Matiere extends JFrame implements ResponseListener {
@@ -45,6 +54,7 @@ public class Ihm_Administrateur_Matiere extends JFrame implements ResponseListen
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTable table;
+	JComboBox <String> comboBox;
 	
 	/**
 	 * Create the frame.
@@ -70,7 +80,7 @@ public class Ihm_Administrateur_Matiere extends JFrame implements ResponseListen
 		
 		textField_3 = new JTextField();
 		textField_3.setName("");
-		textField_3.setEnabled(false);
+		textField_3.setEnabled(true);
 		textField_3.setColumns(10);
 		textField_3.setBounds(10, 285, 280, 25);
 		getContentPane().add(textField_3);
@@ -81,10 +91,11 @@ public class Ihm_Administrateur_Matiere extends JFrame implements ResponseListen
 		lblProfesseurAssoci.setBounds(10, 264, 185, 20);
 		getContentPane().add(lblProfesseurAssoci);
 		
-		JComboBox <String> comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		for (Matiere m : ListeMatiere.getListeMatiere()) {
 			comboBox.addItem(m.getNom_matiere());
 		}
+		comboBox.setSelectedItem(null);
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 280, 25);
 		getContentPane().add(comboBox);
@@ -97,7 +108,7 @@ public class Ihm_Administrateur_Matiere extends JFrame implements ResponseListen
 		
 		textField_2 = new JTextField();
 		textField_2.setName("");
-		textField_2.setEnabled(false);
+		textField_2.setEnabled(true);
 		textField_2.setColumns(10);
 		textField_2.setBounds(10, 239, 280, 25);
 		getContentPane().add(textField_2);
@@ -262,6 +273,22 @@ public class Ihm_Administrateur_Matiere extends JFrame implements ResponseListen
 		lblNewLabel_3.setIcon(new ImageIcon(Ihm_Eleve.class.getResource("/gui/ressources/fond_principal.jpg")));
 		lblNewLabel_3.setBounds(300, 0, 974, 691);
 		getContentPane().add(lblNewLabel_3);
+		
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				int x = comboBox.getSelectedIndex();
+				textField_2.setText(table.getValueAt(x, 0).toString());
+				
+				ProfesseurDaoImpl prof = (ProfesseurDaoImpl) DAOFactory.getInstance().getProfesseurDao();
+				ArrayList<Professeur> listeProf = prof.getAllParMatiere(table.getValueAt(x, 0).toString());		
+				String profAssocie = "";
+				for (int i = 0; i < listeProf.size(); i ++) {
+					profAssocie += listeProf.get(i).getNom();
+				}
+				textField_3.setText(profAssocie);
+				repaint();
+			}
+		});	
 
 	}
 	

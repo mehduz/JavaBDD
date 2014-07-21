@@ -39,10 +39,10 @@ public class TestDB {
 //	    JTable tableP = TableProfesseur.getTableProfesseur();
 //	    JTable tableS = TableSuivi.getTableSuivi();
 //	    JTable tableV = TableVaccin.getTableVaccin();
-//		JTable tableListeEparC = ListeEleveParClasse.getListeEleveParClasse("L3 Asyria");
-		JTable tableListeEparM = ListeEleveParMatiere.getListeEleveParMatiere("Informatique");
+		JTable tableListeEparC = ListeEleveParClasse.getListeEleveParClasse("L3 Asyria");
+//		JTable tableListeEparM = ListeEleveParMatiere.getListeEleveParMatiere("Informatique");
 		
-	    JScrollPane scrollPane = new JScrollPane(tableListeEparM);
+	    JScrollPane scrollPane = new JScrollPane(tableListeEparC);
 	    frame.add(scrollPane, BorderLayout.CENTER);
 	    frame.setSize(932, 651);
 	    frame.setVisible(true);

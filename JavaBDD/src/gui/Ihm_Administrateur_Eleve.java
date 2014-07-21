@@ -21,6 +21,8 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
+
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
@@ -29,9 +31,14 @@ import table.TableEleve;
 import javax.swing.JTable;
 
 import liste.ListeEleve;
+import beans.Classe;
 import beans.Eleve;
 import communication.ResponseEvent;
 import communication.ResponseListener;
+import dal.DAOFactory;
+import dal.daoImpl.ClasseDaoImpl;
+import dal.daoImpl.EleveDaoImpl;
+
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
@@ -70,7 +77,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		setSize(new Dimension(1280, 720));
 		setResizable(false);
 		setVisible(true);
-		getContentPane().setLayout(null);
+		getContentPane().setLayout(null);		
 		
 		table = TableEleve.getTableEleve();
 		table.setOpaque(false);
@@ -102,6 +109,14 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		comboBox_2 = new JComboBox();
 		comboBox_2.setMaximumRowCount(10);
 		comboBox_2.setBounds(10, 315, 184, 20);
+		
+		ClasseDaoImpl cl = (ClasseDaoImpl) DAOFactory.getInstance().getClasseDao();
+		ArrayList<Classe> listeClasse = cl.getAll();
+		
+		for (int i = 0; i < listeClasse.size(); i++) {
+			comboBox_2.addItem(listeClasse.get(i).getNom_classe());
+		}
+		
 		getContentPane().add(comboBox_2);
 		
 		JLabel lblTelMobile = new JLabel("Tel mobile");
@@ -269,6 +284,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		for (Eleve e : ListeEleve.getListeEleve()) {
 			comboBox.addItem((e.getNom()) + " " + e.getPrenom());
 		}
+		comboBox.setSelectedItem(null);
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(10, 193, 130, 20);
 		getContentPane().add(comboBox);
@@ -454,15 +470,20 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 				textField_3.setText(table.getValueAt(x, 1).toString());
 				textField_4.setText(table.getValueAt(x, 3).toString());
 				textField_5.setText(table.getValueAt(x, 4).toString());
+				textField_6.setText(table.getValueAt(x, 15).toString());
 				textField_7.setText(table.getValueAt(x, 6).toString());
 				textField_9.setText(table.getValueAt(x, 5).toString());
 				textField_10.setText(table.getValueAt(x, 9).toString());
 				textField_11.setText(table.getValueAt(x, 11).toString());
 				textField_12.setText(table.getValueAt(x, 12).toString());
 				textField_13.setText(table.getValueAt(x, 13).toString());
-				//textField_6.setText(table.getValueAt(x, ).toString()); MOBILE ET FIXE A AJOUTER EN FIN DE TABLE
-				//comboBox_1.setSelectedItem(table.getValueAt(x, 7).toString());
-				//comboBox_2.setSelectedItem(table.getValueAt(x, 7).getClass().toString()); AJOUTER CLASSE
+				textField_8.setText(table.getValueAt(x, 16).toString());
+				
+				//classe
+				EleveDaoImpl el = (EleveDaoImpl) DAOFactory.getInstance().getEleveDao();
+				ArrayList<Eleve> listeEleve = el.getAll();
+				comboBox_2.setSelectedItem(listeEleve.get(x).getNom_classe());
+				
 				repaint();
 			}
 		});

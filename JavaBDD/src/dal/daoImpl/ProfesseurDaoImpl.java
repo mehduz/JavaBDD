@@ -20,7 +20,8 @@ public class ProfesseurDaoImpl extends SuperDaoImpl implements ProfesseurDao {
 	 private static final String SQL_SELECT_PROFESSEUR_PAR_ID_PERSONNE = "SELECT * FROM Professeur, Personne WHERE Professeur.ID_personne = ? AND Professeur.ID_personne = Personne.ID_personne ";
 	 private static final String SQL_INSERT_PROFESSEUR = "INSERT INTO personne (Nom, Prenom, Email, Tel_domicile, Tel_mobile) VALUES (?, ?, ?, ?, ?)";		
 	 private static final String SQL_SELECT_PROFESSEUR_ALL = "SELECT * FROM Professeur, Personne WHERE  Professeur.ID_personne = Personne.ID_personne ";
-	 
+	 private static final String SQL_SELECT_PROFESSEUR_PAR_MATIERE = "SELECT * FROM Enseigner, Personne WHERE  Enseigner.ID_personne = Personne.ID_personne AND Nom_Matiere = ? ";
+		
 	 
 	public ProfesseurDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -188,6 +189,42 @@ public class ProfesseurDaoImpl extends SuperDaoImpl implements ProfesseurDao {
 		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
 		    }
 
+	}
+
+	@Override
+	public ArrayList<Professeur> getAllParMatiere(String nom_matiere)
+			throws DAOException {
+		
+		
+		 Connection connexion = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+	    Professeur professeur = null;
+	    ArrayList<Professeur> listeProfesseurs = new ArrayList<Professeur>();
+	    
+	    try {
+	        /* Récupération d'une connexion depuis la Factory */
+	        connexion = daoFactory.getConnection();
+	        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_PROFESSEUR_PAR_MATIERE, false, nom_matiere);
+	        resultSet = preparedStatement.executeQuery();
+	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+	  
+	        	  while ( resultSet.next() ) {
+	        		
+	        		  professeur = map( resultSet );
+	        		  listeProfesseurs.add(professeur);
+	        		   
+	        	  }
+	        	
+	        	return listeProfesseurs;
+	        
+	    } catch ( SQLException e ) {
+	        throw new DAOException( e );
+	    } finally {
+	    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+	    }
+		
+		// TODO Auto-generated method stub
 	}
 	
 }

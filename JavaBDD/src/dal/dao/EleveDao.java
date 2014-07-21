@@ -9,11 +9,9 @@ import beans.*;
 
 public interface EleveDao {
 	
-
 	 int creer( Eleve eleve ) throws DAOException;
 
 	 Eleve trouver( int idPersonne ) throws DAOException;
-
 
 	 ArrayList<Eleve> getAll() throws DAOException ;
 	 
@@ -22,6 +20,5 @@ public interface EleveDao {
 	 ArrayList<Eleve> getAllParMatiere(String nomMatiere) throws DAOException;
 	
 	 ArrayList<Eleve> getAllParIdProf(int idProf) throws DAOException;
-
 	 
 } 
