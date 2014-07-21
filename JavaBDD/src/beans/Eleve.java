@@ -61,8 +61,6 @@ public class Eleve extends Personne {
 				+ Photo + ", Rue=" + Rue + ", Code_postal=" + Code_postal
 				+ ", Ville=" + Ville + ", Remarques_medicale=" + Remarques_medicale;
 	}
-
-
 	
 	public boolean isBulletinisvalid() {
 		return Bulletinisvalid;

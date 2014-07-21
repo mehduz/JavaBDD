@@ -21,6 +21,8 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
+
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
@@ -29,9 +31,14 @@ import table.TableEleve;
 import javax.swing.JTable;
 
 import liste.ListeEleve;
+import beans.Classe;
 import beans.Eleve;
 import communication.ResponseEvent;
 import communication.ResponseListener;
+import dal.DAOFactory;
+import dal.daoImpl.ClasseDaoImpl;
+import dal.daoImpl.EleveDaoImpl;
+
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
@@ -102,6 +109,11 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		comboBox_2 = new JComboBox();
 		comboBox_2.setMaximumRowCount(10);
 		comboBox_2.setBounds(10, 315, 184, 20);
+		ClasseDaoImpl el = (ClasseDaoImpl) DAOFactory.getInstance().getClasseDao();
+		ArrayList<Classe> listeClasse = el.getAll();
+		for (int i = 0; i < listeClasse.size(); i++) {
+			comboBox_2.addItem(listeClasse.get(i).getNom_classe());
+		}
 		getContentPane().add(comboBox_2);
 		
 		JLabel lblTelMobile = new JLabel("Tel mobile");
@@ -463,8 +475,12 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 				textField_12.setText(table.getValueAt(x, 12).toString());
 				textField_13.setText(table.getValueAt(x, 13).toString());
 				textField_8.setText(table.getValueAt(x, 16).toString());
-				comboBox_1.setSelectedItem(table.getValueAt(x, 7).toString());
-				//POUR L'AJOUT DES CLASSEScomboBox_2.setSelectedItem(table.getValueAt(x, 17).toString());
+				
+				//classe
+				EleveDaoImpl el = (EleveDaoImpl) DAOFactory.getInstance().getEleveDao();
+				ArrayList<Eleve> listeEleve = el.getAll();
+				comboBox_2.setSelectedItem(listeEleve.get(x).getNom_classe());
+				
 				repaint();
 			}
 		});

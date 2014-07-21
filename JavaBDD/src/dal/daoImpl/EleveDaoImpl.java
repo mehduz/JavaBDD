@@ -16,8 +16,6 @@ import beans.Vaccin;
 
 public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 
-	
-
 	 private static final String SQL_SELECT_ALL = "SELECT * FROM Eleve, Personne WHERE Eleve.ID_personne = Personne.ID_personne ";
 	 private static final String SQL_SELECT_ALL_PAR_CLASSE = "SELECT * FROM Eleve, Personne WHERE Eleve.ID_personne = Personne.ID_personne AND Eleve.Nom_classe = ?";
 	 private static final String SQL_SELECT_ELEVE_PAR_ID_PERSONNE = "SELECT * FROM Eleve, Personne WHERE Eleve.ID_personne = ? AND Eleve.ID_personne = Personne.ID_personne ";
@@ -29,8 +27,10 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 	 private static final String SQL_SELECT_ALL_PAR_MATIERE = "SELECT DISTINCT ID_personne FROM suivi where Nom_matiere = ?";
 	 private static final String SQL_SELECT_ALL_PAR_ID_PROF = "SELECT * FROM Eleve, Personne where ID_prof = ? AND Eleve.ID_personne = Personne.ID_personne";
 	 
+	 //romain
+	 //private static final String SQL_SELECT_CLASSE_FOR_ONE_STUDENT = "SELECT Eleve.Nom_classe FROM Eleve, Personne WHERE Eleve.ID_personne = Personne.ID_personne AND Personne.Nom = ?";
 	 
-	 public EleveDaoImpl(DAOFactory daoFactory) {
+	public EleveDaoImpl(DAOFactory daoFactory) {
 			super(daoFactory);
 			// TODO Auto-generated constructor stub
 		}
@@ -74,9 +74,6 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 	    } finally {
 	        DAODataBaseManager.fermeturesSilencieuses( valeursAutoGenerees, preparedStatement, connexion );
 	    }
-		
-	    
-	
 
 	   // return eleve;
 	    
@@ -112,9 +109,6 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 		    return eleve;
 	}
 
-	
-	
-	
 	public ArrayList<Eleve> getAll() {
 
 		 Connection connexion = null;
@@ -177,7 +171,7 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 		
 	    return eleve;
 	}
-
+	
 	@Override
 	public ArrayList<Eleve> getAllParMatiere(String nomMatiere) {
 
@@ -212,7 +206,6 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 		
 	}
 
-
 	@Override
 	public ArrayList<Eleve> getAllParClasse(String nomClasse) {
 
@@ -245,7 +238,6 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 		    }
 		
 	}
-	
 
 	public ArrayList<Eleve> getAllParIdProf(int idProf) throws DAOException {
 
@@ -278,8 +270,5 @@ public class EleveDaoImpl  extends SuperDaoImpl implements EleveDao {
 		    }
 		
 	}
-		
-	
-
 
 }	
