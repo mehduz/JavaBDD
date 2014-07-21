@@ -1,9 +1,11 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
@@ -12,8 +14,6 @@ import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
@@ -21,12 +21,12 @@ import java.io.IOException;
 import java.net.URI;
 
 import javax.swing.SwingConstants;
-import javax.swing.JPanel;
-
 import communication.ResponseEvent;
 import communication.ResponseListener;
 
-import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
+
+import table.TableBulletin;
 
 public class Ihm_Eleve extends JFrame implements ResponseListener {
 
@@ -36,7 +36,7 @@ public class Ihm_Eleve extends JFrame implements ResponseListener {
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JProgressBar progressBar;
+	private JTable table;
 
 	/**
 	 * Create the frame.
@@ -49,9 +49,22 @@ public class Ihm_Eleve extends JFrame implements ResponseListener {
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(322, 20, 932, 651);
-		getContentPane().add(panel);
+		JLabel lblConsulterVosNotes = new JLabel("Consulter vos notes");
+		lblConsulterVosNotes.setForeground(Color.WHITE);
+		lblConsulterVosNotes.setFont(new Font("Arial", Font.BOLD, 15));
+		lblConsulterVosNotes.setBounds(8, 143, 180, 20);
+		getContentPane().add(lblConsulterVosNotes);
+		
+		table = TableBulletin.getTableBulletin();
+		table.setOpaque(false);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(314, 11, 950, 669);
+		
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(8, 577, 284, 2);
@@ -129,7 +142,7 @@ public class Ihm_Eleve extends JFrame implements ResponseListener {
 		textField.setColumns(10);
 		
 		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(8, 177, 284, 2);
+		separator_3.setBounds(8, 174, 284, 2);
 		getContentPane().add(separator_3);
 		
 		JSeparator separator_2 = new JSeparator();
@@ -146,19 +159,10 @@ public class Ihm_Eleve extends JFrame implements ResponseListener {
 		lblNewLabel.setBounds(10, 11, 280, 104);
 		getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Consulter vos notes");
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton.setBounds(10, 143, 282, 23);
-		getContentPane().add(btnNewButton);
-		
 		JButton btnNewButton_1 = new JButton("Imprimer votre bulletin de notes");		
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
 
-		btnNewButton_1.setBounds(10, 190, 282, 23);
+		btnNewButton_1.setBounds(10, 187, 282, 23);
 		getContentPane().add(btnNewButton_1);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -192,5 +196,4 @@ public class Ihm_Eleve extends JFrame implements ResponseListener {
 		// TODO Auto-generated method stub
 		
 	}
-	
 }

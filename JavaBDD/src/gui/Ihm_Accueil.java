@@ -17,7 +17,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import beans.Personne;
-import communication.MessageIdentification;
 import communication.Reponse;
 import communication.ReponseIdentification;
 import communication.ResponseEvent;
@@ -140,8 +139,13 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 			public void mousePressed(MouseEvent e) {
 				
 				setVisible(false);
-				Ihm_Administrateur IHM = new Ihm_Administrateur();
-				IHM.setVisible(true);
+				Ihm_Administrateur IHM_admin = new Ihm_Administrateur();
+				Ihm_Professeur IHM_prof = new Ihm_Professeur();
+				Ihm_Eleve IHM_eleve = new Ihm_Eleve();
+				IHM_admin.setVisible(true);
+				IHM_prof.setVisible(true);
+				IHM_eleve.setVisible(true);
+				
 				/*
 				if ("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null,	"Veuillez saisir votre identifiant et mot de passe.",
