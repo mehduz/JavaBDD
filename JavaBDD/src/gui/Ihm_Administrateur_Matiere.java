@@ -24,6 +24,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -31,9 +32,15 @@ import javax.swing.JComboBox;
 import liste.ListeContact;
 import liste.ListeMatiere;
 import beans.Contact;
+import beans.Eleve;
 import beans.Matiere;
+import beans.Professeur;
 import communication.ResponseEvent;
 import communication.ResponseListener;
+import dal.DAOFactory;
+import dal.daoImpl.EleveDaoImpl;
+import dal.daoImpl.ProfesseurDaoImpl;
+import table.TableEleve;
 import table.TableMatiere;
 
 public class Ihm_Administrateur_Matiere extends JFrame implements ResponseListener {
@@ -271,6 +278,14 @@ public class Ihm_Administrateur_Matiere extends JFrame implements ResponseListen
 			public void itemStateChanged(ItemEvent arg0) {
 				int x = comboBox.getSelectedIndex();
 				textField_2.setText(table.getValueAt(x, 0).toString());
+				
+				ProfesseurDaoImpl prof = (ProfesseurDaoImpl) DAOFactory.getInstance().getProfesseurDao();
+				ArrayList<Professeur> listeProf = prof.getAllParMatiere(table.getValueAt(x, 0).toString());		
+				String profAssocie = "";
+				for (int i = 0; i < listeProf.size(); i ++) {
+					profAssocie += listeProf.get(i).getNom();
+				}
+				textField_3.setText(profAssocie);
 				repaint();
 			}
 		});	

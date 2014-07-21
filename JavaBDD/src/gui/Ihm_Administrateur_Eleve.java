@@ -79,13 +79,7 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		setVisible(true);
 		getContentPane().setLayout(null);		
 		
-		EleveDaoImpl elListe = (EleveDaoImpl) DAOFactory.getInstance().getEleveDao();
-		ArrayList<Eleve> listeEleve0 = elListe.getAll();
-		
 		table = TableEleve.getTableEleve();
-		for (int i = 0; i < listeEleve0.size(); i++) {
-			table.setValueAt(listeEleve0.get(i).getNom_classe(), i, 17);
-		}
 		table.setOpaque(false);
 		
 		JScrollPane scrollPane = new JScrollPane(table);

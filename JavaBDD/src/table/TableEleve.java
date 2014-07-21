@@ -25,6 +25,9 @@ public class TableEleve {
 				"Date_inscription", "Etablissement_prec", "Photo", "Rue",
 				"Code_postal", "Ville", "Remarques_medicale", "Tel_domicile", "Tel_mobile", "Classe" };
 
+		EleveDaoImpl elListe = (EleveDaoImpl) DAOFactory.getInstance().getEleveDao();
+		ArrayList<Eleve> listeEleve0 = elListe.getAll();
+		
 		for (int i = 0; i <= (taille - 1); i++) {
 			table.getTableHeader().getColumnModel().getColumn(i)
 					.setHeaderValue(columnNames[i]);
@@ -103,8 +106,8 @@ public class TableEleve {
 							.getTel_mobile(), actualRow, actualColumn);
 					break;
 				case 17:
-					table.setValueAt(/*listeEleve.get(actualRow)
-							.getNom_classe()*/"Test", actualRow, actualColumn);
+					table.setValueAt(listeEleve0.get(actualRow)
+							.getNom_classe(), actualRow, actualColumn);
 					break;
 				}
 			}
@@ -113,3 +116,5 @@ public class TableEleve {
 		return table;
 	}
 }
+
+
