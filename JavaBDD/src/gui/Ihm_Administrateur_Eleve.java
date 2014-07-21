@@ -77,9 +77,15 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		setSize(new Dimension(1280, 720));
 		setResizable(false);
 		setVisible(true);
-		getContentPane().setLayout(null);
+		getContentPane().setLayout(null);		
+		
+		EleveDaoImpl elListe = (EleveDaoImpl) DAOFactory.getInstance().getEleveDao();
+		ArrayList<Eleve> listeEleve0 = elListe.getAll();
 		
 		table = TableEleve.getTableEleve();
+		for (int i = 0; i < listeEleve0.size(); i++) {
+			table.setValueAt(listeEleve0.get(i).getNom_classe(), i, 17);
+		}
 		table.setOpaque(false);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -109,11 +115,14 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		comboBox_2 = new JComboBox();
 		comboBox_2.setMaximumRowCount(10);
 		comboBox_2.setBounds(10, 315, 184, 20);
-		ClasseDaoImpl el = (ClasseDaoImpl) DAOFactory.getInstance().getClasseDao();
-		ArrayList<Classe> listeClasse = el.getAll();
+		
+		ClasseDaoImpl cl = (ClasseDaoImpl) DAOFactory.getInstance().getClasseDao();
+		ArrayList<Classe> listeClasse = cl.getAll();
+		
 		for (int i = 0; i < listeClasse.size(); i++) {
 			comboBox_2.addItem(listeClasse.get(i).getNom_classe());
 		}
+		
 		getContentPane().add(comboBox_2);
 		
 		JLabel lblTelMobile = new JLabel("Tel mobile");
