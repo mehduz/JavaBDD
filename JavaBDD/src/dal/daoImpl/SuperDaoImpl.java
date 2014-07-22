@@ -8,8 +8,6 @@ public class SuperDaoImpl  {
 	 
 	  public SuperDaoImpl( DAOFactory daoFactory ) {
 	        this.daoFactory = daoFactory;
-	    }
-	 
-	
+	    }	
 	
 }

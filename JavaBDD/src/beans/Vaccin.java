@@ -10,8 +10,8 @@ public class Vaccin {
 		Libelle = libelle;
 	}
 
-	public Vaccin() {
-		
+	public Vaccin(String libelle) {
+		this.setLibelle(libelle);
 	}
 
 	public long getID_vaccin() {

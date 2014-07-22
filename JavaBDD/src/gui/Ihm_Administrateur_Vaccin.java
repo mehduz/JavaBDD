@@ -24,6 +24,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -34,6 +35,9 @@ import beans.Allergie;
 import beans.Vaccin;
 import communication.ResponseEvent;
 import communication.ResponseListener;
+import dal.DAOFactory;
+import dal.daoImpl.AllergieDaoImpl;
+import dal.daoImpl.VaccinDaoImpl;
 import table.TableVaccin;
 
 public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListener {
@@ -112,11 +116,43 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 		getContentPane().add(btnMatire);
 		
 		JButton btnlve = new JButton("Supprimer");
+		btnlve.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				VaccinDaoImpl el = (VaccinDaoImpl) DAOFactory.getInstance().getVaccinDao();		
+				ArrayList<Vaccin> maListe = ListeVaccin.getListeVaccin();
+			
+				try {
+					el.supprimer(maListe.get(comboBox.getSelectedIndex()));		
+				} catch (Exception eA) {}
+				
+				myRepaint();
+				
+			}
+		});
 		btnlve.setFont(new Font("Arial", Font.BOLD, 12));
 		btnlve.setBounds(164, 281, 130, 23);
 		getContentPane().add(btnlve);
 		
 		JButton btnContact = new JButton("Modifier");
+		btnContact.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				VaccinDaoImpl el = (VaccinDaoImpl) DAOFactory.getInstance().getVaccinDao();		
+				ArrayList<Vaccin> maListe = ListeVaccin.getListeVaccin();
+				Vaccin newVaccin = new Vaccin(textField_2.getText());
+				
+				try {
+					el.supprimer(maListe.get(comboBox.getSelectedIndex()));	
+					el.creer(newVaccin);
+				} catch (Exception eA) {}
+				
+				myRepaint();
+				
+			}
+		});
 		btnContact.setFont(new Font("Arial", Font.BOLD, 12));
 		btnContact.setBounds(10, 310, 130, 23);
 		getContentPane().add(btnContact);
@@ -132,6 +168,21 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 		getContentPane().add(btnModeSql);
 		
 		JButton btnAlergie = new JButton("Ajouter");
+		btnAlergie.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				VaccinDaoImpl el = (VaccinDaoImpl) DAOFactory.getInstance().getVaccinDao();		
+				Vaccin newVaccin = new Vaccin(textField_2.getText());
+				
+				try {
+					el.creer(newVaccin);
+				} catch (Exception eA) {}
+				
+				myRepaint();
+				
+			}
+		});
 		btnAlergie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -261,6 +312,11 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 			}
 		});
 
+	}
+	
+	public void myRepaint() {
+		this.setVisible(false);
+		Ihm_Administrateur_Vaccin ihm = new Ihm_Administrateur_Vaccin();
 	}
 	
 	public void setPanelIdentification(String login, String profil) {
