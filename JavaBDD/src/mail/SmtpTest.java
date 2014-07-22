@@ -10,11 +10,11 @@ import javax.mail.internet.MimeMessage;
 
 public class SmtpTest {
 
-	public static void main(String[] args) throws Exception {
+	public void envoyerMail(String recipient) throws Exception {
 
 		String username = "universitymanagerefrei@gmail.com";
 		String password = "motdepasse!";
-		String recipient = "romaincourtieux@hotmail.com";
+		//String recipient = "romaincourtieux@hotmail.com";
 
 		Properties props = new Properties();
 
@@ -28,9 +28,10 @@ public class SmtpTest {
 		MimeMessage msg = new MimeMessage(session);
 		
 		msg.setRecipients(Message.RecipientType.TO, recipient);
-		msg.setSubject("JavaMail hello world example");
+		msg.setSubject("Important : Convocation EFREI");
 		msg.setSentDate(new Date());
-		msg.setText("Hello, world!\n");
+		msg.setText("Bonjour, vous avez été convoqué par un de vos professeur, merci d'appeler le secretariat pour prendre note du rendez-vous.\n"
+				+ "Mail autogenere par l'application University Manager\n");
 
 		Transport transport = session.getTransport("smtp");
 

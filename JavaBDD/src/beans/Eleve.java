@@ -21,7 +21,16 @@ public class Eleve extends Personne {
 	private long ID_contact;
 	private long ID_prof;
 	private boolean Bulletinisvalid;
+	private String email;
 	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public Eleve() {
 		
@@ -49,6 +58,7 @@ public class Eleve extends Personne {
 		Code_postal = code_postal;
 		Ville = ville;
 		Remarques_medicale = remarques_medicale;
+		setEmail(email);
 	}
 
 	@Override
@@ -174,7 +184,5 @@ public class Eleve extends Personne {
 	public void setRemarques_medicale(String remarques_medicale) {
 		Remarques_medicale = remarques_medicale;
 	}
-	
-
 	
 }
