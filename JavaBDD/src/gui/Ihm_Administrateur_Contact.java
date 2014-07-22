@@ -31,10 +31,14 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
 import dal.DAOFactory;
+import dal.daoImpl.AllergieDaoImpl;
 import dal.daoImpl.ClasseDaoImpl;
 import dal.daoImpl.ContactDaoImpl;
 import dal.daoImpl.PersonneDaoImpl;
+import liste.ListeAllergie;
 import liste.ListeContact;
+import liste.ListePersonne;
+import beans.Allergie;
 import beans.Classe;
 import beans.Contact;
 import beans.Personne;
@@ -361,10 +365,8 @@ public class Ihm_Administrateur_Contact extends JFrame {
 				int telM = Integer.parseInt(textField_7.getText());				
 				newPersonne.setTel_domicile(telD);
 				newPersonne.setTel_mobile(telM);
-
 				
 				try {
-					elP.creer(newPersonne);
 					elP.creer(newPersonne);
 				} catch (Exception eSQL) {
 					JFrame jf = new JFrame();
@@ -390,6 +392,22 @@ public class Ihm_Administrateur_Contact extends JFrame {
 		btnlve.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				
+				ContactDaoImpl elC = (ContactDaoImpl) DAOFactory.getInstance().getContactDao();	
+				ArrayList<Contact> lContact = ListeContact.getListeContact();
+				
+				PersonneDaoImpl elP = (PersonneDaoImpl) DAOFactory.getInstance().getPersonneDao();	
+				ArrayList<Personne> lPersonne = ListePersonne.getListePersonne();
+			
+				for(int i = 0; i < lPersonne.size(); i++) {
+					if(lPersonne.get(i).getID_personne() == lContact.get(comboBox.getSelectedIndex()).getID_personne()){
+						elC.supprimer(lContact.get(comboBox.getSelectedIndex()));
+						elP.supprimer(lPersonne.get(comboBox.getSelectedIndex()));
+					}
+				}
+
+				myRepaint();
+				
 			}
 		});
 		
@@ -397,6 +415,9 @@ public class Ihm_Administrateur_Contact extends JFrame {
 		btnContact.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				
+				//a revoir
+				
 			}
 		});
 		

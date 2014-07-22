@@ -6,6 +6,10 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import beans.Contact;
 import beans.Eleve;
 import beans.Personne;
 import beans.Professeur;
@@ -26,6 +30,7 @@ public class PersonneDaoImpl extends SuperDaoImpl implements PersonneDao {
 	private static final String SQL_SELECT_ALL = "SELECT * FROM Personne";
 	final static String SQL_INSERT_PERSONNE = "INSERT INTO personne (Nom, Prenom, Email, Tel_domicile, Tel_mobile) VALUES (?, ?, ?, ?, ?)";
 	final static String SQL_SELECT_PERSONNE_PAR_ID = "SELECT * FROM Personne where ID_personne = ?";
+	final static String SQL_SUPPR_CONTACT = "DELETE FROM personne WHERE ID_personne = (?)";
 	
 	public PersonneDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -111,6 +116,28 @@ public class PersonneDaoImpl extends SuperDaoImpl implements PersonneDao {
 	    return personne;
 		
 		
+	}
+	
+	@Override
+	public void supprimer(Personne personne) throws DAOException {
+
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet valeursAutoGenerees = null;
+
+		try {
+			connexion = daoFactory.getConnection();
+			preparedStatement = DAODataBaseManager.initialisationRequetePreparee(connexion,	SQL_SUPPR_CONTACT, true, personne.getID_personne());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			JFrame jf = new JFrame();
+			JOptionPane.showMessageDialog(jf,"Erreur de suppression : \n\n" + e, "Erreur SQL", JOptionPane.WARNING_MESSAGE);
+			throw new DAOException(e);			
+		} finally {
+			DAODataBaseManager.fermeturesSilencieuses(valeursAutoGenerees, preparedStatement, connexion);
+		}
+
 	}
 	
 	public ArrayList<Personne> getAll() {

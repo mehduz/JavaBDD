@@ -43,11 +43,8 @@ public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 		        resultSet = preparedStatement.executeQuery();
 		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
 		        if ( resultSet.next() ) {
-
-		        		  
+	        		  
 		        	contact = map( resultSet );
-		        		   
-		        	  
 
 		        }
 		    } catch ( SQLException e ) {
