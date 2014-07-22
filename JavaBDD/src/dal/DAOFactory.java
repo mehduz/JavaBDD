@@ -5,10 +5,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Logger;
-
-import beans.Allergie;
-import beans.Authentication;
-
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
@@ -36,14 +32,13 @@ import dal.daoImpl.SuiviDaoImpl;
 import dal.daoImpl.VaccinDaoImpl;
 
 public class DAOFactory {
-	
+
 	private static Logger LOGGER = Logger.getLogger(DAOFactory.class.getName());
-	private static final String FICHIER_PROPERTIES ="dal.dao.properties";
+	private static final String FICHIER_PROPERTIES = "daoproperties";
 	private static final String PROPERTY_URL = "url";
 	private static final String PROPERTY_DRIVER = "driver";
 	private static final String PROPERTY_NOM_UTILISATEUR = "username";
 	private static final String PROPERTY_MOT_DE_PASSE = "password";
-	
 
 	private String url;
 	private String username;
@@ -60,7 +55,8 @@ public class DAOFactory {
 	 * données, charger le driver JDBC et retourner une instance de la Factory
 	 */
 	public static DAOFactory getInstance() throws DAOConfigurationException {
-		if(instance != null) return instance;
+		if (instance != null)
+			return instance;
 		Properties properties = new Properties();
 		String url;
 		String driver;
@@ -68,19 +64,38 @@ public class DAOFactory {
 		String password;
 		BoneCP connectionPool = null;
 
-		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		InputStream fichierProperties = classLoader.getResourceAsStream(FICHIER_PROPERTIES);
+		ClassLoader classLoader =
+		Thread.currentThread().getContextClassLoader();
+		InputStream fichierProperties = classLoader
+				.getResourceAsStream(FICHIER_PROPERTIES);
 
-		if (fichierProperties == null) {
-			LOGGER.severe(
-					"ce fichier est introuvable : "
-							+ FICHIER_PROPERTIES);
-			url = "jdbc:mysql://127.0.0.1:3306/universitymanagerdb";
-		    driver = "com.mysql.jdbc.Driver";
-		    username = "remoteuser";
-		    password = "remote"; 
+		if (fichierProperties != null) {
+
+			try {
+				properties.load(fichierProperties);
+				url = properties.getProperty(PROPERTY_URL);
+				driver = properties.getProperty(PROPERTY_DRIVER);
+				username = properties.getProperty(PROPERTY_NOM_UTILISATEUR);
+				password = properties.getProperty(PROPERTY_MOT_DE_PASSE);
+			} catch (Exception e) {
+
+				LOGGER.severe("Impossible de charger le fichier properties "
+						+ FICHIER_PROPERTIES);
+				url = "jdbc:mysql://127.0.0.1:3306/universitymanagerdb";
+				driver = "com.mysql.jdbc.Driver";
+				username = "remoteuser";
+				password = "remote";
+			}
 		}
 
+<<<<<<< HEAD
+		else {
+			LOGGER.severe("ce fichier est introuvable : " + FICHIER_PROPERTIES);
+			url = "jdbc:mysql://127.0.0.1:3306/universitymanagerdb";
+			driver = "com.mysql.jdbc.Driver";
+			username = "remoteuser";
+			password = "remote";
+=======
 		try {
 			properties.load(fichierProperties);
 			url = properties.getProperty(PROPERTY_URL);
@@ -96,13 +111,13 @@ public class DAOFactory {
 		    driver = "com.mysql.jdbc.Driver";
 		    username = "remoteuser";
 		    password = "remote"; 	
+>>>>>>> branch 'master' of https://github.com:443/mehduz/JavaBDD.git
 		}
 
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
-			throw new DAOConfigurationException(
-					"Le driver est introuvable dans le classpath.", e);
+			LOGGER.severe("Impossible de charger le driver " + e);
 		}
 
 		try {
@@ -118,13 +133,11 @@ public class DAOFactory {
 			/* Paramétrage de la taille du pool */
 			config.setMinConnectionsPerPartition(5);
 			config.setMaxConnectionsPerPartition(10);
-			config.setPartitionCount(2);	
+			config.setPartitionCount(2);
 			/* Création du pool à partir de la configuration, via l'objet BoneCP */
 			connectionPool = new BoneCP(config);
 		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DAOConfigurationException(
-					"Erreur de configuration du pool de connexions.", e);
+			LOGGER.severe("Impossible de configurer BoneCp " + e);
 		}
 
 		/*
@@ -141,10 +154,10 @@ public class DAOFactory {
 		return connectionPool.getConnection();
 	}
 
-	public void closeConnectionPool(){
+	public void closeConnectionPool() {
 		connectionPool.close();
 	}
-	
+
 	/*
 	 * Méthodes de récupération de l'implémentation des différents DAO (un seul
 	 * pour le moment)
@@ -152,44 +165,44 @@ public class DAOFactory {
 	public EleveDao getEleveDao() {
 		return new EleveDaoImpl(this);
 	}
-	
+
 	public ContactDao getContactDao() {
-        return new ContactDaoImpl( this );
-    }
-    
-    public ClasseDao getClasseDao() {
-        return new ClasseDaoImpl( this); 
-    }
-    
-    public MatiereDao getMatiereDao() {
-        return new MatiereDaoImpl( this );
-    }
-    
-    public PersonneDao getPersonneDao() {
-        return new PersonneDaoImpl( this );
-    }
-    
-    public SuiviDao getSuiviDao() {
-        return new SuiviDaoImpl( this );
-    }
-    
-    public AllergieDao getAllergieDao() {
-        return new AllergieDaoImpl( this );
-    }
+		return new ContactDaoImpl(this);
+	}
 
-    public VaccinDao getVaccinDao() {
-        return new VaccinDaoImpl( this );
-    }
+	public ClasseDao getClasseDao() {
+		return new ClasseDaoImpl(this);
+	}
 
-    public ProfesseurDao getProfesseurDao() {
-        return new ProfesseurDaoImpl( this );
-    }
-    
-    public MedecinDao getMedecinDao() {
-        return new MedecinDaoImpl( this );
-    }
-    
-    public AuthenticationDao getAuthenticationDao(){
-    	return new AuthenticationDaoImpl(this) ;
-    }
+	public MatiereDao getMatiereDao() {
+		return new MatiereDaoImpl(this);
+	}
+
+	public PersonneDao getPersonneDao() {
+		return new PersonneDaoImpl(this);
+	}
+
+	public SuiviDao getSuiviDao() {
+		return new SuiviDaoImpl(this);
+	}
+
+	public AllergieDao getAllergieDao() {
+		return new AllergieDaoImpl(this);
+	}
+
+	public VaccinDao getVaccinDao() {
+		return new VaccinDaoImpl(this);
+	}
+
+	public ProfesseurDao getProfesseurDao() {
+		return new ProfesseurDaoImpl(this);
+	}
+
+	public MedecinDao getMedecinDao() {
+		return new MedecinDaoImpl(this);
+	}
+
+	public AuthenticationDao getAuthenticationDao() {
+		return new AuthenticationDaoImpl(this);
+	}
 }
