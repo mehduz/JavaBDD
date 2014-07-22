@@ -1,7 +1,5 @@
 package beans;
 
-import java.util.Date;
-
 public class Contact extends Personne{
 
 	private long ID_contact;
