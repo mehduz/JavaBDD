@@ -17,7 +17,6 @@ import dal.dao.AllergieDao;
 
 public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 
-	
 	final static String SQL_INSERT_ALLERGIE = "INSERT INTO allergies (Libelle) VALUES (?)";
 	//RC Ajout requete suppression
 	final static String SQL_SUPPR_ALLERGIE = "DELETE FROM allergies WHERE Libelle = (?)";
@@ -111,7 +110,7 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 			connexion = daoFactory.getConnection();
 			preparedStatement = DAODataBaseManager.initialisationRequetePreparee(connexion,	SQL_SUPPR_ALLERGIE, true, allergie.getLibelle());
 			preparedStatement.executeUpdate();
-
+			
 		} catch (SQLException e) {
 			//RC Ajout msg d'erreur sql graphique
 			JFrame jf = new JFrame();

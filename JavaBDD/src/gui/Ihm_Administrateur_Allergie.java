@@ -170,11 +170,9 @@ public class Ihm_Administrateur_Allergie extends JFrame implements ResponseListe
 			public void mousePressed(MouseEvent e) {
 				
 				AllergieDaoImpl el = (AllergieDaoImpl) DAOFactory.getInstance().getAllergieDao();		
-				Allergie newAllergie = new Allergie(textField_2.getText());
-				
-				try {
-					el.creer(newAllergie);
-				} catch (Exception eA) {}
+				Allergie newAllergie = new Allergie(textField_2.getText());	
+			
+				el.creer(newAllergie);
 				
 				myRepaint();
 				
