@@ -142,8 +142,8 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 			public void mousePressed(MouseEvent e) {
 				
 				setVisible(false);
-				Ihm_Administrateur IHM_admin = new Ihm_Administrateur();
-				//Ihm_Professeur IHM_prof = new Ihm_Professeur();
+				//Ihm_Administrateur IHM_admin = new Ihm_Administrateur();
+				Ihm_Professeur IHM_prof = new Ihm_Professeur();
 				//Ihm_Eleve IHM_eleve = new Ihm_Eleve();
 				
 				/*
