@@ -9,6 +9,9 @@ public class Suivi {
 
 	public Suivi() {
 		
+		this.matiere = new Matiere();
+		this.eleve = new Eleve();
+		
 	}
 	
 	public Suivi (Matiere matiere, Eleve eleve, long Note_CC, long Note_examen) {
