@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -24,14 +25,23 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
-import liste.ListeClasse;
+import dal.DAOFactory;
+import dal.daoImpl.AllergieDaoImpl;
+import dal.daoImpl.ClasseDaoImpl;
+import dal.daoImpl.ContactDaoImpl;
+import dal.daoImpl.PersonneDaoImpl;
+import liste.ListeAllergie;
 import liste.ListeContact;
+import liste.ListePersonne;
+import beans.Allergie;
 import beans.Classe;
 import beans.Contact;
+import beans.Personne;
 import table.TableContact;
 
 public class Ihm_Administrateur_Contact extends JFrame {
@@ -180,11 +190,13 @@ public class Ihm_Administrateur_Contact extends JFrame {
 		getContentPane().add(btnMatire);
 		
 		JButton btnlve = new JButton("Supprimer");
+
 		btnlve.setFont(new Font("Arial", Font.BOLD, 12));
 		btnlve.setBounds(164, 384, 130, 23);
 		getContentPane().add(btnlve);
 		
 		JButton btnContact = new JButton("Modifier");
+	
 		btnContact.setFont(new Font("Arial", Font.BOLD, 12));
 		btnContact.setBounds(10, 413, 130, 23);
 		getContentPane().add(btnContact);
@@ -200,6 +212,7 @@ public class Ihm_Administrateur_Contact extends JFrame {
 		getContentPane().add(btnModeSql);
 		
 		JButton btnAlergie = new JButton("Ajouter");
+
 		btnAlergie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -333,7 +346,86 @@ public class Ihm_Administrateur_Contact extends JFrame {
 				repaint();
 			}
 		});
+		
+		//AJOUTER
+		btnAlergie.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				ContactDaoImpl elC = (ContactDaoImpl) DAOFactory.getInstance().getContactDao();		
+				Contact newContact = new Contact();
+				
+				PersonneDaoImpl elP = (PersonneDaoImpl) DAOFactory.getInstance().getPersonneDao();		
+				Personne newPersonne = new Personne();
+				
+				newPersonne.setEmail(textField_4.getText());
+				newPersonne.setNom(textField_2.getText());
+				newPersonne.setPrenom(textField_3.getText());
+				int telD = Integer.parseInt(textField_5.getText());
+				int telM = Integer.parseInt(textField_7.getText());				
+				newPersonne.setTel_domicile(telD);
+				newPersonne.setTel_mobile(telM);
+				
+				try {
+					elP.creer(newPersonne);
+				} catch (Exception eSQL) {
+					JFrame jf = new JFrame();
+					JOptionPane.showMessageDialog(jf,"Erreur SQL : \n\n" + eSQL, "Erreur SQL", JOptionPane.WARNING_MESSAGE);
+				}
+				
+				try {
+					ArrayList<Personne> listePersonne = elP.getAll();
+					newContact.setID_personne(listePersonne.get((listePersonne.size()-1)).getID_personne());
+					newContact.setAdresse(textField_6.getText());
+					elC.creer(newContact);
+				} catch (Exception eSQL) {
+					JFrame jf = new JFrame();
+					JOptionPane.showMessageDialog(jf,"Erreur SQL : \n\n" + eSQL, "Erreur SQL", JOptionPane.WARNING_MESSAGE);
+				}
+				
+				myRepaint();
+				
+			}
+		});
+		
+		//SUPPRIMER
+		btnlve.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				ContactDaoImpl elC = (ContactDaoImpl) DAOFactory.getInstance().getContactDao();	
+				ArrayList<Contact> lContact = ListeContact.getListeContact();
+				
+				PersonneDaoImpl elP = (PersonneDaoImpl) DAOFactory.getInstance().getPersonneDao();	
+				ArrayList<Personne> lPersonne = ListePersonne.getListePersonne();
+			
+				for(int i = 0; i < lPersonne.size(); i++) {
+					if(lPersonne.get(i).getID_personne() == lContact.get(comboBox.getSelectedIndex()).getID_personne()){
+						elC.supprimer(lContact.get(comboBox.getSelectedIndex()));
+						elP.supprimer(lPersonne.get(comboBox.getSelectedIndex()));
+					}
+				}
 
+				myRepaint();
+				
+			}
+		});
+		
+		//MODIFIER
+		btnContact.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				//a revoir
+				
+			}
+		});
+		
+	}
+	
+	public void myRepaint() {
+		this.setVisible(false);
+		Ihm_Administrateur_Contact ihm = new Ihm_Administrateur_Contact();
 	}
 	
 	public void setPanelIdentification(String login, String profil) {

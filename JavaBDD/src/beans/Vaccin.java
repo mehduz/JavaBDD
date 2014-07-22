@@ -5,13 +5,13 @@ public class Vaccin {
 	private long ID_vaccin;
 	private String Libelle;
 	
+	public Vaccin() {
+		
+	}
+	
 	public Vaccin(long iD_vaccin, String libelle) {
 		ID_vaccin = iD_vaccin;
 		Libelle = libelle;
-	}
-
-	public Vaccin(String libelle) {
-		this.setLibelle(libelle);
 	}
 
 	public long getID_vaccin() {
@@ -35,6 +35,4 @@ public class Vaccin {
 		return "Vaccins [ID_vaccin=" + ID_vaccin + ", Libelle=" + Libelle + "]";
 	}
 	
-	
-
 }

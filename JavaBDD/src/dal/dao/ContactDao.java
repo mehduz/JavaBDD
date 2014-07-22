@@ -8,6 +8,8 @@ import dal.DAOException;
 public interface ContactDao {
 	
 	int creer( Contact contact ) throws DAOException;
+	
+	void supprimer(Contact contact) throws DAOException;
 
 	Contact trouver( int id_personne ) throws DAOException;
 	

@@ -7,6 +7,12 @@ public class Suivi {
 	private long Note_CC;
 	private long Note_examen;
 
+	public Suivi() {
+		
+		this.matiere = new Matiere();
+		this.eleve = new Eleve();
+		
+	}
 	
 	public Suivi (Matiere matiere, Eleve eleve, long Note_CC, long Note_examen) {
 		
@@ -17,11 +23,6 @@ public class Suivi {
 		
 	}
 
-	public Suivi() {
-		
-	}
-	
-	
 	public long getMatricule() {
 		return eleve.getMatricule();
 	}
@@ -60,15 +61,11 @@ public class Suivi {
 	}
 	
 	public Eleve getEleve() {
-		
 		return this.eleve;
-		
 	}
 	
 	public void setEleve(Eleve eleve) {
-		
 		this.eleve = eleve;
-		
 	}
 
 }

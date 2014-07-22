@@ -141,6 +141,16 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+<<<<<<< HEAD
+=======
+				
+				setVisible(false);
+				//Ihm_Administrateur IHM_admin = new Ihm_Administrateur();
+				Ihm_Professeur IHM_prof = new Ihm_Professeur();
+				//Ihm_Eleve IHM_eleve = new Ihm_Eleve();
+				
+				/*
+>>>>>>> branch 'master' of https://github.com:443/mehduz/JavaBDD.git
 				if ("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null,	"Veuillez saisir votre identifiant et mot de passe.",
 												"Erreur de connexion", JOptionPane.ERROR_MESSAGE);

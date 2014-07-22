@@ -1,17 +1,21 @@
 package beans;
 
 public class Allergie {
-	
+
 	private long ID_allergie;
 	private String Libelle;
+	
+	public Allergie() {
+		
+	}
 	
 	public Allergie(long iD_allergie, String libelle) {
 		ID_allergie = iD_allergie;
 		Libelle = libelle;
 	}
-
-	public Allergie(String libelle) {
-		this.setLibelle(libelle);
+	
+	public void setID_allergie(long iD_allergie) {
+		ID_allergie = iD_allergie;
 	}
 
 	public long getID_allergie() {

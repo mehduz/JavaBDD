@@ -1,20 +1,18 @@
 package beans;
 
-import java.util.Date;
-
 public class Classe {
 	
 	private String Nom_classe;
+	
+	public Classe(){
+		
+	}
 	
 	public Classe(String nom_classe) {
 		super();
 		Nom_classe = nom_classe;
 	}
 	
-	public Classe(){
-		
-	}
-
 	public String getNom_classe() {
 		return Nom_classe;
 	}
@@ -22,6 +20,5 @@ public class Classe {
 	public void setNom_classe(String nom_classe) {
 		Nom_classe = nom_classe;
 	}
-	
 	
 }

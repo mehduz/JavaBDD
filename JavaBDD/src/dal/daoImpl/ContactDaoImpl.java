@@ -4,11 +4,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import java.sql.PreparedStatement;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import beans.Contact;
-import beans.Eleve;
 import dal.DAODataBaseManager;
 import dal.DAOException;
 import dal.DAOFactory;
@@ -18,15 +19,43 @@ public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 
 	
 	final static String SQL_INSERT_CONTACT = "INSERT INTO contact (Adresse_contact, ID_personne) VALUES (?, ?)";
-	 private static final String SQL_SELECT_CONTACT_PAR_ID_PERSONNE = "SELECT * FROM Contact, Personne WHERE Professeur.ID_personne = ? AND Contact.ID_personne = Personne.ID_personne ";
-	 private static final String SQL_SELECT_ALL = "SELECT * FROM Contact, Personne WHERE  Contact.ID_personne = Personne.ID_personne ";
-
+	final static String SQL_SUPPR_CONTACT = "DELETE FROM contact WHERE ID_contact = (?)";
+	private static final String SQL_SELECT_CONTACT_PAR_ID_PERSONNE = "SELECT * FROM Contact, Personne WHERE Professeur.ID_personne = ? AND Contact.ID_personne = Personne.ID_personne ";
+	private static final String SQL_SELECT_ALL = "SELECT * FROM Contact, Personne WHERE  Contact.ID_personne = Personne.ID_personne ";
 
 	public ContactDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public Contact trouver(int id_personne) throws DAOException {
+
+		    Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Contact contact = null;
+
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_CONTACT_PAR_ID_PERSONNE, false, id_personne);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		        if ( resultSet.next() ) {
+	        		  
+		        	contact = map( resultSet );
+
+		        }
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
+		    return contact;
+	}
+	
 	@Override
 	public int creer(Contact contact) throws DAOException {
 		// TODO Auto-generated method stub
@@ -53,7 +82,7 @@ public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 	        if ( valeursAutoGenerees.next() ) {
 	            /* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
 	        	
-	           return valeursAutoGenerees.getInt( "ID_contact" );
+	           return valeursAutoGenerees.getInt( 1 );
 	        } else {
 	            throw new DAOException( "Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné." );
 	        }
@@ -64,36 +93,27 @@ public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 	    }
 
 	}
-
+	
 	@Override
-	public Contact trouver(int id_personne) throws DAOException {
+	public void supprimer(Contact contact) throws DAOException {
 
-		    Connection connexion = null;
-		    PreparedStatement preparedStatement = null;
-		    ResultSet resultSet = null;
-		    Contact contact = null;
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet valeursAutoGenerees = null;
 
-		    try {
-		        /* Récupération d'une connexion depuis la Factory */
-		        connexion = daoFactory.getConnection();
-		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_CONTACT_PAR_ID_PERSONNE, false, id_personne);
-		        resultSet = preparedStatement.executeQuery();
-		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
-		        if ( resultSet.next() ) {
+		try {
+			connexion = daoFactory.getConnection();
+			preparedStatement = DAODataBaseManager.initialisationRequetePreparee(connexion,	SQL_SUPPR_CONTACT, true, contact.getID_contact());
+			preparedStatement.executeUpdate();
 
-		        		  
-		        	contact = map( resultSet );
-		        		   
-		        	  
+		} catch (SQLException e) {
+			JFrame jf = new JFrame();
+			JOptionPane.showMessageDialog(jf,"Erreur de suppression : \n\n" + e, "Erreur SQL", JOptionPane.WARNING_MESSAGE);
+			throw new DAOException(e);			
+		} finally {
+			DAODataBaseManager.fermeturesSilencieuses(valeursAutoGenerees, preparedStatement, connexion);
+		}
 
-		        }
-		    } catch ( SQLException e ) {
-		        throw new DAOException( e );
-		    } finally {
-		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
-		    }
-
-		    return contact;
 	}
 	
 	public ArrayList<Contact> getAll() throws DAOException{
@@ -145,6 +165,4 @@ public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 	
 	}
 	
-	
-
 }

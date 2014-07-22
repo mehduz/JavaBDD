@@ -8,5 +8,7 @@ public interface PersonneDao {
 	int creer( Personne classe ) throws DAOException;
 
 	Personne trouver( long l ) throws DAOException;
+
+	void supprimer(Personne personne) throws DAOException;
 	
 }

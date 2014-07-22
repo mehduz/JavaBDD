@@ -1,9 +1,12 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
@@ -25,8 +28,11 @@ import java.net.URI;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
+import table.TableAllergie;
+import table.TableSuivi;
 import communication.ResponseEvent;
 import communication.ResponseListener;
+import dal.DAOFactory;
 
 public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements ResponseListener {
 
@@ -36,6 +42,7 @@ public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements Resp
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTable table;
 
 	/**
 	 * Create the frame.
@@ -47,6 +54,18 @@ public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements Resp
 		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
+
+		table = TableSuivi.getTableSuivi(DAOFactory.getInstance().getSuiviDao().getAllParIdProf(2));
+		//table = TableAllergie.getTableAllergie();
+		table.setOpaque(false);
+	
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(314, 11, 950, 669);
+		
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 		JSeparator separator_5 = new JSeparator();
 		separator_5.setBounds(8, 313, 284, 2);
@@ -71,11 +90,11 @@ public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements Resp
 		lblVosMatires.setBounds(8, 222, 142, 20);
 		getContentPane().add(lblVosMatires);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setMaximumRowCount(10);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Romain", "Yann", "Simon", "Medhi"}));
-		comboBox.setBounds(8, 243, 280, 25);
-		getContentPane().add(comboBox);
+//		JComboBox comboBox = new JComboBox();
+//		comboBox.setMaximumRowCount(10);
+//		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Romain", "Yann", "Simon", "Medhi"}));
+//		comboBox.setBounds(8, 243, 280, 25);
+//		getContentPane().add(comboBox);
 		
 		JButton btnConfirm = new JButton("Confirmer");
 		btnConfirm.setFont(new Font("Arial", Font.BOLD, 12));

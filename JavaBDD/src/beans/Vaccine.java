@@ -6,15 +6,15 @@ public class Vaccine {
 	private long ID_personne;
 	private long ID_vaccin;
 
+	public Vaccine() {
+
+	}
+
 	public Vaccine(long matricule, long iD_personne, long iD_vaccin) {
 		super();
 		Matricule = matricule;
 		ID_personne = iD_personne;
 		ID_vaccin = iD_vaccin;
-	}
-
-	public Vaccine() {
-
 	}
 
 	public long getMatricule() {
