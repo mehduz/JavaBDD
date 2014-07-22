@@ -35,6 +35,7 @@ import communication.ResponseListener;
 import dal.DAOFactory;
 import dal.daoImpl.AllergieDaoImpl;
 import table.TableAllergie;
+import table.TableSuivi;
 
 public class Ihm_Administrateur_Allergie extends JFrame implements ResponseListener {
 
@@ -60,8 +61,13 @@ public class Ihm_Administrateur_Allergie extends JFrame implements ResponseListe
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
-		table = TableAllergie.getTableAllergie();
-		table.setOpaque(false);
+//		table = TableAllergie.getTableAllergie();
+//		table.setOpaque(false);
+		
+//		table = TableSuivi.getTableSuivi(DAOFactory.getInstance().getSuiviDao().getAllParIdProf((int) GlobalProperties.getProperty("ID_prof")));
+//		table.setOpaque(false);
+		
+		System.out.println(GlobalProperties.getProperty("ID_personne"));
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setOpaque(false);

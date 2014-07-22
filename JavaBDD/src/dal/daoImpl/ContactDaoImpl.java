@@ -85,7 +85,7 @@ public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 	        if ( valeursAutoGenerees.next() ) {
 	            /* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
 	        	
-	           return valeursAutoGenerees.getInt( "ID_contact" );
+	           return valeursAutoGenerees.getInt( 1 );
 	        } else {
 	            throw new DAOException( "Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné." );
 	        }
