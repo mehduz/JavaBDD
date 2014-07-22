@@ -5,8 +5,8 @@ public class Vaccin {
 	private long ID_vaccin;
 	private String Libelle;
 	
-	public Vaccin(String libelle) {
-		this.setLibelle(libelle);
+	public Vaccin() {
+		
 	}
 	
 	public Vaccin(long iD_vaccin, String libelle) {
