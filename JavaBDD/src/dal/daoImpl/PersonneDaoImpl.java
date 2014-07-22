@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 
 import beans.Eleve;
 import beans.Personne;
@@ -22,7 +23,7 @@ public class PersonneDaoImpl extends SuperDaoImpl implements PersonneDao {
 //	/*Création du profil contact à l'aide de l'ID_personne précédemment récupéré*/
 //	INSERT INTO contact (Adresse_contact, ID_personne) VALUES (?, ?);
 	
-	
+	private static final String SQL_SELECT_ALL = "SELECT * FROM Personne";
 	final static String SQL_INSERT_PERSONNE = "INSERT INTO personne (Nom, Prenom, Email, Tel_domicile, Tel_mobile) VALUES (?, ?, ?, ?, ?)";
 	final static String SQL_SELECT_PERSONNE_PAR_ID = "SELECT * FROM Personne where ID_personne = ?";
 	
@@ -110,6 +111,38 @@ public class PersonneDaoImpl extends SuperDaoImpl implements PersonneDao {
 	    return personne;
 		
 		
+	}
+	
+	public ArrayList<Personne> getAll() {
+
+		 Connection connexion = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+		    Personne personne = null;
+		    ArrayList<Personne> listePersonne = new ArrayList<Personne>();
+		    
+		    try {
+		        /* Récupération d'une connexion depuis la Factory */
+		        connexion = daoFactory.getConnection();
+		        preparedStatement = DAODataBaseManager.initialisationRequetePreparee( connexion, SQL_SELECT_ALL, false);
+		        resultSet = preparedStatement.executeQuery();
+		        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+		  
+		        	  while ( resultSet.next() ) {
+		        		
+		        		  personne = map( resultSet );
+		        		  listePersonne.add(personne);
+		        		   
+		        	  }
+		        	
+		        	return listePersonne;
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {
+		    	DAODataBaseManager.fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+		    }
+
 	}
 	
 	/*

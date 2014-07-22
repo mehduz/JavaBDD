@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 public class Personne implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -462271423330545940L;
+	
 	private long ID_personne;
 	private String Nom;
 	private String Prenom;
@@ -62,7 +67,5 @@ public class Personne implements Serializable {
 	public void setTel_mobile(long tel_mobile) {
 		Tel_mobile = tel_mobile;
 	}
-	
-	
 	
 }

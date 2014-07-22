@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -116,43 +117,13 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 		getContentPane().add(btnMatire);
 		
 		JButton btnlve = new JButton("Supprimer");
-		btnlve.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-				VaccinDaoImpl el = (VaccinDaoImpl) DAOFactory.getInstance().getVaccinDao();		
-				ArrayList<Vaccin> maListe = ListeVaccin.getListeVaccin();
-			
-				try {
-					el.supprimer(maListe.get(comboBox.getSelectedIndex()));		
-				} catch (Exception eA) {}
-				
-				myRepaint();
-				
-			}
-		});
+
 		btnlve.setFont(new Font("Arial", Font.BOLD, 12));
 		btnlve.setBounds(164, 281, 130, 23);
 		getContentPane().add(btnlve);
 		
 		JButton btnContact = new JButton("Modifier");
-		btnContact.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-				VaccinDaoImpl el = (VaccinDaoImpl) DAOFactory.getInstance().getVaccinDao();		
-				ArrayList<Vaccin> maListe = ListeVaccin.getListeVaccin();
-				Vaccin newVaccin = new Vaccin(textField_2.getText());
-				
-				try {
-					el.supprimer(maListe.get(comboBox.getSelectedIndex()));	
-					el.creer(newVaccin);
-				} catch (Exception eA) {}
-				
-				myRepaint();
-				
-			}
-		});
+		
 		btnContact.setFont(new Font("Arial", Font.BOLD, 12));
 		btnContact.setBounds(10, 310, 130, 23);
 		getContentPane().add(btnContact);
@@ -168,21 +139,7 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 		getContentPane().add(btnModeSql);
 		
 		JButton btnAlergie = new JButton("Ajouter");
-		btnAlergie.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-				VaccinDaoImpl el = (VaccinDaoImpl) DAOFactory.getInstance().getVaccinDao();		
-				Vaccin newVaccin = new Vaccin(textField_2.getText());
-				
-				try {
-					el.creer(newVaccin);
-				} catch (Exception eA) {}
-				
-				myRepaint();
-				
-			}
-		});
+
 		btnAlergie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -309,6 +266,70 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 				int x = comboBox.getSelectedIndex();
 				textField_2.setText(table.getValueAt(x, 1).toString());
 				repaint();
+			}
+		});
+		
+		//AJOUTER
+		btnAlergie.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				VaccinDaoImpl el = (VaccinDaoImpl) DAOFactory.getInstance().getVaccinDao();		
+				Vaccin newVaccin = new Vaccin();
+				newVaccin.setLibelle(textField_2.getText());
+				
+				try {
+					el.creer(newVaccin);
+				} catch (Exception eSQL) {
+					JFrame jf = new JFrame();
+					JOptionPane.showMessageDialog(jf,"Erreur SQL : \n\n" + eSQL, "Erreur SQL", JOptionPane.WARNING_MESSAGE);
+				}
+				
+				myRepaint();
+				
+			}
+		});
+		
+		//SUPPRIMER
+		btnlve.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				VaccinDaoImpl el = (VaccinDaoImpl) DAOFactory.getInstance().getVaccinDao();		
+				ArrayList<Vaccin> maListe = ListeVaccin.getListeVaccin();
+			
+				try {
+					el.supprimer(maListe.get(comboBox.getSelectedIndex()));		
+				} catch (Exception eSQL) {
+					JFrame jf = new JFrame();
+					JOptionPane.showMessageDialog(jf,"Erreur SQL : \n\n" + eSQL, "Erreur SQL", JOptionPane.WARNING_MESSAGE);
+				}
+				
+				myRepaint();
+				
+			}
+		});
+		
+		//MODIFIER
+		btnContact.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				VaccinDaoImpl el = (VaccinDaoImpl) DAOFactory.getInstance().getVaccinDao();		
+				ArrayList<Vaccin> maListe = ListeVaccin.getListeVaccin();
+				Vaccin newVaccin = new Vaccin();
+				newVaccin.setLibelle(textField_2.getText());
+				
+				try {
+					el.supprimer(maListe.get(comboBox.getSelectedIndex()));	
+					el.creer(newVaccin);
+				} catch (Exception eSQL) {
+					JFrame jf = new JFrame();
+					JOptionPane.showMessageDialog(jf,"Erreur SQL : \n\n" + eSQL, "Erreur SQL", JOptionPane.WARNING_MESSAGE);
+				}
+				
+				myRepaint();
+				
 			}
 		});
 

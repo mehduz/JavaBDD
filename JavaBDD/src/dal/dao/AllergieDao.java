@@ -14,7 +14,5 @@ public interface AllergieDao {
 	Allergie trouver( String nomAllergie ) throws DAOException;
 
 	ArrayList<Allergie> getAll() throws DAOException;
-
-
 	
 }

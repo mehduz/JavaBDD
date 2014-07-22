@@ -1,15 +1,11 @@
 package communication;
 
 import beans.Authentication;
-import beans.Eleve;
 import beans.Personne;
-import beans.Professeur;
 import dal.DAOFactory;
 import dal.DAOPermission;
 import dal.dao.AuthenticationDao;
-import dal.dao.EleveDao;
 import dal.dao.PersonneDao;
-import dal.dao.ProfesseurDao;
 
 public class ActionIdentification extends Action {
 
