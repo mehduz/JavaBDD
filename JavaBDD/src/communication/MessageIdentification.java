@@ -1,11 +1,12 @@
 package communication;
 
-import java.nio.charset.Charset;
-import java.util.EventObject;
-
-
 public class MessageIdentification extends Message {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 546111143346443771L;
+	
 	private String login, password;
 
 	public MessageIdentification(String type, String login, String password) {

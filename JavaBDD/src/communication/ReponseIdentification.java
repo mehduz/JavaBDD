@@ -5,6 +5,11 @@ import beans.Personne;
 
 public class ReponseIdentification extends Reponse{ 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4754417419873646483L;
+	
 	private boolean logged;
 	private Personne p;
 	private DAOPermission permission;
