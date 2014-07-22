@@ -92,7 +92,7 @@ public class DAOFactory {
 			LOGGER.severe(
 					"Impossible de charger le fichier properties "
 							+ FICHIER_PROPERTIES);
-			url = "jdbc:mysql://127.0.0.1:3306/universitymanagerdb";
+			url = "jdbc:mysql://localhost/universitymanagerdb";
 		    driver = "com.mysql.jdbc.Driver";
 		    username = "remoteuser";
 		    password = "remote"; 	

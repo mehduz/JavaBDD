@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -25,8 +26,11 @@ import java.net.URI;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
+import table.TableAllergie;
+import table.TableSuivi;
 import communication.ResponseEvent;
 import communication.ResponseListener;
+import dal.DAOFactory;
 
 public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements ResponseListener {
 
@@ -36,6 +40,7 @@ public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements Resp
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTable table;
 
 	/**
 	 * Create the frame.
@@ -47,6 +52,9 @@ public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements Resp
 		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
+
+		table = TableSuivi.getTableSuivi(DAOFactory.getInstance().getSuiviDao().getAllParIdProf((int) GlobalProperties.getProperty("ID_prof")));
+		table.setOpaque(false);
 		
 		JSeparator separator_5 = new JSeparator();
 		separator_5.setBounds(8, 313, 284, 2);

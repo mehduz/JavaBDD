@@ -13,6 +13,8 @@ import liste.ListeEleveParMatiere;
 
 import org.junit.Test;
 
+import dal.DAOFactory;
+import beans.Contact;
 import beans.Eleve;
 import table.TableAllergie;
 import table.TableClasse;
@@ -27,32 +29,11 @@ public class TestDB {
 	@Test
 	public void test() {
 		
-	    JFrame frame = new JFrame();
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    
-//	    JTable tableA = TableAllergie.getTableAllergie();
-//	    JTable tableCl = TableClasse.getTableClasse();
-//	    JTable tableCo = TableContact.getTableContact();
-//	    JTable tableE = TableEleve.getTableEleve();
-//	    JTable tableMa = TableMatiere.getTableMatiere();
-//	    JTable tableMe = TableMedecin.getTableMedecin();
-//	    JTable tableP = TableProfesseur.getTableProfesseur();
-//	    JTable tableS = TableSuivi.getTableSuivi();
-//	    JTable tableV = TableVaccin.getTableVaccin();
-		JTable tableListeEparC = ListeEleveParClasse.getListeEleveParClasse("L3 Asyria");
-//		JTable tableListeEparM = ListeEleveParMatiere.getListeEleveParMatiere("Informatique");
-		
-	    JScrollPane scrollPane = new JScrollPane(tableListeEparC);
-	    frame.add(scrollPane, BorderLayout.CENTER);
-	    frame.setSize(932, 651);
-	    frame.setVisible(true);
-	    try {
-			Thread.sleep(5000000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
+		Contact c = new Contact(1, "Labonasse", "Charlotte", "labonassec@gmail.com", 061521352, 023515412, 0, "1 pink road");
+		
+		System.out.println(DAOFactory.getInstance().getContactDao().creer(c));
+		
 	}
 	
 }
