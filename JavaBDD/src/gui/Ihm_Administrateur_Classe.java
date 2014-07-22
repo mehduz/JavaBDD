@@ -93,11 +93,20 @@ public class Ihm_Administrateur_Classe extends JFrame implements ResponseListene
 		getContentPane().add(btnMatire);
 		
 		JButton btnlve = new JButton("Supprimer");
+		btnlve.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnlve.setFont(new Font("Arial", Font.BOLD, 12));
 		btnlve.setBounds(164, 281, 130, 23);
 		getContentPane().add(btnlve);
 		
 		JButton btnContact = new JButton("Modifier");
+		btnContact.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+		});
 		btnContact.setFont(new Font("Arial", Font.BOLD, 12));
 		btnContact.setBounds(10, 310, 130, 23);
 		getContentPane().add(btnContact);
@@ -113,6 +122,11 @@ public class Ihm_Administrateur_Classe extends JFrame implements ResponseListene
 		getContentPane().add(btnModeSql);
 		
 		JButton btnAlergie = new JButton("Ajouter");
+		btnAlergie.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+		});
 		btnAlergie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -234,6 +248,11 @@ public class Ihm_Administrateur_Classe extends JFrame implements ResponseListene
 		lblNewLabel_3.setBounds(300, 0, 974, 691);
 		getContentPane().add(lblNewLabel_3);
 
+	}
+	
+	public void myRepaint() {
+		this.setVisible(false);
+		Ihm_Administrateur_Allergie ihm = new Ihm_Administrateur_Allergie();
 	}
 	
 	public void setPanelIdentification(String login, String profil) {

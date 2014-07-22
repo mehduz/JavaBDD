@@ -28,8 +28,12 @@ import java.net.URI;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
+import dal.DAOFactory;
+import dal.daoImpl.AllergieDaoImpl;
+import dal.daoImpl.ContactDaoImpl;
 import liste.ListeClasse;
 import liste.ListeContact;
+import beans.Allergie;
 import beans.Classe;
 import beans.Contact;
 import table.TableContact;
@@ -200,6 +204,31 @@ public class Ihm_Administrateur_Contact extends JFrame {
 		getContentPane().add(btnModeSql);
 		
 		JButton btnAlergie = new JButton("Ajouter");
+		btnAlergie.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+//				ContactDaoImpl el = (ContactDaoImpl) DAOFactory.getInstance().getContactDao();		
+//				Contact newContact = new Contact(
+//						//ID personne
+//						
+//						//nom prenom email
+//						textField_2.getText(), textField_3.getText(), textField_4.getText(),
+//						//tel fixe mobile
+//						textField_7.getText(), textField_5.getText(), 
+//						//ID cont
+//						
+//						//adresse
+//						textField_6.getText());
+//				
+//				try {
+//					el.creer(newContact);
+//				} catch (Exception eA) {}
+//				
+//				myRepaint();
+				
+			}
+		});
 		btnAlergie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -334,6 +363,11 @@ public class Ihm_Administrateur_Contact extends JFrame {
 			}
 		});
 
+	}
+	
+	public void myRepaint() {
+		this.setVisible(false);
+		Ihm_Administrateur_Allergie ihm = new Ihm_Administrateur_Allergie();
 	}
 	
 	public void setPanelIdentification(String login, String profil) {

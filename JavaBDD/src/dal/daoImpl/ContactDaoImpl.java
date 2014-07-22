@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import java.sql.PreparedStatement;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import beans.Contact;
 import dal.DAODataBaseManager;
@@ -17,6 +19,7 @@ public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 
 	
 	final static String SQL_INSERT_CONTACT = "INSERT INTO contact (Adresse_contact, ID_personne) VALUES (?, ?)";
+	final static String SQL_SUPPR_CONTACT = "DELETE FROM contact WHERE ID_contact = (?)";
 	private static final String SQL_SELECT_CONTACT_PAR_ID_PERSONNE = "SELECT * FROM Contact, Personne WHERE Professeur.ID_personne = ? AND Contact.ID_personne = Personne.ID_personne ";
 	private static final String SQL_SELECT_ALL = "SELECT * FROM Contact, Personne WHERE  Contact.ID_personne = Personne.ID_personne ";
 
@@ -94,6 +97,27 @@ public class ContactDaoImpl  extends SuperDaoImpl implements ContactDao {
 
 	}
 	
+	@Override
+	public void supprimer(Contact contact) throws DAOException {
+
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet valeursAutoGenerees = null;
+
+		try {
+			connexion = daoFactory.getConnection();
+			preparedStatement = DAODataBaseManager.initialisationRequetePreparee(connexion,	SQL_SUPPR_CONTACT, true, contact.getID_contact());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			JFrame jf = new JFrame();
+			JOptionPane.showMessageDialog(jf,"Erreur de suppression : \n\n" + e, "Erreur SQL", JOptionPane.WARNING_MESSAGE);
+			throw new DAOException(e);			
+		} finally {
+			DAODataBaseManager.fermeturesSilencieuses(valeursAutoGenerees, preparedStatement, connexion);
+		}
+
+	}
 	
 	public ArrayList<Contact> getAll() throws DAOException{
 
