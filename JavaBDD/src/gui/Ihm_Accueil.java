@@ -8,6 +8,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Window;
@@ -29,6 +30,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
 import java.util.logging.Logger;
 
 public class Ihm_Accueil extends JFrame implements ResponseListener {
@@ -175,16 +178,36 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 
 		JButton btnNewButton_1 = new JButton("Help");
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnNewButton_1.setBounds(90, 275, 70, 23);
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+		@Override
+			public void mousePressed(MouseEvent e) {
+				URI uri = URI.create("http://www.efrei.fr/");
+				try {
+					Desktop.getDesktop().browse(uri);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
-		btnNewButton_1.setBounds(90, 275, 70, 23);
 		getContentPane().add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("Informations");
 		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton_2.setBounds(170, 275, 120, 23);
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				URI uri = URI.create("http://www.efrei.fr/programme-cycle-ingenieur-par-apprentissage#.U8pn7vl_uBo");
+				try {
+					Desktop.getDesktop().browse(uri);
+				} catch (IOException e1) {
+				// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		getContentPane().add(btnNewButton_2);
 
 		JLabel lblNewLabel_1 = new JLabel("Forgot password ? ");
