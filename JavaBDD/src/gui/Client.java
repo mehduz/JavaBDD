@@ -78,7 +78,7 @@ public class Client {
 		} catch (IOException e) {
 			LOGGER.severe("stream error : " + e);
 		}
-		isConnected = false;
+		isConnected = false; 
 	}
 
 	public void sendMessage(Message msg) {
