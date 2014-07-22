@@ -13,6 +13,8 @@ public interface VaccinDao {
 
 	ArrayList<Vaccin> getAll() throws DAOException;
 
-	ArrayList<Vaccin> getAllParEleve(int idPersonne) throws DAOException;
+	 ArrayList<Vaccin> getAllParEleve(int idPersonne) throws DAOException;
+
+	void supprimer(Vaccin vaccin) throws DAOException;
 	
-}
+} 
