@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import beans.Personne;
+import communication.MessageIdentification;
 import communication.Reponse;
 import communication.ReponseIdentification;
 import communication.ResponseEvent;
@@ -140,13 +141,6 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
-				setVisible(false);
-				Ihm_Administrateur IHM_admin = new Ihm_Administrateur();
-				//Ihm_Professeur IHM_prof = new Ihm_Professeur();
-				//Ihm_Eleve IHM_eleve = new Ihm_Eleve();
-				
-				/*
 				if ("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null,	"Veuillez saisir votre identifiant et mot de passe.",
 												"Erreur de connexion", JOptionPane.ERROR_MESSAGE);
@@ -161,10 +155,10 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 					} catch (Exception e1) {
 						LOGGER.severe(LOGGER.getName()+ " Erreur de connexion : " + e1);
 					}
-				}*/
-
+				}
 			}
 		});
+		
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -183,8 +177,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 				try {
 					Desktop.getDesktop().browse(uri);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					LOGGER.severe("URI error : " + e);
 				}
 			}
 		});
@@ -200,8 +193,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 				try {
 					Desktop.getDesktop().browse(uri);
 				} catch (IOException e1) {
-				// TODO Auto-generated catch block
-					e1.printStackTrace();
+					LOGGER.severe("URI error : " + e);
 				}
 			}
 		});
@@ -251,12 +243,18 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 				break;
 				
 			case PROF :
+				frameAccueil.setVisible(false);
+				Ihm_Professeur frameProf = new Ihm_Professeur();
+				frameProf.setVisible(true);
 				break;
 				
 			case ADMIN :
 				frameAccueil.setVisible(false);
 				Ihm_Administrateur frameAdmin = new Ihm_Administrateur();
 				frameAdmin.setVisible(true);
+				break;
+				
+			default:
 				break;
 		}
 	}

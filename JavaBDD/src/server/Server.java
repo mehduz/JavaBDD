@@ -35,9 +35,7 @@ public class Server implements Runnable{
                    LOGGER.info("Server Stopped.") ;
                    return;
                 }
-                LOGGER.severe("Error accepting client connection" + e.toString()) ; 
-                throw new RuntimeException(
-                    "Error accepting client connection", e);
+                LOGGER.severe("Error accepting client connection" + e) ; 
             } 
             new Thread(
                 new WorkerRunnable(clientSocket)
@@ -56,8 +54,7 @@ public class Server implements Runnable{
         try {
             this.serverSocket.close();
         } catch (IOException e) {
-        	LOGGER.info("Error closing server : " + e.toString()) ;
-            throw new RuntimeException("Error closing server", e);
+        	LOGGER.info("Error closing server : " + e) ;
         }
     }
 
@@ -66,7 +63,6 @@ public class Server implements Runnable{
             this.serverSocket = new ServerSocket(this.serverPort);
         } catch (IOException e) {
         	LOGGER.severe("Cannot open port " + serverPort);
-            throw new RuntimeException("Cannot open port" + serverPort, e);
         }
     }
 
