@@ -490,6 +490,11 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 
 	}
 	
+	public void myRepaint() {
+		this.setVisible(false);
+		new Ihm_Administrateur_Allergie();
+	}
+	
 	public void setPanelIdentification(String login, String profil) {
 		textField.setText(login);
 		textField_1.setText(profil);
