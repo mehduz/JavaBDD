@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import beans.Allergie;
 import beans.Vaccin;
@@ -20,18 +20,15 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 
 	
 	final static String SQL_INSERT_ALLERGIE = "INSERT INTO allergies (Libelle) VALUES (?)";
+	final static String SQL_SUPPR_ALLERGIE = "DELETE FROM allergies WHERE Libelle = (?)";
 	final static String SQL_SELECT_ALLERGIE_PAR_LIBELLE = "SELECT * FROM allergies where libelle = ?";
 	final static String SQL_SELECT_ALL = "SELECT * FROM allergies";
 	private static final String SQL_SELECT_ALLERGIE_ELEVE = "SELECT Libelle, Allergies.ID_allergie from Allergies, Allergique where ID_personne = ? AND Allergies.ID_allergie = Allergique.ID_allergie"; 
-		
 	
 	public AllergieDaoImpl(DAOFactory daoFactory) {
 		super(daoFactory);
 		// TODO Auto-generated constructor stub
 	}
-
-
-
 
 	@Override
 	public Allergie trouver(String nomAllergie) throws DAOException {
@@ -64,15 +61,34 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 	}
 	
 	public static Allergie map( ResultSet resultSet ) throws SQLException {
-		Allergie allergie = new Allergie();
-
-		allergie.setLibelle(resultSet.getString("Libelle"));
-		allergie.setID_allergie(resultSet.getInt("ID_allergie"));
 		
-		
+		Allergie allergie = new Allergie(resultSet.getInt("ID_allergie"), resultSet.getString("Libelle"));		
 	    return allergie;
+	    
 	}
 
+	@Override
+	public void supprimer(Allergie allergie) throws DAOException {
+
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet valeursAutoGenerees = null;
+
+		try {
+			connexion = daoFactory.getConnection();
+			preparedStatement = DAODataBaseManager.initialisationRequetePreparee(connexion,	SQL_SUPPR_ALLERGIE, true, allergie.getLibelle());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			JFrame jf = new JFrame();
+			JOptionPane.showMessageDialog(jf,"Erreur de suppression : \n\n" + e, "Erreur SQL", JOptionPane.WARNING_MESSAGE);
+			throw new DAOException(e);			
+		} finally {
+			DAODataBaseManager.fermeturesSilencieuses(valeursAutoGenerees, preparedStatement, connexion);
+		}
+
+	}
+	
 	@Override
 	public int creer(Allergie allergie) throws DAOException {
 

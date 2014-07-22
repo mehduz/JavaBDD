@@ -10,16 +10,12 @@ public class Allergie {
 		Libelle = libelle;
 	}
 
-	public Allergie() {
-		
+	public Allergie(String libelle) {
+		this.setLibelle(libelle);
 	}
 
 	public long getID_allergie() {
 		return ID_allergie;
-	}
-
-	public void setID_allergie(long iD_allergie) {
-		ID_allergie = iD_allergie;
 	}
 
 	public String getLibelle() {
@@ -32,8 +28,7 @@ public class Allergie {
 
 	@Override
 	public String toString() {
-		return "Allergies [ID_allergie=" + ID_allergie + ", Libelle=" + Libelle
-				+ "]";
+		return "Allergies [ID_allergie=" + ID_allergie + ", Libelle=" + Libelle	+ "]";
 	}
 
 }
