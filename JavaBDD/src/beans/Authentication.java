@@ -2,10 +2,13 @@ package beans;
 
 public class Authentication {
 
-
 	private long ID_personne;
 	private int Type_personne;
 
+	public Authentication() {
+
+	}
+	
 	public Authentication(long iD_personne,
 			int type_personne) {
 		super();
@@ -13,11 +16,6 @@ public class Authentication {
 		ID_personne = iD_personne;
 		Type_personne = type_personne;
 	}
-
-	public Authentication() {
-
-	}
-
 
 	public long getID_personne() {
 		return ID_personne;

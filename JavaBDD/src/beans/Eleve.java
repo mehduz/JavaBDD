@@ -4,6 +4,11 @@ import java.util.Date;
 
 public class Eleve extends Personne {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3687840808620150541L;
+	
 	private long Matricule;
 	private Date Date_naissance;
 	private String Ville_naissance;

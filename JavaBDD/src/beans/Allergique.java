@@ -5,16 +5,16 @@ public class Allergique {
 	private long Matricule;
 	private long ID_personne;
 	private long ID_allergie;
+	
+	public Allergique() {
+
+	}
 
 	public Allergique(long matricule, long iD_personne, long iD_allergie) {
 		super();
 		Matricule = matricule;
 		ID_personne = iD_personne;
 		ID_allergie = iD_allergie;
-	}
-
-	public Allergique() {
-
 	}
 
 	public long getMatricule() {
