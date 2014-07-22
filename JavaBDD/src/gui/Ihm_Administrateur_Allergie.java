@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 import java.awt.BorderLayout;
 import java.awt.Desktop;
@@ -14,8 +15,6 @@ import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -23,17 +22,18 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 
 import liste.ListeAllergie;
-import liste.ListeClasse;
 import beans.Allergie;
-import beans.Classe;
 import communication.ResponseEvent;
 import communication.ResponseListener;
+import dal.DAOFactory;
+import dal.daoImpl.AllergieDaoImpl;
 import table.TableAllergie;
 
 public class Ihm_Administrateur_Allergie extends JFrame implements ResponseListener {
@@ -42,6 +42,7 @@ public class Ihm_Administrateur_Allergie extends JFrame implements ResponseListe
 	 * 
 	 */
 	private static final long serialVersionUID = -684831082624221575L;
+	private JFrame actualFrame;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -112,11 +113,43 @@ public class Ihm_Administrateur_Allergie extends JFrame implements ResponseListe
 		getContentPane().add(btnMatire);
 		
 		JButton btnlve = new JButton("Supprimer");
+		btnlve.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				AllergieDaoImpl el = (AllergieDaoImpl) DAOFactory.getInstance().getAllergieDao();		
+				ArrayList<Allergie> maListe = ListeAllergie.getListeAllergie();
+			
+				try {
+					el.supprimer(maListe.get(comboBox.getSelectedIndex()));		
+				} catch (Exception eA) {}
+				
+				myRepaint();
+				
+			}
+		});
 		btnlve.setFont(new Font("Arial", Font.BOLD, 12));
 		btnlve.setBounds(164, 281, 130, 23);
 		getContentPane().add(btnlve);
 		
 		JButton btnContact = new JButton("Modifier");
+		btnContact.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				
+				AllergieDaoImpl el = (AllergieDaoImpl) DAOFactory.getInstance().getAllergieDao();		
+				ArrayList<Allergie> maListe = ListeAllergie.getListeAllergie();
+				Allergie newAllergie = new Allergie(textField_2.getText());
+				
+				try {
+					el.supprimer(maListe.get(comboBox.getSelectedIndex()));	
+					el.creer(newAllergie);
+				} catch (Exception eA) {}
+				
+				myRepaint();
+				
+			}
+		});
 		btnContact.setFont(new Font("Arial", Font.BOLD, 12));
 		btnContact.setBounds(10, 310, 130, 23);
 		getContentPane().add(btnContact);
@@ -132,10 +165,23 @@ public class Ihm_Administrateur_Allergie extends JFrame implements ResponseListe
 		getContentPane().add(btnModeSql);
 		
 		JButton btnAlergie = new JButton("Ajouter");
-		btnAlergie.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnAlergie.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				AllergieDaoImpl el = (AllergieDaoImpl) DAOFactory.getInstance().getAllergieDao();		
+				Allergie newAllergie = new Allergie(textField_2.getText());
+				
+				try {
+					el.creer(newAllergie);
+				} catch (Exception eA) {}
+				
+				myRepaint();
+				
 			}
+			
 		});
+		
 		btnAlergie.setFont(new Font("Arial", Font.BOLD, 12));
 		btnAlergie.setBounds(10, 281, 130, 23);
 		getContentPane().add(btnAlergie);
@@ -261,6 +307,11 @@ public class Ihm_Administrateur_Allergie extends JFrame implements ResponseListe
 			}
 		});
 
+	}
+	
+	public void myRepaint() {
+		this.setVisible(false);
+		Ihm_Administrateur_Allergie ihm = new Ihm_Administrateur_Allergie();
 	}
 	
 	public void setPanelIdentification(String login, String profil) {

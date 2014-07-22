@@ -9,8 +9,7 @@ public class ListeAllergie {
 
 	public static ArrayList<Allergie> getListeAllergie() {
 
-		AllergieDaoImpl el = (AllergieDaoImpl) DAOFactory.getInstance()
-				.getAllergieDao();
+		AllergieDaoImpl el = (AllergieDaoImpl) DAOFactory.getInstance().getAllergieDao();
 		ArrayList<Allergie> listeAllergie = el.getAll();
 
 		return listeAllergie;

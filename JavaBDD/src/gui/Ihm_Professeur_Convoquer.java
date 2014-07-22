@@ -23,9 +23,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 
+import liste.ListeEleve;
+import mail.SmtpTest;
+import beans.Eleve;
 import communication.ResponseEvent;
 import communication.ResponseListener;
 
@@ -37,6 +41,7 @@ public class Ihm_Professeur_Convoquer extends JFrame implements ResponseListener
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
 	private JTextField textField_1;
+	JComboBox comboBox;
 
 	/**
 	 * Create the frame.
@@ -49,23 +54,39 @@ public class Ihm_Professeur_Convoquer extends JFrame implements ResponseListener
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
-		JButton btnConvoquer_1 = new JButton("Convoquer");
-		btnConvoquer_1.setFont(new Font("Arial", Font.BOLD, 12));
-		btnConvoquer_1.setBounds(83, 321, 130, 23);
-		getContentPane().add(btnConvoquer_1);
-		
 		JLabel lbllves = new JLabel("\u00C9l\u00E8ves");
 		lbllves.setForeground(Color.WHITE);
 		lbllves.setFont(new Font("Arial", Font.BOLD, 15));
 		lbllves.setBounds(12, 267, 142, 20);
 		getContentPane().add(lbllves);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setMaximumRowCount(10);
 		comboBox.setBounds(12, 285, 280, 25);
+		for (Eleve e : ListeEleve.getListeEleve()) {
+			comboBox.addItem((e.getNom()) + " " + e.getPrenom());
+		}
 		getContentPane().add(comboBox);
 		
-		JButton btnConvoquer = new JButton("Convoquer ");
+		JButton btnConvoquer_1 = new JButton("Convoquer");
+		btnConvoquer_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				SmtpTest mail = new SmtpTest();
+				try {
+					ArrayList<Eleve> listeEleve = ListeEleve.getListeEleve();
+					mail.envoyerMail(listeEleve.get(comboBox.getSelectedIndex()).getEmail());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnConvoquer_1.setFont(new Font("Arial", Font.BOLD, 12));
+		btnConvoquer_1.setBounds(83, 321, 130, 23);
+		getContentPane().add(btnConvoquer_1);
+		
+		JButton btnConvoquer = new JButton("Convoquer");
 		btnConvoquer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
