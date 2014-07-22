@@ -19,6 +19,7 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 
 	
 	final static String SQL_INSERT_ALLERGIE = "INSERT INTO allergies (Libelle) VALUES (?)";
+	//RC Ajout requete suppression
 	final static String SQL_SUPPR_ALLERGIE = "DELETE FROM allergies WHERE Libelle = (?)";
 	final static String SQL_SELECT_ALLERGIE_PAR_LIBELLE = "SELECT * FROM allergies where libelle = ?";
 	final static String SQL_SELECT_ALL = "SELECT * FROM allergies";
@@ -98,6 +99,7 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 		
 	}
 	
+	//RC Ajout methode suppression
 	@Override
 	public void supprimer(Allergie allergie) throws DAOException {
 
@@ -111,6 +113,7 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
+			//RC Ajout msg d'erreur sql graphique
 			JFrame jf = new JFrame();
 			JOptionPane.showMessageDialog(jf,"Erreur de suppression : \n\n" + e, "Erreur SQL", JOptionPane.WARNING_MESSAGE);
 			throw new DAOException(e);			
@@ -188,6 +191,7 @@ public class AllergieDaoImpl extends SuperDaoImpl implements AllergieDao {
 	
 	public static Allergie map( ResultSet resultSet ) throws SQLException {
 		
+		//RC changement via le constructeur beans
 		Allergie allergie = new Allergie(resultSet.getInt("ID_allergie"), resultSet.getString("Libelle"));		
 	    return allergie;
 	    
