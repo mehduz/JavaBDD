@@ -31,7 +31,6 @@ import java.util.Set;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.table.DefaultTableModel;
 
 import table.TableAllergie;
 import table.TableSuivi;
@@ -42,7 +41,7 @@ import dal.DAOFactory;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
-public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements ResponseListener {
+public class Ihm_Professeur_ConsulterNotesTutoresMaj extends JFrame implements ResponseListener {
 
 	/**
 	 * 
@@ -50,14 +49,14 @@ public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements Resp
 	private static final long serialVersionUID = -684831082624221575L;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTable table;
 	private JComboBox comboBox;
-	private  ArrayList distinctList;
+	private ArrayList distinctList;
+	private JTable table;
 
 	/**
 	 * Create the frame.
 	 */
-	public Ihm_Professeur_ConsulterNotesTutores() {
+	public Ihm_Professeur_ConsulterNotesTutoresMaj(JTable theTable) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("University Manager");
 		setSize(new Dimension(1280, 720));
@@ -65,7 +64,8 @@ public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements Resp
 		setVisible(true);
 		getContentPane().setLayout(null);
 	
-		table = TableSuivi.getTableSuivi(DAOFactory.getInstance().getSuiviDao().getAllParIdProf(2));
+		System.out.println("test");
+		table = theTable;
 		table.setOpaque(false);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -97,24 +97,13 @@ public class Ihm_Professeur_ConsulterNotesTutores extends JFrame implements Resp
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				
-				table = TableSuivi.getTableSuivi(DAOFactory.getInstance().getSuiviDao().getAllParIdProf(2));
-				table.setOpaque(false);
-				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				
-			
 				for(int i = 0; i < table.getRowCount(); i ++) {
-					
-					System.out.println(i);
-					System.out.println(table.getRowCount());
-					
 					if(!comboBox.getSelectedItem().toString().equals(table.getValueAt(i, 1) + " " + table.getValueAt(i, 2))) {
-						
-						model.removeRow(i);
-						i = -1;
-						
+						table.removeRowSelectionInterval(i, i);
 					}
 				}
 				
+				table.setOpaque(false);
 				myRepaint(table);
 				
 			}
