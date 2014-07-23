@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -19,7 +20,6 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
-import java.util.Properties;
 
 import javax.swing.SwingConstants;
 
@@ -28,6 +28,7 @@ import communication.ResponseListener;
 
 import javax.swing.JScrollPane;
 
+import print.JTableToPDF;
 import enums.GlobalProperties;
 
 
@@ -42,6 +43,7 @@ public class Ihm_Eleve extends JFrame implements ResponseListener {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTable table;
+	private JFrame jf;
 
 	/**
 	 * Create the frame.
@@ -166,6 +168,13 @@ public class Ihm_Eleve extends JFrame implements ResponseListener {
 		getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton_1 = new JButton("Imprimer votre bulletin de notes");		
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				JOptionPane.showMessageDialog(jf, "Création d'un PDF dans votre dossier personnel.", "Impression", JOptionPane.INFORMATION_MESSAGE);
+				JTableToPDF.print(table);
+			}
+		});
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
 
 		btnNewButton_1.setBounds(10, 187, 282, 23);

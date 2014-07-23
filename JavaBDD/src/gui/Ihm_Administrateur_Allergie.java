@@ -66,10 +66,6 @@ public class Ihm_Administrateur_Allergie extends JFrame implements ResponseListe
 		table = TableAllergie.getTableAllergie();
 		table.setOpaque(false);
 		
-
-		
-	
-		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
