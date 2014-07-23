@@ -11,6 +11,6 @@
 	<classpathentry exported="true" kind="lib" path="mailapi.jar"/>
 	<classpathentry exported="true" kind="lib" path="smtp.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="itext-2.1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="itext-2.1.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
