@@ -64,8 +64,8 @@ public class DAOFactory {
 		String password;
 		BoneCP connectionPool = null;
 
-		ClassLoader classLoader =
-		Thread.currentThread().getContextClassLoader();
+		ClassLoader classLoader = Thread.currentThread()
+				.getContextClassLoader();
 		InputStream fichierProperties = classLoader
 				.getResourceAsStream(FICHIER_PROPERTIES);
 
@@ -87,31 +87,14 @@ public class DAOFactory {
 				password = "remote";
 			}
 		}
-
-<<<<<<< HEAD
+		
 		else {
+			
 			LOGGER.severe("ce fichier est introuvable : " + FICHIER_PROPERTIES);
 			url = "jdbc:mysql://127.0.0.1:3306/universitymanagerdb";
 			driver = "com.mysql.jdbc.Driver";
 			username = "remoteuser";
 			password = "remote";
-=======
-		try {
-			properties.load(fichierProperties);
-			url = properties.getProperty(PROPERTY_URL);
-			driver = properties.getProperty(PROPERTY_DRIVER);
-			username = properties.getProperty(PROPERTY_NOM_UTILISATEUR);
-			password = properties.getProperty(PROPERTY_MOT_DE_PASSE);
-		} catch (Exception e) {
-			
-			LOGGER.severe(
-					"Impossible de charger le fichier properties "
-							+ FICHIER_PROPERTIES);
-			url = "jdbc:mysql://localhost/universitymanagerdb";
-		    driver = "com.mysql.jdbc.Driver";
-		    username = "remoteuser";
-		    password = "remote"; 	
->>>>>>> branch 'master' of https://github.com:443/mehduz/JavaBDD.git
 		}
 
 		try {
@@ -145,7 +128,7 @@ public class DAOFactory {
 		 * au constructeur de DAOFactory
 		 */
 		instance = new DAOFactory(connectionPool);
-		return instance;
+		return instance; 
 	}
 
 	/* Méthode chargée de fournir une connexion à la base de données */

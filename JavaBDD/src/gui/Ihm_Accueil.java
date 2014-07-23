@@ -23,6 +23,8 @@ import communication.Reponse;
 import communication.ReponseIdentification;
 import communication.ResponseEvent;
 import communication.ResponseListener;
+import enums.GlobalProperties;
+import enums.Properties;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -141,16 +143,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-<<<<<<< HEAD
-=======
-				
-				setVisible(false);
-				//Ihm_Administrateur IHM_admin = new Ihm_Administrateur();
-				Ihm_Professeur IHM_prof = new Ihm_Professeur();
-				//Ihm_Eleve IHM_eleve = new Ihm_Eleve();
-				
-				/*
->>>>>>> branch 'master' of https://github.com:443/mehduz/JavaBDD.git
+	
 				if ("...".equals(textField.getText()) || "...".equals(textField_1.getText())) {
 					JOptionPane.showMessageDialog(null,	"Veuillez saisir votre identifiant et mot de passe.",
 												"Erreur de connexion", JOptionPane.ERROR_MESSAGE);
@@ -243,26 +236,48 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 		}
 		
 		Personne p = ri.getPersonne();
-		GlobalProperties.registerProperty("LOGGED_USER", p);
+		GlobalProperties.registerProperty(Properties.LOGGED_USER, p);
+		frameAccueil.setVisible(false);
 		
 		switch(ri.getPermission()) {
 			case ELEVE :
-				frameAccueil.setVisible(false);
-				Ihm_Eleve frameEleve = new Ihm_Eleve();
+				
+				Ihm_Eleve frameEleve;
+				if( GlobalProperties.getProperty(Properties.FRAME_ELEVE) == null){
+					frameEleve = new Ihm_Eleve();
+					GlobalProperties.registerProperty(Properties.FRAME_ELEVE, frameEleve);
+				}
+				else{
+					frameEleve = (Ihm_Eleve)GlobalProperties.getProperty(Properties.FRAME_ELEVE);
+				}
 				frameEleve.setVisible(true);
 				break;
 				
 			case PROF :
-				frameAccueil.setVisible(false);
-				Ihm_Professeur frameProf = new Ihm_Professeur();
+				
+			
+				Ihm_Professeur frameProf;
+				if( GlobalProperties.getProperty(Properties.FRAME_PROF) == null){
+					frameProf = new Ihm_Professeur();
+					GlobalProperties.registerProperty(Properties.FRAME_PROF, frameProf);
+				}
+				else{
+					frameProf = (Ihm_Professeur)GlobalProperties.getProperty(Properties.FRAME_PROF);
+				}
 				frameProf.setVisible(true);
-				break;
 				
 			case ADMIN :
-				frameAccueil.setVisible(false);
-				Ihm_Administrateur frameAdmin = new Ihm_Administrateur();
-				frameAdmin.setVisible(true);
-				break;
+				
+				
+				Ihm_Administrateur frameAdmin;
+				if( GlobalProperties.getProperty(Properties.FRAME_ADMIN) == null){
+					frameAdmin = new Ihm_Administrateur();
+					GlobalProperties.registerProperty(Properties.FRAME_ADMIN, frameAdmin);
+				}
+				else{
+					 frameAdmin = (Ihm_Administrateur)GlobalProperties.getProperty(Properties.FRAME_ADMIN);
+				}
+				 frameAdmin.setVisible(true);
 				
 			default:
 				break;
