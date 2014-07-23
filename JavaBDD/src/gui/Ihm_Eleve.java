@@ -19,12 +19,17 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Properties;
 
 import javax.swing.SwingConstants;
+
 import communication.ResponseEvent;
 import communication.ResponseListener;
 
 import javax.swing.JScrollPane;
+
+import enums.GlobalProperties;
+
 
 import table.TableBulletin;
 
@@ -108,8 +113,9 @@ public class Ihm_Eleve extends JFrame implements ResponseListener {
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				Ihm_Accueil frameAccueil = (Ihm_Accueil) GlobalProperties.getProperty(enums.Properties.FRAME_ACCUEIL);
+				if(frameAccueil == null)frameAccueil = new Ihm_Accueil();
 				setVisible(false);
-				Ihm_Accueil frameAccueil = new Ihm_Accueil();
 				frameAccueil.setVisible(true);
 			}
 		});

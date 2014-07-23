@@ -29,6 +29,7 @@ import javax.swing.DefaultComboBoxModel;
 
 import communication.ResponseEvent;
 import communication.ResponseListener;
+import enums.GlobalProperties;
 
 public class Ihm_Professeur_MajNotes extends JFrame implements ResponseListener {
 
@@ -172,8 +173,9 @@ public class Ihm_Professeur_MajNotes extends JFrame implements ResponseListener 
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				Ihm_Accueil frameAccueil = (Ihm_Accueil) GlobalProperties.getProperty(enums.Properties.FRAME_ACCUEIL);
+				if(frameAccueil == null)frameAccueil = new Ihm_Accueil();
 				setVisible(false);
-				Ihm_Accueil frameAccueil = new Ihm_Accueil();
 				frameAccueil.setVisible(true);
 			}
 		});

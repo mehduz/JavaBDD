@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 
 import communication.ResponseEvent;
 import communication.ResponseListener;
+import enums.GlobalProperties;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -110,8 +111,9 @@ public class Ihm_Professeur extends JFrame implements ResponseListener {
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				Ihm_Accueil frameAccueil = (Ihm_Accueil) GlobalProperties.getProperty(enums.Properties.FRAME_ACCUEIL);
+				if(frameAccueil == null)frameAccueil = new Ihm_Accueil();
 				setVisible(false);
-				Ihm_Accueil frameAccueil = new Ihm_Accueil();
 				frameAccueil.setVisible(true);
 			}
 		});

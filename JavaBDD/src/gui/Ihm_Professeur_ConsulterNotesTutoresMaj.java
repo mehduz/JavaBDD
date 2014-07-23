@@ -37,6 +37,7 @@ import table.TableSuivi;
 import communication.ResponseEvent;
 import communication.ResponseListener;
 import dal.DAOFactory;
+import enums.GlobalProperties;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
@@ -178,8 +179,9 @@ public class Ihm_Professeur_ConsulterNotesTutoresMaj extends JFrame implements R
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				Ihm_Accueil frameAccueil = (Ihm_Accueil) GlobalProperties.getProperty(enums.Properties.FRAME_ACCUEIL);
+				if(frameAccueil == null)frameAccueil = new Ihm_Accueil();
 				setVisible(false);
-				Ihm_Accueil frameAccueil = new Ihm_Accueil();
 				frameAccueil.setVisible(true);
 			}
 		});

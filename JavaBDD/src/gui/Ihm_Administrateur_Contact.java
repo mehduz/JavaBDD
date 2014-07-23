@@ -35,6 +35,7 @@ import dal.daoImpl.AllergieDaoImpl;
 import dal.daoImpl.ClasseDaoImpl;
 import dal.daoImpl.ContactDaoImpl;
 import dal.daoImpl.PersonneDaoImpl;
+import enums.GlobalProperties;
 import liste.ListeAllergie;
 import liste.ListeContact;
 import liste.ListePersonne;
@@ -268,8 +269,9 @@ public class Ihm_Administrateur_Contact extends JFrame {
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				Ihm_Accueil frameAccueil = (Ihm_Accueil) GlobalProperties.getProperty(enums.Properties.FRAME_ACCUEIL);
+				if(frameAccueil == null)frameAccueil = new Ihm_Accueil();
 				setVisible(false);
-				Ihm_Accueil frameAccueil = new Ihm_Accueil();
 				frameAccueil.setVisible(true);
 			}
 		});

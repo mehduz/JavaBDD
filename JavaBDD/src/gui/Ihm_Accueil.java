@@ -58,6 +58,7 @@ public class Ihm_Accueil extends JFrame implements ResponseListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				frameAccueil = new Ihm_Accueil();
+				GlobalProperties.registerProperty(Properties.FRAME_ACCUEIL, frameAccueil);
 				frameAccueil.setVisible(true);
 			}
 		});

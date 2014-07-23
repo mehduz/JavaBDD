@@ -39,6 +39,7 @@ import communication.ResponseListener;
 import dal.DAOFactory;
 import dal.daoImpl.AllergieDaoImpl;
 import dal.daoImpl.VaccinDaoImpl;
+import enums.GlobalProperties;
 import table.TableVaccin;
 
 public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListener {
@@ -195,8 +196,9 @@ public class Ihm_Administrateur_Vaccin extends JFrame implements ResponseListene
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				Ihm_Accueil frameAccueil = (Ihm_Accueil) GlobalProperties.getProperty(enums.Properties.FRAME_ACCUEIL);
+				if(frameAccueil == null)frameAccueil = new Ihm_Accueil();
 				setVisible(false);
-				Ihm_Accueil frameAccueil = new Ihm_Accueil();
 				frameAccueil.setVisible(true);
 			}
 		});

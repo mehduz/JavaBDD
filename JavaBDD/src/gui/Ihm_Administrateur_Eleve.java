@@ -38,6 +38,7 @@ import communication.ResponseListener;
 import dal.DAOFactory;
 import dal.daoImpl.ClasseDaoImpl;
 import dal.daoImpl.EleveDaoImpl;
+import enums.GlobalProperties;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
@@ -397,8 +398,9 @@ public class Ihm_Administrateur_Eleve extends JFrame implements ResponseListener
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				Ihm_Accueil frameAccueil = (Ihm_Accueil) GlobalProperties.getProperty(enums.Properties.FRAME_ACCUEIL);
+				if(frameAccueil == null)frameAccueil = new Ihm_Accueil();
 				setVisible(false);
-				Ihm_Accueil frameAccueil = new Ihm_Accueil();
 				frameAccueil.setVisible(true);
 			}
 		});
